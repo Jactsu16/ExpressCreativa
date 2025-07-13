@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      ExpressCreativa - Agencia Digital Profesional desde Panamá para
+      Latinoamérica
+    </title>
+    <meta
+      name="description"
+      content="Hub profesional de servicios digitales especializados en streaming, desarrollo web y soluciones creativas integrales. Desde Panamá para toda Latinoamérica."
+    />
+    <meta
+      name="keywords"
+      content="agencia digital, streaming profesional, desarrollo web, Panamá, Latinoamérica, marketing digital, creatividad"
+    />
+    <meta name="author" content="ExpressCreativa" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta
+      property="og:title"
+      content="ExpressCreativa - Agencia Digital Profesional"
+    />
+    <meta
+      property="og:description"
+      content="Hub profesional de servicios digitales especializados en streaming, desarrollo web y soluciones creativas integrales."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://expresscreativa.com" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="ExpressCreativa - Agencia Digital Profesional"
+    />
+    <meta
+      name="twitter:description"
+      content="Hub profesional de servicios digitales especializados en streaming, desarrollo web y soluciones creativas integrales."
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://expresscreativa.com" />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Font Awesome -->
+    <script>
+      window.FontAwesomeConfig = { autoReplaceSvg: "nest" };
+    </script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-white overflow-x-hidden">
+    <header
+      id="header"
+      class="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50"
+    >
+      <div class="max-w-7xl mx-auto px-6 py-5">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 custom-bg-primary rounded-lg"></div>
+            <div>
+              <span class="text-2xl font-bold custom-primary"
+                >ExpressCreativa</span
+              >
+              <div class="text-xs text-gray-500 font-medium">
+                Digital Agency
+              </div>
+            </div>
+          </div>
+
+          <nav class="hidden lg:flex items-center space-x-10">
+            <a
+              href="servicios.html"
+              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >Servicios</a
+            >
+            <a
+              href="#tools"
+              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >Herramientas</a
+            >
+            <a
+              href="calculadora.html"
+              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >Calculadoras</a
+            >
+            <a
+              href="galeria.html"
+              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >Galería</a
+            >
+            <a
+              href="#contact"
+              class="custom-bg-green text-white px-6 py-3 rounded-xl hover:bg-opacity-90 transition-all font-medium"
+              >Contacto</a
+            >
+          </nav>
+
+          <button id="mobile-menu-btn" class="lg:hidden custom-primary">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden hidden mt-4 pb-4">
+          <div class="flex flex-col space-y-4">
+            <a
+              href="servicios.html"
+              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >Servicios</a
+            >
+            <a
+              href="#tools"
+              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >Herramientas</a
+            >
+            <a
+              href="calculadora.html"
+              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >Calculadoras</a
+            >
+            <a
+              href="galeria.html"
+              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >Galería</a
+            >
+            <a
+              href="#contact"
+              class="custom-bg-green text-white px-6 py-3 rounded-xl hover:bg-opacity-90 transition-all font-medium text-center"
+              >Contacto</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="gradient-bg py-24 animate-fade-in">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="animate-slide-right">
+              <div
+                class="inline-flex items-center space-x-2 custom-bg-primary/10 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-8"
+              >
+                <i class="fas fa-rocket"></i>
+                <span>Desde Panamá para Latinoamérica</span>
+              </div>
+
+              <h1
+                class="text-6xl lg:text-7xl font-bold custom-primary mb-8 leading-tight"
+              >
+                Creatividad
+                <br /><span class="custom-accent-gold">Digital</span> <br />Sin
+                Límites
+              </h1>
+
+              <p class="text-xl text-gray-600 mb-10 leading-relaxed max-w-lg">
+                Hub profesional de servicios digitales especializados en
+                streaming, desarrollo web y soluciones creativas integrales.
+              </p>
+
+              <div class="flex flex-col sm:flex-row gap-5">
+                <a
+                  href="#services"
+                  class="custom-bg-primary text-white px-10 py-4 rounded-xl font-semibold hover:bg-opacity-90 transition-all text-center shadow-lg"
+                >
+                  Explorar Servicios
+                </a>
+                <a
+                  href="#contact"
+                  class="border-2 border-gray-300 text-gray-700 px-10 py-4 rounded-xl font-semibold hover:border-gray-400 transition-all text-center"
+                >
+                  Hablar con Expertos
+                </a>
+              </div>
+            </div>
+
+            <div class="relative animate-slide-up">
+              <div
+                class="absolute inset-0 custom-bg-primary/5 rounded-3xl transform rotate-6"
+              ></div>
+              <div class="relative bg-white p-8 rounded-3xl shadow-2xl">
+                <img
+                  class="w-full h-80 object-cover rounded-2xl"
+                  src="https://storage.googleapis.com/uxpilot-auth.appspot.com/06571f4cad-12c02f35223d21341ebc.png"
+                  alt="Espacio de trabajo digital moderno con equipo de streaming profesional, múltiples monitores, configuración de iluminación profesional, diseño minimalista"
+                  loading="lazy"
+                />
+
+                <div
+                  class="absolute -top-4 -right-4 custom-bg-green w-16 h-16 rounded-full flex items-center justify-center floating-element"
+                >
+                  <i class="fas fa-play text-white text-xl"></i>
+                </div>
+
+                <div
+                  class="absolute -bottom-4 -left-4 custom-bg-orange w-16 h-16 rounded-full flex items-center justify-center floating-element"
+                  style="animation-delay: -3s"
+                >
+                  <i class="fas fa-code text-white text-xl"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="bg-white py-24">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center mb-20">
+            <h2 class="text-5xl font-bold custom-primary mb-6">
+              Nuestras Especialidades
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Soluciones digitales profesionales diseñadas para impulsar tu
+              presencia online en toda Latinoamérica
+            </p>
+          </div>
+
+          <div class="grid lg:grid-cols-3 gap-10">
+            <article
+              class="group bg-white p-10 rounded-3xl shadow-lg hover-lift border border-gray-100"
+            >
+              <div
+                class="w-20 h-20 custom-bg-orange rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
+              >
+                <i class="fas fa-video text-white text-3xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold custom-primary mb-4">
+                Streaming Profesional
+              </h3>
+              <p class="text-gray-600 mb-8 leading-relaxed">
+                Transmisiones en vivo de alta calidad para todas las
+                plataformas. Configuración técnica, producción y gestión
+                completa.
+              </p>
+              <a
+                href="#contact"
+                class="custom-primary font-semibold hover:underline inline-flex items-center space-x-2"
+              >
+                <span>Explorar servicios</span>
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </article>
+
+            <article
+              class="group bg-white p-10 rounded-3xl shadow-lg hover-lift border border-gray-100"
+            >
+              <div
+                class="w-20 h-20 custom-bg-primary rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
+              >
+                <i class="fas fa-code text-white text-3xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold custom-primary mb-4">
+                Desarrollo Web
+              </h3>
+              <p class="text-gray-600 mb-8 leading-relaxed">
+                Sitios web corporativos modernos, responsivos y optimizados.
+                Funcionalidad avanzada y experiencia de usuario excepcional.
+              </p>
+              <a
+                href="galeria.html"
+                class="custom-primary font-semibold hover:underline inline-flex items-center space-x-2"
+              >
+                <span>Ver portfolio</span>
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </article>
+
+            <article
+              class="group bg-white p-10 rounded-3xl shadow-lg hover-lift border border-gray-100"
+            >
+              <div
+                class="w-20 h-20 custom-bg-gold rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
+              >
+                <i class="fas fa-palette text-white text-3xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold custom-primary mb-4">
+                Servicios Creativos
+              </h3>
+              <p class="text-gray-600 mb-8 leading-relaxed">
+                Branding integral, producción audiovisual, redacción profesional
+                y estrategias BTL. Creatividad sin límites.
+              </p>
+              <a
+                href="#contact"
+                class="custom-primary font-semibold hover:underline inline-flex items-center space-x-2"
+              >
+                <span>Conocer más</span>
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="tools" class="bg-gray-50 py-24">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center mb-20">
+            <h2 class="text-5xl font-bold custom-primary mb-6">
+              Herramientas & Recursos
+            </h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+              Accede a nuestras herramientas especializadas y calculadoras
+              profesionales
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <article
+              class="bg-blue-50 p-8 rounded-2xl text-center hover-lift group"
+            >
+              <div
+                class="w-16 h-16 custom-bg-primary rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform"
+              >
+                <i class="fas fa-calculator text-white text-2xl"></i>
+              </div>
+              <h3 class="font-bold custom-primary mb-3 text-lg">
+                Calculadora de Métricas Publicitarias
+              </h3>
+              <p class="text-gray-600 text-sm mb-6">
+                CPM, CPC, CTR, CPA, ROI y CR para tus campañas
+              </p>
+              <a
+                href="calculadora.html"
+                class="custom-bg-primary text-white px-6 py-3 rounded-xl text-sm font-medium hover:bg-opacity-90 transition-all"
+                >Acceder</a
+              >
+            </article>
+
+            <article
+              class="bg-orange-50 p-8 rounded-2xl text-center hover-lift group"
+            >
+              <div
+                class="w-16 h-16 custom-bg-orange rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform"
+              >
+                <i class="fas fa-tower-broadcast text-white text-2xl"></i>
+              </div>
+              <h3 class="font-bold custom-primary mb-3 text-lg">
+                Setup Streaming
+              </h3>
+              <p class="text-gray-600 text-sm mb-6">
+                Configuración técnica y optimización
+              </p>
+              <a
+                href="#contact"
+                class="custom-bg-orange text-white px-6 py-3 rounded-xl text-sm font-medium hover:bg-opacity-90 transition-all"
+                >Explorar</a
+              >
+            </article>
+
+            <article
+              class="bg-yellow-50 p-8 rounded-2xl text-center hover-lift group"
+            >
+              <div
+                class="w-16 h-16 custom-bg-gold rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform"
+              >
+                <i class="fas fa-paintbrush text-white text-2xl"></i>
+              </div>
+              <h3 class="font-bold custom-primary mb-3 text-lg">
+                Recursos Diseño
+              </h3>
+              <p class="text-gray-600 text-sm mb-6">
+                Templates, assets y bibliotecas
+              </p>
+              <a
+                href="galeria.html"
+                class="custom-bg-gold text-white px-6 py-3 rounded-xl text-sm font-medium hover:bg-opacity-90 transition-all"
+                >Descargar</a
+              >
+            </article>
+
+            <article
+              class="bg-green-50 p-8 rounded-2xl text-center hover-lift group"
+            >
+              <div
+                class="w-16 h-16 custom-bg-green rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform"
+              >
+                <i class="fas fa-chart-line text-white text-2xl"></i>
+              </div>
+              <h3 class="font-bold custom-primary mb-3 text-lg">
+                Cotizaciones
+              </h3>
+              <p class="text-gray-600 text-sm mb-6">
+                Calculadora de presupuestos para servicios
+              </p>
+              <a
+                href="calculadora.html"
+                class="custom-bg-green text-white px-6 py-3 rounded-xl text-sm font-medium hover:bg-opacity-90 transition-all"
+                >Analizar</a
+              >
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="value-proposition" class="bg-white py-24">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="relative">
+              <img
+                class="w-full h-96 object-cover rounded-3xl shadow-2xl"
+                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/b3a92113cd-4f9ab49207af25c23128.png"
+                alt="Equipo profesional latinoamericano colaborando en proyectos digitales, ambiente de oficina moderno, diversos profesionales trabajando"
+                loading="lazy"
+              />
+
+              <div
+                class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl"
+              >
+                <div class="flex items-center space-x-4">
+                  <div
+                    class="custom-bg-green w-12 h-12 rounded-full flex items-center justify-center"
+                  >
+                    <i class="fas fa-earth-americas text-white"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold custom-primary">Latinoamérica</div>
+                    <div class="text-sm text-gray-600">Cobertura total</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h2 class="text-5xl font-bold custom-primary mb-8">
+                ¿Por qué ExpressCreativa?
+              </h2>
+
+              <div class="space-y-8">
+                <div class="flex items-start space-x-6">
+                  <div
+                    class="w-12 h-12 custom-bg-green rounded-full flex items-center justify-center flex-shrink-0"
+                  >
+                    <i class="fas fa-check text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-bold custom-primary mb-3 text-xl">
+                      Experiencia Latinoamericana
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                      Profundo conocimiento del mercado regional, cultura
+                      digital y particularidades de cada país.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-start space-x-6">
+                  <div
+                    class="w-12 h-12 custom-bg-orange rounded-full flex items-center justify-center flex-shrink-0"
+                  >
+                    <i class="fas fa-rocket text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-bold custom-primary mb-3 text-xl">
+                      Tecnología de Vanguardia
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                      Implementamos las últimas tendencias, herramientas y
+                      metodologías del ecosistema digital.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-start space-x-6">
+                  <div
+                    class="w-12 h-12 custom-bg-gold rounded-full flex items-center justify-center flex-shrink-0"
+                  >
+                    <i class="fas fa-puzzle-piece text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-bold custom-primary mb-3 text-xl">
+                      Servicios Integrales
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                      Ecosistema completo de soluciones digitales. Todo lo que
+                      necesitas en un solo lugar.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="cta-section" class="gradient-bg py-24">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+          <h2 class="text-5xl font-bold custom-primary mb-8">
+            ¿Listo para Potenciar tu Presencia Digital?
+          </h2>
+          <p
+            class="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
+          >
+            Conversemos sobre tu proyecto y descubre cómo podemos ayudarte a
+            alcanzar tus objetivos en el ecosistema digital latinoamericano.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-6 justify-center">
+            <a
+              href="#contact"
+              class="custom-bg-green text-white px-10 py-5 rounded-xl font-semibold hover:bg-opacity-90 transition-all shadow-lg text-lg"
+            >
+              Iniciar Proyecto
+            </a>
+            <a
+              href="galeria.html"
+              class="border-2 border-gray-300 text-gray-700 px-10 py-5 rounded-xl font-semibold hover:border-gray-400 transition-all text-lg"
+            >
+              Ver Portfolio
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="bg-black text-white py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-4 gap-12 mb-16">
+          <div>
+            <div class="flex items-center space-x-4 mb-8">
+              <div
+                class="w-12 h-12 custom-bg-primary rounded-xl flex items-center justify-center"
+              >
+                <i class="fas fa-bolt text-white text-xl"></i>
+              </div>
+              <div>
+                <span class="text-2xl font-bold">ExpressCreativa</span>
+                <div class="text-sm text-gray-400">Digital Agency</div>
+              </div>
+            </div>
+            <p class="text-gray-400 mb-8 leading-relaxed">
+              Agencia digital profesional desde Panamá para toda Latinoamérica.
+              Creatividad sin límites.
+            </p>
+            <div class="flex space-x-6">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+                aria-label="Instagram"
+              >
+                <i class="fab fa-instagram text-2xl"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+                aria-label="LinkedIn"
+              >
+                <i class="fab fa-linkedin text-2xl"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+                aria-label="YouTube"
+              >
+                <i class="fab fa-youtube text-2xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="font-bold mb-6 text-lg">Servicios</h3>
+            <ul class="space-y-4 text-gray-400">
+              <li>
+                <a href="#services" class="hover:text-white transition-colors"
+                  >Streaming Profesional</a
+                >
+              </li>
+              <li>
+                <a href="#services" class="hover:text-white transition-colors"
+                  >Desarrollo Web</a
+                >
+              </li>
+              <li>
+                <a href="#services" class="hover:text-white transition-colors"
+                  >Branding Integral</a
+                >
+              </li>
+              <li>
+                <a href="#services" class="hover:text-white transition-colors"
+                  >Producción Audiovisual</a
+                >
+              </li>
+              <li>
+                <a href="#services" class="hover:text-white transition-colors"
+                  >Pauta Digital</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-bold mb-6 text-lg">Recursos</h3>
+            <ul class="space-y-4 text-gray-400">
+              <li>
+                <a
+                  href="calculadora.html"
+                  class="hover:text-white transition-colors"
+                  >Calculadoras</a
+                >
+              </li>
+              <li>
+                <a href="#tools" class="hover:text-white transition-colors"
+                  >Herramientas</a
+                >
+              </li>
+              <li>
+                <a
+                  href="galeria.html"
+                  class="hover:text-white transition-colors"
+                  >Galería</a
+                >
+              </li>
+              <li>
+                <a href="#contact" class="hover:text-white transition-colors"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a href="#contact" class="hover:text-white transition-colors"
+                  >Guías</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-bold mb-6 text-lg">Contacto</h3>
+            <ul class="space-y-4 text-gray-400">
+              <li class="flex items-center space-x-3">
+                <i class="fas fa-location-dot"></i>
+                <span>Panamá, Latinoamérica</span>
+              </li>
+              <li class="flex items-center space-x-3">
+                <i class="fas fa-envelope"></i>
+                <a
+                  href="mailto:info@expresscreativa.com"
+                  class="hover:text-white transition-colors"
+                  >info@expresscreativa.com</a
+                >
+              </li>
+              <li class="flex items-center space-x-3">
+                <i class="fas fa-phone"></i>
+                <a
+                  href="tel:+50766043511"
+                  class="hover:text-white transition-colors"
+                  >+507 66043511</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-800 pt-8">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-400 mb-4 md:mb-0">
+              &copy; 2024 ExpressCreativa. Todos los derechos reservados.
+            </p>
+            <div class="flex space-x-8 text-gray-400">
+              <a href="#" class="hover:text-white transition-colors"
+                >Términos</a
+              >
+              <a href="#" class="hover:text-white transition-colors"
+                >Privacidad</a
+              >
+              <a href="#" class="hover:text-white transition-colors">Cookies</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>
