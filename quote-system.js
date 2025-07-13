@@ -13,6 +13,42 @@ function initializeQuoteSystem() {
 function handleQuoteSubmission(e) {
   e.preventDefault();
 
+  // Show terms and conditions first
+  showTermsAndConditions(e.target);
+}
+
+function showTermsAndConditions(form) {
+  const termsModal = document.getElementById('terms-modal');
+  const acceptBtn = document.getElementById('accept-terms');
+  const declineBtn = document.getElementById('decline-terms');
+  const closeBtn = document.getElementById('close-terms');
+  
+  if (termsModal) {
+    termsModal.classList.remove('hidden');
+    
+    // Handle accept
+    acceptBtn.onclick = function() {
+      termsModal.classList.add('hidden');
+      processQuoteSubmission(form);
+    };
+    
+    // Handle decline
+    declineBtn.onclick = function() {
+      termsModal.classList.add('hidden');
+      showToast('Debe aceptar los términos y condiciones para continuar', 'warning');
+    };
+    
+    // Handle close
+    closeBtn.onclick = function() {
+      termsModal.classList.add('hidden');
+    };
+  } else {
+    // Fallback if modal doesn't exist
+    processQuoteSubmission(form);
+  }
+}
+
+function processQuoteSubmission(form) {
   // Get form data
   const formData = new FormData(e.target);
   const data = {};

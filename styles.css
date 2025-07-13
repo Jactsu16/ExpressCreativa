@@ -472,10 +472,55 @@ header {
   background: #a8a8a8;
 }
 
+/* Terms modal improvements */
+#terms-modal .max-h-\[70vh\] {
+  scrollbar-width: thin;
+  scrollbar-color: #c1c1c1 #f1f1f1;
+}
+
+#terms-modal .max-h-\[70vh\]::-webkit-scrollbar {
+  width: 8px;
+}
+
+#terms-modal .max-h-\[70vh\]::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+#terms-modal .max-h-\[70vh\]::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+#terms-modal .max-h-\[70vh\]::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
 /* Service card enhancements */
 .service-card .space-y-4 button:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive cart modal */
+@media (max-width: 768px) {
+  #cart-modal .max-w-lg {
+    max-width: 95vw;
+    margin: 1rem;
+  }
+  
+  #cart-items {
+    max-height: 40vh;
+  }
+  
+  #terms-modal .max-w-4xl {
+    max-width: 95vw;
+    margin: 1rem;
+  }
+  
+  #terms-modal .max-h-\[70vh\] {
+    max-height: 50vh;
+  }
 }
 
 /* Cart item animations */

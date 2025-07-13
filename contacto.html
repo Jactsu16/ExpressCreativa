@@ -827,5 +827,111 @@
     <!-- JavaScript -->
     <script src="script.js"></script>
     <script src="quote-system.js"></script>
+    
+    <!-- Terms and Conditions Modal -->
+    <div id="terms-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50">
+      <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-2xl shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+          <div class="flex justify-between items-center p-6 border-b">
+            <h3 class="text-2xl font-bold custom-primary">Términos y Condiciones</h3>
+            <button id="close-terms" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-times text-xl"></i>
+            </button>
+          </div>
+          
+          <div class="p-6 max-h-[70vh] overflow-y-auto">
+            <div class="space-y-6 text-gray-700">
+              
+              <div>
+                <h4 class="text-lg font-bold custom-primary mb-3">1. Alcance de los Servicios</h4>
+                <p class="mb-2">Los servicios contratados se ejecutarán según las especificaciones acordadas en la cotización. Cualquier modificación o trabajo adicional será facturado por separado.</p>
+                <p><strong>Importante:</strong> El cliente debe contratar el servicio que corresponde al tamaño real de su proyecto. Intentar contratar un servicio de menor categoría para un proyecto más grande resultará en la cancelación del contrato.</p>
+              </div>
+
+              <div>
+                <h4 class="text-lg font-bold custom-primary mb-3">2. Clasificación de Proyectos</h4>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>Microempresa:</strong> 1-10 empleados, eventos familiares pequeños</li>
+                  <li><strong>Pequeña Empresa:</strong> 11-50 empleados, eventos corporativos medianos</li>
+                  <li><strong>Mediana Empresa:</strong> 51-250 empleados, eventos corporativos grandes</li>
+                  <li><strong>Gran Evento:</strong> Más de 500 asistentes, transmisiones masivas</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="text-lg font-bold custom-primary mb-3">3. Política de Precios</h4>
+                <p class="mb-2">Los precios mostrados son fijos para la categoría especificada. No se aceptarán solicitudes de descuentos basadas en contratar un servicio de menor categoría.</p>
+                <p>ExpressCreativa se reserva el derecho de reclasificar un proyecto si se determina que no corresponde a la categoría contratada.</p>
+              </div>
+
+              <div>
+                <h4 class="text-lg font-bold custom-primary mb-3">4. Formas de Pago</h4>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>50% de anticipo para iniciar el proyecto</li>
+                  <li>50% restante al finalizar y entregar el trabajo</li>
+                  <li>Métodos aceptados: Transferencia bancaria, PayPal, criptomonedas</li>
+                  <li>Servicios mensuales se facturan por adelantado</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="text-lg font-bold custom-primary mb-3">5. Tiempos de Entrega</h4>
+              <div>
+                <h4 class="text-lg font-bold custom-primary mb-3">6. Revisiones y Modificaciones</h4>
+                <p class="mb-2">Cada servicio incluye hasta 2 rondas de revisiones menores. Cambios mayores o adicionales se facturarán por separado.</p>
+                <p>Las modificaciones solicitadas después de la entrega final tendrán un costo adicional del 25% del valor original del servicio.</p>
+              </div>
+                <ul class="list-disc list-inside space-y-1">
+              <div>
+                <h4 class="text-lg font-bold custom-primary mb-3">7. Derechos de Autor</h4>
+                <p class="mb-2">El cliente obtiene los derechos de uso comercial del trabajo final una vez completado el pago total.</p>
+                <p>ExpressCreativa se reserva el derecho de usar el trabajo en su portfolio y materiales promocionales.</p>
+              </div>
+                  <li><strong>Urgente:</strong> 24-48 horas (recargo del 50%)</li>
+              <div>
+                <h4 class="text-lg font-bold custom-primary mb-3">8. Cancelaciones</h4>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Cancelaciones antes de iniciar: reembolso del 90%</li>
+                  <li>Cancelaciones con trabajo iniciado: no hay reembolso del anticipo</li>
+                  <li>ExpressCreativa puede cancelar si el cliente no cumple con los términos</li>
+                </ul>
+              </div>
+                  <li><strong>Normal:</strong> 3-7 días hábiles</li>
+              <div>
+                <h4 class="text-lg font-bold custom-primary mb-3">9. Responsabilidades del Cliente</h4>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Proporcionar información veraz sobre el tamaño y alcance del proyecto</li>
+                  <li>Entregar contenido y materiales necesarios en tiempo y forma</li>
+                  <li>Realizar pagos según lo acordado</li>
+                  <li>Comunicar cambios o dudas de manera oportuna</li>
+                </ul>
+              </div>
+                  <li><strong>Planificación:</strong> 1-2 semanas</li>
+              <div>
+                <h4 class="text-lg font-bold custom-primary mb-3">10. Limitación de Responsabilidad</h4>
+                <p>ExpressCreativa no será responsable por daños indirectos, pérdida de ganancias o interrupciones del negocio. La responsabilidad máxima se limita al valor del servicio contratado.</p>
+              </div>
+                </ul>
+              <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                <p class="text-sm"><strong>Nota Importante:</strong> Al contratar nuestros servicios, el cliente acepta estos términos y condiciones en su totalidad. Estos términos pueden ser actualizados sin previo aviso.</p>
+              </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="border-t p-6">
+            <div class="flex flex-col sm:flex-row gap-3 justify-end">
+              <button id="decline-terms" class="px-6 py-2 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
+                No Acepto
+              </button>
+              <button id="accept-terms" class="px-6 py-2 custom-bg-green text-white rounded-xl hover:bg-opacity-90 transition-all">
+                Acepto los Términos
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </body>
 </html>

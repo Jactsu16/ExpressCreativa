@@ -664,9 +664,45 @@ function proceedToCheckout() {
     return;
   }
 
+  // Show terms and conditions first
+  showTermsForCheckout();
+}
+
+function showTermsForCheckout() {
+  const termsModal = document.getElementById('terms-modal');
+  const acceptBtn = document.getElementById('accept-terms');
+  const declineBtn = document.getElementById('decline-terms');
+  const closeBtn = document.getElementById('close-terms');
+  
+  if (termsModal) {
+    termsModal.classList.remove('hidden');
+    
+    // Handle accept
+    acceptBtn.onclick = function() {
+      termsModal.classList.add('hidden');
+      processCheckout();
+    };
+    
+    // Handle decline
+    declineBtn.onclick = function() {
+      termsModal.classList.add('hidden');
+      showToast('Debe aceptar los términos y condiciones para continuar', 'warning');
+    };
+    
+    // Handle close
+    closeBtn.onclick = function() {
+      termsModal.classList.add('hidden');
+    };
+  } else {
+    // Fallback if modal doesn't exist
+    processCheckout();
+  }
+}
+
+function processCheckout() {
   // Generate checkout summary
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const itemsList = cart.map(item => `${item.name} (x${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}`).join('\n');
+  const itemsList = cart.map(item => `${item.name} (x${item.quantity}) - B/.${(item.price * item.quantity).toFixed(2)}`).join('\n');
   
   const checkoutMessage = `
 🛒 *Solicitud de Servicios - ExpressCreativa*
@@ -674,8 +710,9 @@ function proceedToCheckout() {
 📋 *Servicios Solicitados:*
 ${itemsList}
 
-💰 *Total: $${total.toFixed(2)}*
+💰 *Total: B/.${total.toFixed(2)}*
 
+✅ *He aceptado los términos y condiciones de ExpressCreativa*
 Me interesa contratar estos servicios. ¿Podrían enviarme más información sobre el proceso de contratación y formas de pago?
 
 ¡Gracias!
