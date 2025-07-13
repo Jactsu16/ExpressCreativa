@@ -373,6 +373,24 @@ header {
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
+
+  /* Cart modal responsive */
+  #cart-modal .max-w-md {
+    max-width: 95vw;
+  }
+
+  #cart-items {
+    max-height: 50vh;
+  }
+
+  /* Service cards responsive */
+  .service-card {
+    padding: 1.5rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.25rem;
+  }
 }
 
 /* Dark mode support (optional) */
@@ -433,4 +451,60 @@ header {
 
 .skip-link:focus {
   top: 6px;
+}
+
+/* Cart improvements */
+#cart-items::-webkit-scrollbar {
+  width: 6px;
+}
+
+#cart-items::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+#cart-items::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+#cart-items::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Service card enhancements */
+.service-card .space-y-4 button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Cart item animations */
+.cart-item {
+  animation: slideInCart 0.3s ease-out;
+}
+
+@keyframes slideInCart {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Improved button states */
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Better focus indicators */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #0656c7;
+  outline-offset: 2px;
+  border-radius: 4px;
 }

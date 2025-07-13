@@ -4,23 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Servicios Digitales - ExpressCreativa | Streaming, Web, Marketing y Más
+      Servicios Digitales - ExpressCreativa | Streaming, Web, Branding Panamá
     </title>
     <meta
       name="description"
-      content="Servicios profesionales de ExpressCreativa: Streaming, Desarrollo Web, Marketing Digital, Diseño Gráfico, Social Media y más. Precios transparentes desde Panamá."
+      content="Servicios digitales profesionales: streaming, desarrollo web, branding, marketing digital y producción audiovisual. Desde Panamá para Latinoamérica."
     />
     <meta
       name="keywords"
-      content="servicios digitales, streaming, desarrollo web, marketing digital, diseño gráfico, social media, Panamá"
+      content="servicios digitales, streaming, desarrollo web, branding, marketing digital, Panamá, Latinoamérica"
     />
     <meta name="author" content="ExpressCreativa" />
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Servicios Digitales - ExpressCreativa" />
+    <meta
+      property="og:title"
+      content="Servicios Digitales - ExpressCreativa"
+    />
     <meta
       property="og:description"
-      content="Servicios profesionales: Streaming, Desarrollo Web, Marketing Digital, Diseño Gráfico, Social Media y más."
+      content="Servicios digitales profesionales desde Panamá para Latinoamérica."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://expresscreativa.com/servicios" />
@@ -33,7 +36,7 @@
     />
     <meta
       name="twitter:description"
-      content="Servicios profesionales: Streaming, Desarrollo Web, Marketing Digital, Diseño Gráfico, Social Media y más."
+      content="Servicios digitales profesionales desde Panamá para Latinoamérica."
     />
 
     <!-- Favicon -->
@@ -45,23 +48,40 @@
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
 
     <!-- Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
 
     <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <script>
+      window.FontAwesomeConfig = { autoReplaceSvg: "nest" };
+    </script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Custom Styles -->
+    <!-- Estilos personalizados -->
     <link rel="stylesheet" href="styles.css" />
 
     <!-- Structured Data -->
@@ -70,15 +90,13 @@
         "@context": "https://schema.org",
         "@type": "Service",
         "name": "Servicios Digitales ExpressCreativa",
-        "description": "Servicios profesionales de streaming, desarrollo web, marketing digital, diseño gráfico y social media",
+        "description": "Servicios digitales profesionales incluyendo streaming, desarrollo web, branding y marketing digital",
+        "url": "https://expresscreativa.com/servicios",
         "provider": {
           "@type": "Organization",
           "name": "ExpressCreativa",
           "url": "https://expresscreativa.com"
-        },
-        "areaServed": "Latinoamérica",
-        "serviceType": "Servicios Digitales",
-        "operatingSystem": "Any"
+        }
       }
     </script>
   </head>
@@ -102,11 +120,6 @@
           </div>
 
           <nav class="hidden lg:flex items-center space-x-10">
-            <a
-              href="index.html#services"
-              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >Inicio</a
-            >
             <a
               href="servicios.html"
               class="custom-primary font-medium"
@@ -141,9 +154,9 @@
               >
             </button>
             <a
-              href="index.html#contact"
+              href="contacto.html"
               class="custom-bg-green text-white px-6 py-3 rounded-xl hover:bg-opacity-90 transition-all font-medium"
-              >Contacto</a
+              >Contáctanos</a
             >
           </nav>
 
@@ -155,11 +168,6 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="lg:hidden hidden mt-4 pb-4">
           <div class="flex flex-col space-y-4">
-            <a
-              href="index.html#services"
-              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >Inicio</a
-            >
             <a
               href="servicios.html"
               class="custom-primary font-medium"
@@ -189,9 +197,9 @@
               <span>Carrito (<span id="cart-count-mobile">0</span>)</span>
             </button>
             <a
-              href="index.html#contact"
+              href="contacto.html"
               class="custom-bg-green text-white px-6 py-3 rounded-xl hover:bg-opacity-90 transition-all font-medium text-center"
-              >Contacto</a
+              >Contáctanos</a
             >
           </div>
         </div>
@@ -199,849 +207,416 @@
     </header>
 
     <main>
-      <!-- Hero Section -->
       <section id="services-hero" class="gradient-bg py-20">
         <div class="max-w-5xl mx-auto px-6 text-center">
-          <h1 class="text-6xl lg:text-7xl font-bold custom-primary mb-8">
+          <div
+            class="inline-flex items-center space-x-2 custom-bg-primary/10 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-8"
+          >
+            <i class="fas fa-cogs"></i>
+            <span>Soluciones Digitales Integrales</span>
+          </div>
+
+          <h1 class="text-5xl lg:text-6xl font-bold custom-primary mb-6">
             Nuestros Servicios
           </h1>
+
           <p
-            class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12"
+            class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
           >
-            Soluciones digitales completas con precios transparentes. Desde
-            streaming profesional hasta desarrollo web y marketing digital para
-            toda Latinoamérica.
+            Soluciones digitales profesionales diseñadas para impulsar tu
+            presencia online y hacer crecer tu negocio en toda Latinoamérica.
           </p>
         </div>
       </section>
 
-      <!-- Producción Section -->
-      <section id="produccion" class="py-20 bg-white">
+      <!-- Services Grid -->
+      <section id="services-grid" class="bg-white py-20">
         <div class="max-w-7xl mx-auto px-6">
-          <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold custom-primary mb-6">
-              <i class="fas fa-video text-orange-500 mr-4"></i>
-              Producción Audiovisual
-            </h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-              Servicios profesionales de streaming y producción audiovisual
-            </p>
-          </div>
-
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div
-              class="service-card bg-orange-50 p-8 rounded-2xl border border-orange-200 hover-lift"
+          <div class="grid lg:grid-cols-3 gap-10">
+            <!-- Streaming Professional -->
+            <article
+              class="group bg-white p-8 rounded-3xl shadow-lg hover-lift border border-gray-100"
             >
               <div
-                class="w-16 h-16 bg-orange-500 rounded-xl flex items-center justify-center mx-auto mb-6"
+                class="w-20 h-20 custom-bg-orange rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
               >
-                <i class="fab fa-instagram text-white text-2xl"></i>
+                <i class="fas fa-video text-white text-3xl"></i>
               </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Transmisión en Vivo - Instagram
+              <h3 class="text-2xl font-bold custom-primary mb-4">
+                Streaming Profesional
               </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Producción profesional en vivo para Instagram Live.
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Transmisiones en vivo de alta calidad para todas las
+                plataformas. Configuración técnica, producción y gestión
+                completa.
               </p>
-              <div class="text-2xl font-bold custom-orange mb-4">B/.150.00</div>
-              <span
-                class="inline-block bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVP001</span
-              >
-              <button
-                class="w-full bg-orange-500 text-white py-2 px-4 rounded-xl hover:bg-orange-600 transition-all font-medium add-to-cart"
-                data-id="SVP001"
-                data-name="Transmisión en Vivo - Instagram"
-                data-price="150"
-                data-description="Producción profesional en vivo para Instagram Live"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
+              
+              <div class="space-y-3 mb-8">
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Setup técnico completo</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Overlays personalizados</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Gestión de múltiples plataformas</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Soporte técnico en vivo</span>
+                </div>
+              </div>
 
-            <div
-              class="service-card bg-red-50 p-8 rounded-2xl border border-red-200 hover-lift"
+              <div class="space-y-4">
+                <button
+                  class="add-to-cart w-full custom-bg-orange text-white py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all"
+                  data-id="streaming-basic"
+                  data-name="Streaming Básico"
+                  data-price="299"
+                  data-description="Setup básico para streaming en una plataforma"
+                >
+                  Streaming Básico - $299
+                </button>
+                <button
+                  class="add-to-cart w-full border-2 border-orange-500 text-orange-500 py-3 rounded-xl font-semibold hover:bg-orange-50 transition-all"
+                  data-id="streaming-pro"
+                  data-name="Streaming Profesional"
+                  data-price="599"
+                  data-description="Setup completo multi-plataforma con overlays"
+                >
+                  Streaming Pro - $599
+                </button>
+                <a
+                  href="contacto.html"
+                  class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all"
+                >
+                  Cotización Personalizada
+                </a>
+              </div>
+            </article>
+
+            <!-- Desarrollo Web -->
+            <article
+              class="group bg-white p-8 rounded-3xl shadow-lg hover-lift border border-gray-100"
             >
               <div
-                class="w-16 h-16 bg-red-500 rounded-xl flex items-center justify-center mx-auto mb-6"
+                class="w-20 h-20 custom-bg-primary rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
               >
-                <i class="fab fa-youtube text-white text-2xl"></i>
+                <i class="fas fa-code text-white text-3xl"></i>
               </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Transmisión en Vivo - YouTube
+              <h3 class="text-2xl font-bold custom-primary mb-4">
+                Desarrollo Web
               </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Streaming en calidad HD para canales de YouTube.
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Sitios web corporativos modernos, responsivos y optimizados.
+                Funcionalidad avanzada y experiencia de usuario excepcional.
               </p>
-              <div class="text-2xl font-bold text-red-600 mb-4">B/.150.00</div>
-              <span
-                class="inline-block bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVP002</span
-              >
-              <button
-                class="w-full bg-red-500 text-white py-2 px-4 rounded-xl hover:bg-red-600 transition-all font-medium add-to-cart"
-                data-id="SVP002"
-                data-name="Transmisión en Vivo - YouTube"
-                data-price="150"
-                data-description="Streaming en calidad HD para canales de YouTube"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
+              
+              <div class="space-y-3 mb-8">
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Diseño responsivo</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Optimización SEO</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Panel de administración</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Hosting y dominio incluido</span>
+                </div>
+              </div>
 
-            <div
-              class="service-card bg-blue-50 p-8 rounded-2xl border border-blue-200 hover-lift"
+              <div class="space-y-4">
+                <button
+                  class="add-to-cart w-full custom-bg-primary text-white py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all"
+                  data-id="web-landing"
+                  data-name="Landing Page"
+                  data-price="399"
+                  data-description="Página web de una sola página optimizada"
+                >
+                  Landing Page - $399
+                </button>
+                <button
+                  class="add-to-cart w-full border-2 border-blue-500 text-blue-500 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all"
+                  data-id="web-corporativo"
+                  data-name="Sitio Corporativo"
+                  data-price="899"
+                  data-description="Sitio web completo con múltiples páginas"
+                >
+                  Sitio Corporativo - $899
+                </button>
+                <a
+                  href="contacto.html"
+                  class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all"
+                >
+                  Cotización Personalizada
+                </a>
+              </div>
+            </article>
+
+            <!-- Servicios Creativos -->
+            <article
+              class="group bg-white p-8 rounded-3xl shadow-lg hover-lift border border-gray-100"
             >
               <div
-                class="w-16 h-16 bg-blue-500 rounded-xl flex items-center justify-center mx-auto mb-6"
+                class="w-20 h-20 custom-bg-gold rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
               >
-                <i class="fab fa-facebook text-white text-2xl"></i>
+                <i class="fas fa-palette text-white text-3xl"></i>
               </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Transmisión en Vivo - Facebook
+              <h3 class="text-2xl font-bold custom-primary mb-4">
+                Servicios Creativos
               </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Configuración y dirección técnica de eventos en vivo para
-                Facebook.
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Branding integral, producción audiovisual, redacción profesional
+                y estrategias BTL. Creatividad sin límites.
               </p>
-              <div class="text-2xl font-bold text-blue-600 mb-4">B/.150.00</div>
-              <span
-                class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVP003</span
-              >
-              <button
-                class="w-full bg-blue-500 text-white py-2 px-4 rounded-xl hover:bg-blue-600 transition-all font-medium add-to-cart"
-                data-id="SVP003"
-                data-name="Transmisión en Vivo - Facebook"
-                data-price="150"
-                data-description="Configuración y dirección técnica de eventos en vivo para Facebook"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
+              
+              <div class="space-y-3 mb-8">
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Identidad visual completa</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Manual de marca</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Material publicitario</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Producción audiovisual</span>
+                </div>
+              </div>
 
-            <div
-              class="service-card bg-purple-50 p-8 rounded-2xl border border-purple-200 hover-lift"
+              <div class="space-y-4">
+                <button
+                  class="add-to-cart w-full custom-bg-gold text-white py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all"
+                  data-id="branding-basico"
+                  data-name="Branding Básico"
+                  data-price="499"
+                  data-description="Logo y elementos básicos de identidad"
+                >
+                  Branding Básico - $499
+                </button>
+                <button
+                  class="add-to-cart w-full border-2 border-yellow-600 text-yellow-600 py-3 rounded-xl font-semibold hover:bg-yellow-50 transition-all"
+                  data-id="branding-completo"
+                  data-name="Branding Completo"
+                  data-price="1299"
+                  data-description="Identidad visual completa con manual de marca"
+                >
+                  Branding Completo - $1,299
+                </button>
+                <a
+                  href="contacto.html"
+                  class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all"
+                >
+                  Cotización Personalizada
+                </a>
+              </div>
+            </article>
+
+            <!-- Marketing Digital -->
+            <article
+              class="group bg-white p-8 rounded-3xl shadow-lg hover-lift border border-gray-100"
             >
               <div
-                class="w-16 h-16 bg-purple-500 rounded-xl flex items-center justify-center mx-auto mb-6"
+                class="w-20 h-20 custom-bg-green rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
               >
-                <i class="fas fa-film text-white text-2xl"></i>
+                <i class="fas fa-chart-line text-white text-3xl"></i>
               </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Producción Audiovisual
+              <h3 class="text-2xl font-bold custom-primary mb-4">
+                Marketing Digital
               </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Videos corporativos, promocionales o eventos.
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Estrategias de marketing digital, gestión de redes sociales,
+                publicidad pagada y análisis de métricas.
               </p>
-              <div class="text-2xl font-bold text-purple-600 mb-4">
-                B/.40.00
+              
+              <div class="space-y-3 mb-8">
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Gestión de redes sociales</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Campañas publicitarias</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Análisis y reportes</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Estrategia de contenido</span>
+                </div>
               </div>
-              <span
-                class="inline-block bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVP004</span
-              >
-              <button
-                class="w-full bg-purple-500 text-white py-2 px-4 rounded-xl hover:bg-purple-600 transition-all font-medium add-to-cart"
-                data-id="SVP004"
-                data-name="Producción Audiovisual"
-                data-price="40"
-                data-description="Videos corporativos, promocionales o eventos"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
 
-            <div
-              class="service-card bg-green-50 p-8 rounded-2xl border border-green-200 hover-lift"
+              <div class="space-y-4">
+                <button
+                  class="add-to-cart w-full custom-bg-green text-white py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all"
+                  data-id="marketing-basico"
+                  data-name="Marketing Básico"
+                  data-price="399"
+                  data-description="Gestión básica de redes sociales"
+                >
+                  Marketing Básico - $399/mes
+                </button>
+                <button
+                  class="add-to-cart w-full border-2 border-green-500 text-green-500 py-3 rounded-xl font-semibold hover:bg-green-50 transition-all"
+                  data-id="marketing-premium"
+                  data-name="Marketing Premium"
+                  data-price="799"
+                  data-description="Gestión completa + campañas publicitarias"
+                >
+                  Marketing Premium - $799/mes
+                </button>
+                <a
+                  href="contacto.html"
+                  class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all"
+                >
+                  Cotización Personalizada
+                </a>
+              </div>
+            </article>
+
+            <!-- Consultoría Digital -->
+            <article
+              class="group bg-white p-8 rounded-3xl shadow-lg hover-lift border border-gray-100"
             >
               <div
-                class="w-16 h-16 custom-bg-green rounded-xl flex items-center justify-center mx-auto mb-6"
+                class="w-20 h-20 bg-purple-500 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
               >
-                <i class="fas fa-camera text-white text-2xl"></i>
+                <i class="fas fa-lightbulb text-white text-3xl"></i>
               </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Fotografía Comercial / Institucional
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Fotografía de productos, locales o marcas.
-              </p>
-              <div class="text-2xl font-bold custom-green mb-4">B/.90.00</div>
-              <span
-                class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVP005</span
-              >
-              <button
-                class="w-full bg-green-500 text-white py-2 px-4 rounded-xl hover:bg-green-600 transition-all font-medium add-to-cart"
-                data-id="SVP005"
-                data-name="Fotografía Comercial / Institucional"
-                data-price="90"
-                data-description="Fotografía de productos, locales o marcas"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
-
-            <div
-              class="service-card bg-pink-50 p-8 rounded-2xl border border-pink-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 bg-pink-500 rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-heart text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Fotografía Personal (eventos)
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Bautizos, bodas, graduaciones y celebraciones familiares.
-              </p>
-              <div class="text-2xl font-bold text-pink-600 mb-4">B/.95.00</div>
-              <span
-                class="inline-block bg-pink-100 text-pink-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVP006</span
-              >
-              <button
-                class="w-full bg-pink-500 text-white py-2 px-4 rounded-xl hover:bg-pink-600 transition-all font-medium add-to-cart"
-                data-id="SVP006"
-                data-name="Fotografía Personal (eventos)"
-                data-price="95"
-                data-description="Bautizos, bodas, graduaciones y celebraciones familiares"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Desarrollo Web Section -->
-      <section id="desarrollo-web" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6">
-          <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold custom-primary mb-6">
-              <i class="fas fa-code custom-primary mr-4"></i>
-              Desarrollo Web
-            </h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-              Sitios web profesionales, funcionales y responsive
-            </p>
-          </div>
-
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div
-              class="service-card bg-blue-50 p-8 rounded-2xl border border-blue-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 custom-bg-primary rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-building text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Desarrollo Web Corporativo
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Sitio institucional completo, funcional y responsive.
-              </p>
-              <div class="text-2xl font-bold custom-primary mb-4">
-                B/.400.00
-              </div>
-              <span
-                class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVW001</span
-              >
-              <button
-                class="w-full bg-blue-500 text-white py-2 px-4 rounded-xl hover:bg-blue-600 transition-all font-medium add-to-cart"
-                data-id="SVW001"
-                data-name="Desarrollo Web Corporativo"
-                data-price="400"
-                data-description="Sitio institucional completo, funcional y responsive"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
-
-            <div
-              class="service-card bg-orange-50 p-8 rounded-2xl border border-orange-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 custom-bg-orange rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-rocket text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Landing Page
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Página de aterrizaje de una sola sección para promociones o
-                lanzamientos.
-              </p>
-              <div class="text-2xl font-bold custom-orange mb-4">B/.100.00</div>
-              <span
-                class="inline-block bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVW002</span
-              >
-              <button
-                class="w-full bg-orange-500 text-white py-2 px-4 rounded-xl hover:bg-orange-600 transition-all font-medium add-to-cart"
-                data-id="SVW002"
-                data-name="Landing Page"
-                data-price="100"
-                data-description="Página de aterrizaje de una sola sección para promociones o lanzamientos"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
-
-            <div
-              class="service-card bg-purple-50 p-8 rounded-2xl border border-purple-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 bg-purple-500 rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-palette text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Portafolio Personal
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Página visual para artistas, fotógrafos o freelancers.
-              </p>
-              <div class="text-2xl font-bold text-purple-600 mb-4">
-                B/.150.00
-              </div>
-              <span
-                class="inline-block bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVW003</span
-              >
-              <button
-                class="w-full bg-purple-500 text-white py-2 px-4 rounded-xl hover:bg-purple-600 transition-all font-medium add-to-cart"
-                data-id="SVW003"
-                data-name="Portafolio Personal"
-                data-price="150"
-                data-description="Página visual para artistas, fotógrafos o freelancers"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
-
-            <div
-              class="service-card bg-yellow-50 p-8 rounded-2xl border border-yellow-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 custom-bg-gold rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-calendar text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Web para Eventos
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Página informativa para congresos, ferias o lanzamientos.
-              </p>
-              <div class="text-2xl font-bold custom-gold mb-4">B/.250.00</div>
-              <span
-                class="inline-block bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVW004</span
-              >
-              <button
-                class="w-full bg-yellow-500 text-white py-2 px-4 rounded-xl hover:bg-yellow-600 transition-all font-medium add-to-cart"
-                data-id="SVW004"
-                data-name="Web para Eventos"
-                data-price="250"
-                data-description="Página informativa para congresos, ferias o lanzamientos"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
-
-            <div
-              class="service-card bg-green-50 p-8 rounded-2xl border border-green-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 custom-bg-green rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-shopping-cart text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Web para Tiendas Online
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Estructura base para ecommerce con productos y contacto.
-              </p>
-              <div class="text-2xl font-bold custom-green mb-4">B/.350.00</div>
-              <span
-                class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVW005</span
-              >
-              <button
-                class="w-full bg-green-500 text-white py-2 px-4 rounded-xl hover:bg-green-600 transition-all font-medium add-to-cart"
-                data-id="SVW005"
-                data-name="Web para Tiendas Online"
-                data-price="350"
-                data-description="Estructura base para ecommerce con productos y contacto"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
-
-            <div
-              class="service-card bg-indigo-50 p-8 rounded-2xl border border-indigo-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 bg-indigo-500 rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-user-tie text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Web para Servicios Profesionales
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Página para consultores, médicos, coaches, abogados, etc.
-              </p>
-              <div class="text-2xl font-bold text-indigo-600 mb-4">
-                B/.300.00
-              </div>
-              <span
-                class="inline-block bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVW006</span
-              >
-              <button
-                class="w-full bg-indigo-500 text-white py-2 px-4 rounded-xl hover:bg-indigo-600 transition-all font-medium add-to-cart"
-                data-id="SVW006"
-                data-name="Web para Servicios Profesionales"
-                data-price="300"
-                data-description="Página para consultores, médicos, coaches, abogados, etc."
-              >
-                Agregar al Carrito
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Medios Section -->
-      <section id="medios" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-          <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold custom-primary mb-6">
-              <i class="fas fa-bullhorn text-red-500 mr-4"></i>
-              Medios y Publicidad
-            </h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-              Gestión de campañas publicitarias en medios tradicionales y
-              digitales
-            </p>
-          </div>
-
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div
-              class="service-card bg-red-50 p-8 rounded-2xl border border-red-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 bg-red-500 rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-radio text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Pauta en Medios Tradicionales
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Compra y gestión de espacios en radio, TV o prensa.
-              </p>
-              <div class="text-2xl font-bold text-red-600 mb-4">B/.250.00</div>
-              <span
-                class="inline-block bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVM001</span
-              >
-              <button
-                class="w-full bg-red-500 text-white py-2 px-4 rounded-xl hover:bg-red-600 transition-all font-medium add-to-cart"
-                data-id="SVM001"
-                data-name="Pauta en Medios Tradicionales"
-                data-price="250"
-                data-description="Compra y gestión de espacios en radio, TV o prensa"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
-
-            <div
-              class="service-card bg-blue-50 p-8 rounded-2xl border border-blue-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 bg-blue-500 rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-ad text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Pauta Digital (Meta & Google Ads)
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Campañas segmentadas con informes de resultados.
-              </p>
-              <div class="text-2xl font-bold text-blue-600 mb-4">B/.100.00</div>
-              <span
-                class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVM002</span
-              >
-              <button
-                class="w-full bg-blue-500 text-white py-2 px-4 rounded-xl hover:bg-blue-600 transition-all font-medium add-to-cart"
-                data-id="SVM002"
-                data-name="Pauta Digital (Meta & Google Ads)"
-                data-price="100"
-                data-description="Campañas segmentadas con informes de resultados"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
-
-            <div
-              class="service-card bg-purple-50 p-8 rounded-2xl border border-purple-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 bg-purple-500 rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-chart-line text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">Mix Media</h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Combinación de pauta digital + contenido en redes y Google.
-              </p>
-              <div class="text-2xl font-bold text-purple-600 mb-4">
-                B/.180.00
-              </div>
-              <span
-                class="inline-block bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVM003</span
-              >
-              <button
-                class="w-full bg-purple-500 text-white py-2 px-4 rounded-xl hover:bg-purple-600 transition-all font-medium add-to-cart"
-                data-id="SVM003"
-                data-name="Mix Media"
-                data-price="180"
-                data-description="Combinación de pauta digital + contenido en redes y Google"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Creatividad / Diseño Section -->
-      <section id="creatividad" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6">
-          <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold custom-primary mb-6">
-              <i class="fas fa-paintbrush custom-gold mr-4"></i>
-              Creatividad y Diseño
-            </h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-              Dise����o gr��fico, branding y redacción profesional
-            </p>
-          </div>
-
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div
-              class="service-card bg-yellow-50 p-8 rounded-2xl border border-yellow-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 custom-bg-gold rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-image text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Diseño Gráfico para Piezas Publicitarias
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Diseño completo para toda una campaña publicitaria.
-              </p>
-              <div class="text-2xl font-bold custom-gold mb-4">B/.80.00</div>
-              <span
-                class="inline-block bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVC001</span
-              >
-              <button
-                class="w-full bg-yellow-500 text-white py-2 px-4 rounded-xl hover:bg-yellow-600 transition-all font-medium add-to-cart"
-                data-id="SVC001"
-                data-name="Diseño Gráfico para Piezas Publicitarias"
-                data-price="80"
-                data-description="Diseño completo para toda una campaña publicitaria"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
-
-            <div
-              class="service-card bg-blue-50 p-8 rounded-2xl border border-blue-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 bg-blue-500 rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-paint-brush text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Diseño Gráfico Unitario
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Diseño individual (3 piezas por B/.24.99).
-              </p>
-              <div class="text-2xl font-bold text-blue-600 mb-4">B/.8.99</div>
-              <span
-                class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVC006</span
-              >
-              <button
-                class="w-full bg-blue-500 text-white py-2 px-4 rounded-xl hover:bg-blue-600 transition-all font-medium add-to-cart"
-                data-id="SVC006"
-                data-name="Diseño Gráfico Unitario"
-                data-price="8.99"
-                data-description="Diseño individual (3 piezas por B/.24.99)"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
-
-            <div
-              class="service-card bg-pink-50 p-8 rounded-2xl border border-pink-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 bg-pink-500 rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-mobile-alt text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Diseño Gráfico para Redes Sociales
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Plantillas, carruseles, reels covers, historias destacadas.
-              </p>
-              <div class="text-2xl font-bold text-pink-600 mb-4">B/.70.00</div>
-              <span
-                class="inline-block bg-pink-100 text-pink-800 text-xs px-3 py-1 rounded-full"
-                >Código: SVC002</span
-              >
-            </div>
-
-            <div
-              class="service-card bg-indigo-50 p-8 rounded-2xl border border-indigo-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 bg-indigo-500 rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-bookmark text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Brief de Marca
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Documento estratégico con voz de marca, misión y valores.
-              </p>
-              <div class="text-2xl font-bold text-indigo-600 mb-4">
-                B/.70.00
-              </div>
-              <span
-                class="inline-block bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full"
-                >Código: SVC003</span
-              >
-            </div>
-
-            <div
-              class="service-card bg-green-50 p-8 rounded-2xl border border-green-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 custom-bg-green rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-lightbulb text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Naming Creativo
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Desarrollo de nombres para productos o marcas.
-              </p>
-              <div class="text-2xl font-bold custom-green mb-4">B/.60.00</div>
-              <span
-                class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full"
-                >Código: SVC004</span
-              >
-            </div>
-
-            <div
-              class="service-card bg-blue-50 p-8 rounded-2xl border border-blue-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 custom-bg-primary rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-pen text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Redacción Profesional
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Textos para blogs, institucionales, creativos o técnicos.
-              </p>
-              <div class="text-2xl font-bold custom-primary mb-4">B/.60.00</div>
-              <span
-                class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVC005</span
-              >
-              <button
-                class="w-full bg-blue-500 text-white py-2 px-4 rounded-xl hover:bg-blue-600 transition-all font-medium add-to-cart"
-                data-id="SVC005"
-                data-name="Redacción Profesional"
-                data-price="60"
-                data-description="Textos para blogs, institucionales, creativos o técnicos"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
-
-            <div
-              class="service-card bg-indigo-50 p-8 rounded-2xl border border-indigo-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 bg-indigo-500 rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-comments text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
+              <h3 class="text-2xl font-bold custom-primary mb-4">
                 Consultoría Digital
               </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Asesoría personalizada para tu proyecto digital.
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Asesoría estratégica para transformación digital, auditorías
+                tecnológicas y planificación de proyectos.
               </p>
-              <div class="flex items-center space-x-2 mb-4">
-                <span class="text-lg text-gray-400 line-through">B/.35.00</span>
-                <span class="text-2xl font-bold text-indigo-600">B/.20.00</span>
-                <span
-                  class="bg-red-500 text-white text-xs px-2 py-1 rounded-full"
-                  >¡Oferta!</span
+              
+              <div class="space-y-3 mb-8">
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Auditoría digital</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Estrategia tecnológica</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Plan de implementación</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Seguimiento y optimización</span>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <button
+                  class="add-to-cart w-full bg-purple-500 text-white py-3 rounded-xl font-semibold hover:bg-purple-600 transition-all"
+                  data-id="consultoria-sesion"
+                  data-name="Sesión de Consultoría"
+                  data-price="149"
+                  data-description="Sesión de consultoría de 2 horas"
                 >
+                  Sesión de Consultoría - $149
+                </button>
+                <button
+                  class="add-to-cart w-full border-2 border-purple-500 text-purple-500 py-3 rounded-xl font-semibold hover:bg-purple-50 transition-all"
+                  data-id="auditoria-completa"
+                  data-name="Auditoría Completa"
+                  data-price="599"
+                  data-description="Auditoría digital completa con reporte"
+                >
+                  Auditoría Completa - $599
+                </button>
+                <a
+                  href="contacto.html"
+                  class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all"
+                >
+                  Cotización Personalizada
+                </a>
               </div>
-              <p class="text-xs text-red-600 mb-4">Por tiempo limitado</p>
-              <span
-                class="inline-block bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVC007</span
-              >
-              <button
-                class="w-full bg-indigo-500 text-white py-2 px-4 rounded-xl hover:bg-indigo-600 transition-all font-medium add-to-cart"
-                data-id="SVC007"
-                data-name="Consultoría Digital"
-                data-price="20"
-                data-description="Asesoría personalizada para tu proyecto digital"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+            </article>
 
-      <!-- Eventos Section -->
-      <section id="eventos" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-          <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold custom-primary mb-6">
-              <i class="fas fa-calendar-alt custom-green mr-4"></i>
-              Eventos
-            </h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-              Organización y gestión profesional de eventos y capacitaciones
-            </p>
-          </div>
-
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div
-              class="service-card bg-green-50 p-8 rounded-2xl border border-green-200 hover-lift"
+            <!-- Eventos Digitales -->
+            <article
+              class="group bg-white p-8 rounded-3xl shadow-lg hover-lift border border-gray-100"
             >
               <div
-                class="w-16 h-16 custom-bg-green rounded-xl flex items-center justify-center mx-auto mb-6"
+                class="w-20 h-20 bg-pink-500 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
               >
-                <i class="fas fa-calendar-check text-white text-2xl"></i>
+                <i class="fas fa-calendar-alt text-white text-3xl"></i>
               </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Organización de Eventos
+              <h3 class="text-2xl font-bold custom-primary mb-4">
+                Eventos Digitales
               </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Planificación completa de eventos corporativos y sociales.
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Organización y producción de eventos virtuales, webinars,
+                conferencias online y transmisiones especiales.
               </p>
-              <div class="text-2xl font-bold custom-green mb-4">B/.200.00</div>
-              <span
-                class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVE001</span
-              >
-              <button
-                class="w-full bg-green-500 text-white py-2 px-4 rounded-xl hover:bg-green-600 transition-all font-medium add-to-cart"
-                data-id="SVE001"
-                data-name="Organización de Eventos"
-                data-price="200"
-                data-description="Planificación completa de eventos corporativos y sociales"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
+              
+              <div class="space-y-3 mb-8">
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Plataforma de eventos</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Producción audiovisual</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Gestión de participantes</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check text-green-500"></i>
+                  <span class="text-sm text-gray-600">Soporte técnico en vivo</span>
+                </div>
+              </div>
 
-            <div
-              class="service-card bg-orange-50 p-8 rounded-2xl border border-orange-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 custom-bg-orange rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-tasks text-white text-2xl"></i>
+              <div class="space-y-4">
+                <button
+                  class="add-to-cart w-full bg-pink-500 text-white py-3 rounded-xl font-semibold hover:bg-pink-600 transition-all"
+                  data-id="webinar-basico"
+                  data-name="Webinar Básico"
+                  data-price="299"
+                  data-description="Webinar para hasta 100 participantes"
+                >
+                  Webinar Básico - $299
+                </button>
+                <button
+                  class="add-to-cart w-full border-2 border-pink-500 text-pink-500 py-3 rounded-xl font-semibold hover:bg-pink-50 transition-all"
+                  data-id="evento-premium"
+                  data-name="Evento Premium"
+                  data-price="899"
+                  data-description="Evento completo para hasta 500 participantes"
+                >
+                  Evento Premium - $899
+                </button>
+                <a
+                  href="contacto.html"
+                  class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all"
+                >
+                  Cotización Personalizada
+                </a>
               </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Gestión de Eventos
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Coordinación y supervisión durante el evento.
-              </p>
-              <div class="text-2xl font-bold custom-orange mb-4">B/.150.00</div>
-              <span
-                class="inline-block bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVE002</span
-              >
-              <button
-                class="w-full bg-orange-500 text-white py-2 px-4 rounded-xl hover:bg-orange-600 transition-all font-medium add-to-cart"
-                data-id="SVE002"
-                data-name="Gestión de Eventos"
-                data-price="150"
-                data-description="Coordinación y supervisión durante el evento"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
-
-            <div
-              class="service-card bg-purple-50 p-8 rounded-2xl border border-purple-200 hover-lift"
-            >
-              <div
-                class="w-16 h-16 bg-purple-500 rounded-xl flex items-center justify-center mx-auto mb-6"
-              >
-                <i class="fas fa-chalkboard-teacher text-white text-2xl"></i>
-              </div>
-              <h3 class="font-bold custom-primary mb-3 text-lg">
-                Capacitaciones
-              </h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Talleres y cursos especializados para empresas.
-              </p>
-              <div class="text-2xl font-bold text-purple-600 mb-4">
-                B/.100.00
-              </div>
-              <span
-                class="inline-block bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full mb-4"
-                >Código: SVE003</span
-              >
-              <button
-                class="w-full bg-purple-500 text-white py-2 px-4 rounded-xl hover:bg-purple-600 transition-all font-medium add-to-cart"
-                data-id="SVE003"
-                data-name="Capacitaciones"
-                data-price="100"
-                data-description="Talleres y cursos especializados para empresas"
-              >
-                Agregar al Carrito
-              </button>
-            </div>
+            </article>
           </div>
         </div>
       </section>
@@ -1049,28 +624,27 @@
       <!-- CTA Section -->
       <section id="services-cta" class="gradient-bg py-24">
         <div class="max-w-5xl mx-auto px-6 text-center">
-          <h2 class="text-5xl font-bold custom-primary mb-8">
-            ¿Qué Servicio Necesitas?
+          <h2 class="text-4xl font-bold custom-primary mb-6">
+            ¿No encuentras lo que buscas?
           </h2>
           <p
-            class="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
+            class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
           >
-            Contáctanos para recibir una cotización personalizada o para
-            combinar varios servicios según las necesidades de tu proyecto.
+            Creamos soluciones personalizadas para cada cliente. Cuéntanos tu
+            proyecto y diseñaremos la estrategia perfecta para ti.
           </p>
-
-          <div class="flex flex-col sm:flex-row gap-6 justify-center">
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="index.html#contact"
-              class="custom-bg-green text-white px-10 py-5 rounded-xl font-semibold hover:bg-opacity-90 transition-all shadow-lg text-lg"
+              href="contacto.html"
+              class="custom-bg-green text-white px-8 py-4 rounded-xl font-semibold hover:bg-opacity-90 transition-all shadow-lg"
             >
-              Solicitar Cotización
+              Solicitar Cotización Personalizada
             </a>
             <a
-              href="calculadora.html"
-              class="border-2 border-gray-300 text-gray-700 px-10 py-5 rounded-xl font-semibold hover:border-gray-400 transition-all text-lg"
+              href="galeria.html"
+              class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-gray-400 transition-all"
             >
-              Calcular Métricas
+              Ver Nuestro Portfolio
             </a>
           </div>
         </div>
@@ -1078,123 +652,144 @@
     </main>
 
     <!-- Shopping Cart Modal -->
-    <div
-      id="cart-modal"
-      class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
-    >
-      <div
-        class="bg-white rounded-2xl shadow-xl max-w-md w-full max-h-96 overflow-hidden"
-      >
-        <div class="flex justify-between items-center p-6 border-b">
-          <h3 class="text-xl font-bold custom-primary">Carrito de Compras</h3>
-          <button
-            id="close-cart"
-            class="text-gray-500 hover:text-gray-700 text-xl"
-          >
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-
-        <div id="cart-items" class="p-6 max-h-64 overflow-y-auto">
-          <p class="text-gray-500 text-center py-8">Tu carrito está vacío</p>
-        </div>
-
-        <div id="cart-footer" class="hidden border-t p-6">
-          <div class="flex justify-between items-center mb-4">
-            <span class="font-semibold">Total:</span>
-            <span id="cart-total" class="text-xl font-bold custom-green"
-              >B/.0.00</span
-            >
+    <div id="cart-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50">
+      <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-2xl shadow-xl max-w-md w-full max-h-[90vh] overflow-hidden">
+          <div class="flex justify-between items-center p-6 border-b">
+            <h3 class="text-xl font-bold custom-primary">Carrito de Servicios</h3>
+            <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-times text-xl"></i>
+            </button>
           </div>
-          <button
-            class="w-full custom-bg-green text-white py-3 rounded-xl hover:bg-opacity-90 transition-all font-medium"
-          >
-            Solicitar Cotización
-          </button>
+          
+          <div id="cart-items" class="p-6 max-h-96 overflow-y-auto">
+            <p class="text-gray-500 text-center py-8">Tu carrito está vacío</p>
+          </div>
+          
+          <div id="cart-footer" class="hidden border-t p-6">
+            <div class="flex justify-between items-center mb-4">
+              <span class="font-bold text-lg">Total:</span>
+              <span id="cart-total" class="font-bold text-xl custom-primary">$0.00</span>
+            </div>
+            <div class="space-y-3">
+              <button
+                onclick="proceedToCheckout()"
+                class="w-full custom-bg-green text-white py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all"
+              >
+                Proceder al Checkout
+              </button>
+              <a
+                href="contacto.html"
+                class="block w-full text-center border border-gray-300 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-all"
+              >
+                Solicitar Cotización
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <footer class="bg-black text-white py-20">
+    <footer id="footer" class="bg-black text-white py-20">
       <div class="max-w-7xl mx-auto px-6">
         <div class="grid md:grid-cols-4 gap-12 mb-16">
           <div>
             <div class="flex items-center space-x-4 mb-8">
-              <div class="w-10 h-10 custom-bg-primary rounded-lg"></div>
+              <div
+                class="w-12 h-12 custom-bg-primary rounded-xl flex items-center justify-center"
+              >
+                <i class="fas fa-bolt text-white text-xl"></i>
+              </div>
               <div>
-                <div class="text-2xl font-bold text-white">ExpressCreativa</div>
-                <div class="text-xs text-gray-400">Digital Agency</div>
+                <span class="text-2xl font-bold">ExpressCreativa</span>
+                <div class="text-sm text-gray-400">Digital Agency</div>
               </div>
             </div>
-            <p class="text-gray-400 leading-relaxed mb-6">
-              Hub profesional de servicios digitales especializados desde Panamá
-              para toda Latinoamérica.
+            <p class="text-gray-400 mb-8 leading-relaxed">
+              Agencia digital profesional desde Panamá para toda Latinoamérica.
+              Creatividad sin límites.
             </p>
-            <div class="flex space-x-4">
+            <div class="flex space-x-6">
               <a
                 href="#"
                 class="text-gray-400 hover:text-white transition-colors"
+                aria-label="Instagram"
               >
-                <i class="fab fa-instagram text-xl"></i>
+                <i class="fab fa-instagram text-2xl"></i>
               </a>
               <a
                 href="#"
                 class="text-gray-400 hover:text-white transition-colors"
+                aria-label="LinkedIn"
               >
-                <i class="fab fa-twitter text-xl"></i>
+                <i class="fab fa-linkedin text-2xl"></i>
               </a>
               <a
                 href="#"
                 class="text-gray-400 hover:text-white transition-colors"
+                aria-label="YouTube"
               >
-                <i class="fab fa-linkedin text-xl"></i>
+                <i class="fab fa-youtube text-2xl"></i>
               </a>
             </div>
           </div>
 
           <div>
-            <h4 class="font-bold text-white mb-6 text-lg">Servicios</h4>
-            <ul class="space-y-4">
+            <h3 class="font-bold mb-6 text-lg">Servicios</h3>
+            <ul class="space-y-4 text-gray-400">
               <li>
-                <a href="#produccion" class="hover:text-white transition-colors"
-                  >Producción</a
+                <a
+                  href="servicios.html"
+                  class="hover:text-white transition-colors"
+                  >Streaming Profesional</a
                 >
               </li>
               <li>
                 <a
-                  href="#desarrollo-web"
+                  href="servicios.html"
                   class="hover:text-white transition-colors"
                   >Desarrollo Web</a
                 >
               </li>
               <li>
-                <a href="#medios" class="hover:text-white transition-colors"
-                  >Medios</a
+                <a
+                  href="servicios.html"
+                  class="hover:text-white transition-colors"
+                  >Branding Integral</a
                 >
               </li>
               <li>
                 <a
-                  href="#creatividad"
+                  href="servicios.html"
                   class="hover:text-white transition-colors"
-                  >Creatividad</a
+                  >Marketing Digital</a
                 >
               </li>
               <li>
-                <a href="#eventos" class="hover:text-white transition-colors"
-                  >Eventos</a
+                <a
+                  href="servicios.html"
+                  class="hover:text-white transition-colors"
+                  >Consultoría</a
                 >
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 class="font-bold text-white mb-6 text-lg">Herramientas</h4>
-            <ul class="space-y-4">
+            <h3 class="font-bold mb-6 text-lg">Recursos</h3>
+            <ul class="space-y-4 text-gray-400">
               <li>
                 <a
                   href="calculadora.html"
                   class="hover:text-white transition-colors"
-                  >Calculadora de Métricas</a
+                  >Calculadoras</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#tools"
+                  class="hover:text-white transition-colors"
+                  >Herramientas</a
                 >
               </li>
               <li>
@@ -1206,56 +801,61 @@
               </li>
               <li>
                 <a
-                  href="index.html#tools"
+                  href="contacto.html"
                   class="hover:text-white transition-colors"
-                  >Recursos</a
+                  >Contacto</a
                 >
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 class="font-bold text-white mb-6 text-lg">Contacto</h4>
+            <h3 class="font-bold mb-6 text-lg">Contacto</h3>
             <ul class="space-y-4 text-gray-400">
-              <li class="flex items-center">
-                <i class="fas fa-envelope mr-3"></i>
-                info@expresscreativa.com
+              <li class="flex items-center space-x-3">
+                <i class="fas fa-location-dot"></i>
+                <span>Panamá, Latinoamérica</span>
               </li>
-              <li class="flex items-center">
-                <i class="fas fa-phone mr-3"></i>
-                +507 0000-0000
+              <li class="flex items-center space-x-3">
+                <i class="fas fa-envelope"></i>
+                <a
+                  href="mailto:info@expresscreativa.com"
+                  class="hover:text-white transition-colors"
+                  >info@expresscreativa.com</a
+                >
               </li>
-              <li class="flex items-center">
-                <i class="fas fa-map-marker-alt mr-3"></i>
-                Panamá, PA
+              <li class="flex items-center space-x-3">
+                <i class="fas fa-phone"></i>
+                <a
+                  href="tel:+50766043511"
+                  class="hover:text-white transition-colors"
+                  >+507 66043511</a
+                >
               </li>
             </ul>
           </div>
         </div>
 
-        <div
-          class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center"
-        >
-          <p class="text-gray-400 text-sm">
-            © 2024 ExpressCreativa. Todos los derechos reservados.
-          </p>
-          <div class="flex space-x-6 mt-4 md:mt-0">
-            <a
-              href="#"
-              class="text-gray-400 hover:text-white transition-colors text-sm"
-              >Términos de Uso</a
-            >
-            <a
-              href="#"
-              class="text-gray-400 hover:text-white transition-colors text-sm"
-              >Política de Privacidad</a
-            >
+        <div class="border-t border-gray-800 pt-8">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-400 mb-4 md:mb-0">
+              &copy; 2024 ExpressCreativa. Todos los derechos reservados.
+            </p>
+            <div class="flex space-x-8 text-gray-400">
+              <a href="#" class="hover:text-white transition-colors"
+                >Términos</a
+              >
+              <a href="#" class="hover:text-white transition-colors"
+                >Privacidad</a
+              >
+              <a href="#" class="hover:text-white transition-colors">Cookies</a>
+            </div>
           </div>
         </div>
       </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- JavaScript -->
     <script src="script.js"></script>
   </body>
 </html>

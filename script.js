@@ -480,11 +480,13 @@ function initializeShoppingCart() {
   }
 
   // Close cart when clicking outside
-  cartModal.addEventListener("click", function (e) {
-    if (e.target === cartModal) {
-      cartModal.classList.add("hidden");
-    }
-  });
+  if (cartModal) {
+    cartModal.addEventListener("click", function (e) {
+      if (e.target === cartModal) {
+        cartModal.classList.add("hidden");
+      }
+    });
+  }
 
   // Add to cart buttons
   const addToCartButtons = document.querySelectorAll(".add-to-cart");
@@ -561,6 +563,7 @@ function updateCartDisplay() {
   const cartFooter = document.getElementById("cart-footer");
   const cartTotal = document.getElementById("cart-total");
 
+  if (!cartItems || !cartFooter || !cartTotal) return;
   if (cart.length === 0) {
     cartItems.innerHTML =
       '<p class="text-gray-500 text-center py-8">Tu carrito está vacío</p>';
@@ -573,15 +576,18 @@ function updateCartDisplay() {
   cartItems.innerHTML = cart
     .map(
       (item) => `
-    <div class="flex justify-between items-center bg-gray-50 p-4 rounded-xl mb-3">
+    <div class="flex justify-between items-start bg-gray-50 p-4 rounded-xl mb-3">
       <div class="flex-1">
-        <h4 class="font-medium text-sm">${item.name}</h4>
-        <p class="text-xs text-gray-600">B/.${item.price.toFixed(2)} x ${item.quantity}</p>
+        <h4 class="font-medium text-sm mb-1">${item.name}</h4>
+        <p class="text-xs text-gray-600 mb-2">${item.description}</p>
+        <p class="text-xs font-medium text-gray-800">$${item.price.toFixed(2)} x ${item.quantity}</p>
       </div>
-      <div class="flex items-center space-x-2">
+      <div class="flex flex-col items-end space-y-2 ml-4">
+        <div class="flex items-center space-x-2">
         <button onclick="updateQuantity('${item.id}', ${item.quantity - 1})" class="bg-gray-200 text-gray-700 w-6 h-6 rounded-full text-sm hover:bg-gray-300">-</button>
         <span class="text-sm w-8 text-center">${item.quantity}</span>
         <button onclick="updateQuantity('${item.id}', ${item.quantity + 1})" class="bg-gray-200 text-gray-700 w-6 h-6 rounded-full text-sm hover:bg-gray-300">+</button>
+        </div>
         <button onclick="removeFromCart('${item.id}')" class="text-red-500 hover:text-red-700 text-sm ml-2">
           <i class="fas fa-trash"></i>
         </button>
@@ -591,7 +597,7 @@ function updateCartDisplay() {
     )
     .join("");
 
-  cartTotal.textContent = `B/.${total.toFixed(2)}`;
+  cartTotal.textContent = `$${total.toFixed(2)}`;
   cartFooter.classList.remove("hidden");
 }
 
@@ -650,6 +656,37 @@ function checkBrowserSupport() {
 
 // Initialize browser checks
 checkBrowserSupport();
+
+// Checkout functionality
+function proceedToCheckout() {
+  if (cart.length === 0) {
+    showToast("Tu carrito está vacío", "error");
+    return;
+  }
+
+  // Generate checkout summary
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const itemsList = cart.map(item => `${item.name} (x${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}`).join('\n');
+  
+  const checkoutMessage = `
+🛒 *Solicitud de Servicios - ExpressCreativa*
+
+📋 *Servicios Solicitados:*
+${itemsList}
+
+💰 *Total: $${total.toFixed(2)}*
+
+Me interesa contratar estos servicios. ¿Podrían enviarme más información sobre el proceso de contratación y formas de pago?
+
+¡Gracias!
+  `.trim();
+
+  // Open WhatsApp with pre-filled message
+  const whatsappUrl = `https://wa.me/50766043511?text=${encodeURIComponent(checkoutMessage)}`;
+  window.open(whatsappUrl, '_blank');
+  
+  showToast("Redirigiendo a WhatsApp para completar tu solicitud", "success");
+}
 
 // Service Worker registration (for PWA support)
 if ("serviceWorker" in navigator) {
