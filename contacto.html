@@ -216,93 +216,82 @@
               Te responderemos en un plazo de 24 horas.
             </p>
           </div>
-          <div class="bg-white rounded-2xl shadow-lg p-8">
-            <form
-              action="https://formspree.io/f/mzzvpvng"
-              class="space-y-6"
-              target="_top"
-              method="POST"
-            >
-              <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label
-                    for="name"
-                    class="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Nombre Completo *
-                  </label>
-                  <input
-                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    id="name"
-                    name="name"
-                    required
-                  />
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+              <form
+                action="https://formspree.io/f/mzzvpvng"
+                method="POST"
+                target="_top"
+                class="space-y-6"
+              >
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                      Nombre Completo *
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      required
+                      class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                      Gmail *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      required
+                      class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label
-                    for="email"
-                    class="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Gmail *
-                  </label>
-                  <input
-                    type="email"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    id="email"
-                    name="email"
-                    required
-                  />
+
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+                      Teléfono
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      id="phone"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+
+                  <div>
+                    <label for="urgency" class="block text-sm font-medium text-gray-700 mb-2">
+                      Urgencia *
+                    </label>
+                    <select
+                      id="urgency"
+                      name="urgency"
+                      required
+                      class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                      <option value="urgente">Urgente (&lt;24h)</option>
+                      <option value="regular">Regular (24-36h)</option>
+                      <option value="planificacion">Planificación (48h+)</option>
+                    </select>
+                    <small class="text-xs text-gray-500 block mt-1">
+                      Tiempo de respuesta según urgencia seleccionada.
+                    </small>
+                  </div>
                 </div>
-              </div>
-              <div class="grid md:grid-cols-2 gap-6">
+
                 <div>
-                  <label
-                    for="phone"
-                    class="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Teléfono
-                  </label>
-                  <input
-                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    id="phone"
-                    name="phone"
-                  />
-                </div>
-                <div>
-                <label
-                  for="urgency"
-                  class="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Urgencia *
-                </label>
-                <select
-                  class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  id="urgency"
-                  name="urgency"
-                  required
-                >
-                  <option value="urgente">Urgente (&lt;24h, respuesta máxima en 24 horas)</option>
-                  <option value="regular">Regular (respuesta 24-36 horas)</option>
-                  <option value="planificacion">Planificación (respuesta 24-48 horas)</option>
-                </select>
-                <small class="text-xs text-gray-500">
-                  Si la urgencia es alta, responderemos en menos de 24 horas. 
-                  Si es regular, de 24 a 36 horas. Para planificación, en 24 a 48 horas.
-                </small>
-              </div>
-              <div class="text-center" style="margin-top: -1.5rem;">
-                <div>
-                  <label
-                    for="services"
-                    class="block text-sm font-medium text-gray-700 mb-2"
-                  >
+                  <label for="services" class="block text-sm font-medium text-gray-700 mb-2">
                     Servicio(s) de Interés
                   </label>
                   <select
-                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     id="services"
-                    name="services"
+                    name="services[]"
                     multiple
+                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   >
                     <option value="Desarrollo Web">Desarrollo Web</option>
                     <option value="Producción Audiovisual">Producción Audiovisual</option>
@@ -312,33 +301,34 @@
                     <option value="Eventos">Eventos</option>
                     <option value="Consultoría">Consultoría</option>
                   </select>
-                  <small class="text-xs text-gray-500">Puedes seleccionar varios manteniendo Ctrl/Cmd</small>
+                  <small class="text-xs text-gray-500 block mt-1">
+                    Mantén Ctrl (o Cmd) para seleccionar varios.
+                  </small>
                 </div>
-              </div>
-              <div>
-                <label
-                  for="message"
-                  class="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Mensaje *
-                </label>
-                <textarea
-                  class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  id="message"
-                  name="message"
-                  rows="4"
-                  required
-                ></textarea>
-              </div>
-                <button
-                  class="custom-bg-primary text-white px-8 py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all shadow-lg"
-                  type="submit"
-                >
-                  Enviar Mensaje
-                </button>
-              </div>
-            </form>
-          </div>
+
+                <div>
+                  <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                    Mensaje *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    required
+                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  ></textarea>
+                </div>
+
+                <div class="text-center">
+                  <button
+                    type="submit"
+                    class="custom-bg-primary text-white px-8 py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all shadow-lg"
+                  >
+                    Enviar Mensaje
+                  </button>
+                </div>
+              </form>
+            </div>
         </div>
       </section>
     </main>
