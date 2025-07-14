@@ -227,7 +227,7 @@
               >
                 <div class="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="name" id="name" class="block text-sm font-medium text-gray-700 mb-2">
                       Nombre Completo *
                     </label>
                     <input
@@ -239,7 +239,7 @@
                     />
                   </div>
                   <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="email" id="email" class="block text-sm font-medium text-gray-700 mb-2">
                       Gmail *
                     </label>
                     <input
@@ -254,7 +254,7 @@
 
                 <div class="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="phone" id="phone" class="block text-sm font-medium text-gray-700 mb-2">
                       Teléfono
                     </label>
                     <input
@@ -266,7 +266,7 @@
                   </div>
 
                   <div>
-                    <label for="urgency" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="urgency" id="urgency" class="block text-sm font-medium text-gray-700 mb-2">
                       Urgencia *
                     </label>
                     <select
@@ -275,9 +275,9 @@
                       required
                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
-                      <option value="urgente">Urgente (&lt;24h)</option>
-                      <option value="regular">Regular (24-36h)</option>
-                      <option value="planificacion">Planificación (48h+)</option>
+                      <option id="urgente" value="urgente">Urgente (&lt;24h)</option>
+                      <option id="regular" value="regular">Regular (24-36h)</option>
+                      <option id="planificacion" value="planificacion">Planificación (48h+)</option>
                     </select>
                     <small class="text-xs text-gray-500 block mt-1">
                       Tiempo de respuesta según urgencia seleccionada.
@@ -286,36 +286,36 @@
                 </div>
 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                  <label for="services" id="services" class="block text-sm font-medium text-gray-700 mb-2">
                     Servicio(s) de Interés *
                   </label>
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-800">
                     <label class="flex items-center gap-2">
-                      <input type="checkbox" name="services[]" value="Desarrollo Web" class="accent-blue-600" />
+                      <input type="checkbox" id="desarrollo-web" name="services[]" value="Desarrollo Web" class="accent-blue-600" />
                       Desarrollo Web
                     </label>
                     <label class="flex items-center gap-2">
-                      <input type="checkbox" name="services[]" value="Producción Audiovisual" class="accent-blue-600" />
+                      <input type="checkbox" id="produccion-audiovisual" name="services[]" value="Producción Audiovisual" class="accent-blue-600" />
                       Producción Audiovisual
                     </label>
                     <label class="flex items-center gap-2">
-                      <input type="checkbox" name="services[]" value="Creatividad y Diseño" class="accent-blue-600" />
+                      <input type="checkbox" id="creatividad-diseno" name="services[]" value="Creatividad y Diseño" class="accent-blue-600" />
                       Creatividad y Diseño
                     </label>
                     <label class="flex items-center gap-2">
-                      <input type="checkbox" name="services[]" value="Medios y Publicidad" class="accent-blue-600" />
+                      <input type="checkbox" id="medios-publicidad" name="services[]" value="Medios y Publicidad" class="accent-blue-600" />
                       Medios y Publicidad
                     </label>
                     <label class="flex items-center gap-2">
-                      <input type="checkbox" name="services[]" value="Social Media" class="accent-blue-600" />
+                      <input type="checkbox" id="social-media" name="services[]" value="Social Media" class="accent-blue-600" />
                       Social Media
                     </label>
                     <label class="flex items-center gap-2">
-                      <input type="checkbox" name="services[]" value="Eventos" class="accent-blue-600" />
+                      <input type="checkbox" id="eventos" name="services[]" value="Eventos" class="accent-blue-600" />
                       Eventos
                     </label>
                     <label class="flex items-center gap-2">
-                      <input type="checkbox" name="services[]" value="Consultoría" class="accent-blue-600" />
+                      <input type="checkbox" id="consultoria" name="services[]" value="Consultoría" class="accent-blue-600" />
                       Consultoría
                     </label>
                   </div>
@@ -325,7 +325,7 @@
                 </div>
 
                 <div>
-                  <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                  <label for="message" id="message" class="block text-sm font-medium text-gray-700 mb-2">
                     Mensaje *
                   </label>
                   <textarea
@@ -340,6 +340,7 @@
                 <div class="text-center">
                   <button
                     type="submit"
+                    id="submit"
                     class="custom-bg-primary text-white px-8 py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all shadow-lg"
                   >
                     Enviar Mensaje
