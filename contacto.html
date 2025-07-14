@@ -284,25 +284,41 @@
                 </div>
 
                 <div>
-                  <label for="services" class="block text-sm font-medium text-gray-700 mb-2">
-                    Servicio(s) de Interés
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Servicio(s) de Interés *
                   </label>
-                  <select
-                    id="services"
-                    name="services[]"
-                    multiple
-                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  >
-                    <option value="Desarrollo Web">Desarrollo Web</option>
-                    <option value="Producción Audiovisual">Producción Audiovisual</option>
-                    <option value="Creatividad y Diseño">Creatividad y Diseño</option>
-                    <option value="Medios/Publicidad">Medios y Publicidad</option>
-                    <option value="Social Media">Social Media</option>
-                    <option value="Eventos">Eventos</option>
-                    <option value="Consultoría">Consultoría</option>
-                  </select>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-800">
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" name="services[]" value="Desarrollo Web" class="accent-blue-600" />
+                      Desarrollo Web
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" name="services[]" value="Producción Audiovisual" class="accent-blue-600" />
+                      Producción Audiovisual
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" name="services[]" value="Creatividad y Diseño" class="accent-blue-600" />
+                      Creatividad y Diseño
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" name="services[]" value="Medios y Publicidad" class="accent-blue-600" />
+                      Medios y Publicidad
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" name="services[]" value="Social Media" class="accent-blue-600" />
+                      Social Media
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" name="services[]" value="Eventos" class="accent-blue-600" />
+                      Eventos
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" name="services[]" value="Consultoría" class="accent-blue-600" />
+                      Consultoría
+                    </label>
+                  </div>
                   <small class="text-xs text-gray-500 block mt-1">
-                    Mantén Ctrl (o Cmd) para seleccionar varios.
+                    Puedes seleccionar más de uno.
                   </small>
                 </div>
 
