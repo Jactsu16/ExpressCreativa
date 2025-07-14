@@ -50,7 +50,7 @@ function showTermsAndConditions(form) {
 
 function processQuoteSubmission(form) {
   // Get form data
-  const formData = new FormData(e.target);
+  const formData = new FormData(form);
   const data = {};
   
   // Process regular fields
@@ -78,7 +78,7 @@ function processQuoteSubmission(form) {
   sendQuoteData(ticket, data);
   
   // Reset form
-  e.target.reset();
+  form.reset();
 }
 
 function validateQuoteForm(data) {
@@ -177,6 +177,12 @@ function calculateResponseTime(urgency) {
 function showQuoteConfirmation(ticket, data) {
   const confirmationDiv = document.getElementById('quote-confirmation');
   const detailsDiv = document.getElementById('quote-details');
+  
+  if (!confirmationDiv || !detailsDiv) {
+    console.error('Elementos de confirmación no encontrados');
+    showToast('Error al mostrar confirmación', 'error');
+    return;
+  }
   
   // Build details HTML
   const servicesText = data.services ? data.services.join(', ') : 'No especificado';
@@ -361,3 +367,62 @@ window.QuoteSystem = {
   formatServiceCategory,
   formatUrgency
 };
+
+// Ensure showToast function is available
+if (typeof showToast === 'undefined') {
+  function showToast(message, type = 'info') {
+    // Remove existing toast
+    const existingToast = document.querySelector('.toast');
+    if (existingToast) {
+      existingToast.remove();
+    }
+
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : type === 'warning' ? '#f59e0b' : '#3b82f6'};
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 1000;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      max-width: 300px;
+    `;
+    
+    toast.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span>${message}</span>
+        <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: white; cursor: pointer; font-size: 16px; padding: 0; margin-left: 8px;">×</button>
+      </div>
+    `;
+
+    // Add to page
+    document.body.appendChild(toast);
+
+    // Show toast
+    setTimeout(() => {
+      toast.style.transform = 'translateX(0)';
+    }, 100);
+
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+      if (toast.parentElement) {
+        toast.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          if (toast.parentElement) {
+            toast.remove();
+          }
+        }, 300);
+      }
+    }, 5000);
+  }
+  
+  // Make it globally available
+  window.showToast = showToast;
+}
