@@ -238,8 +238,8 @@ function sendQuoteData(ticket, data) {
   }
   
   // Always prepare email option
-  const emailLink = `mailto:info@expresscreativa.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-  
+  const emailLink = `mailto:expresscreativa.pa@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
   // Store for potential use
   window.lastQuoteEmailLink = emailLink;
   window.lastQuoteWhatsAppLink = `https://wa.me/50766043511?text=${encodeURIComponent(whatsappMessage)}`;
