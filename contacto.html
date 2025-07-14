@@ -274,267 +274,191 @@
         </div>
       </section>
 
-      <!-- Quote Request Form -->
-      <section id="quote-form" class="bg-gray-50 py-20">
+          <main>
+      <section id="contact-hero" class="gradient-bg py-20">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+          <div class="inline-flex items-center space-x-2 custom-bg-primary/10 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-8">
+            <i class="fas fa-comments"></i>
+            <span>Hablemos de tu Proyecto</span>
+          </div>
+          <h1 class="text-5xl lg:text-6xl font-bold custom-primary mb-6">
+            Contáctanos
+          </h1>
+          <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            ¿Tienes un proyecto en mente? Estamos aquí para ayudarte a convertir tus ideas en realidad digital. Consultoría gratuita y cotizaciones personalizadas.
+          </p>
+        </div>
+      </section>
+
+      <!-- Opciones de contacto rápidas -->
+      <section id="contact-options" class="bg-white py-16">
+        <div class="max-w-6xl mx-auto px-6">
+          <div class="grid md:grid-cols-3 gap-8 mb-16">
+            <div class="text-center p-8 bg-blue-50 rounded-2xl hover-lift">
+              <div class="w-16 h-16 custom-bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-phone text-white text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold custom-primary mb-3">Llamada Directa</h3>
+              <p class="text-gray-600 mb-4">Habla directamente con nuestro equipo</p>
+              <a href="tel:+50766043511" class="custom-bg-primary text-white px-6 py-3 rounded-xl font-medium hover:bg-opacity-90 transition-all inline-block">+507 66043511</a>
+            </div>
+            <div class="text-center p-8 bg-green-50 rounded-2xl hover-lift">
+              <div class="w-16 h-16 custom-bg-green rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fab fa-whatsapp text-white text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold custom-primary mb-3">WhatsApp</h3>
+              <p class="text-gray-600 mb-4">Chatea con nosotros al instante</p>
+              <a href="https://wa.me/50766043511?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios%20digitales" target="_blank" class="custom-bg-green text-white px-6 py-3 rounded-xl font-medium hover:bg-opacity-90 transition-all inline-block">Escribir Ahora</a>
+            </div>
+            <div class="text-center p-8 bg-orange-50 rounded-2xl hover-lift">
+              <div class="w-16 h-16 custom-bg-orange rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-envelope text-white text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold custom-primary mb-3">Email</h3>
+              <p class="text-gray-600 mb-4">Envíanos tu consulta detallada</p>
+              <a href="mailto:info@expresscreativa.com?subject=Consulta%20sobre%20servicios%20digitales&body=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios." class="custom-bg-orange text-white px-6 py-3 rounded-xl font-medium hover:bg-opacity-90 transition-all inline-block">Enviar Email</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NUEVO FORMULARIO DE CONTACTO SIMPLE -->
+      <section id="contact-form" class="bg-white py-20">
         <div class="max-w-4xl mx-auto px-6">
           <div class="text-center mb-12">
             <h2 class="text-4xl font-bold custom-primary mb-6">
-              Solicitar Cotización
+              Envíanos tu Mensaje
             </h2>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-              Completa este formulario y recibe una cotización personalizada
-              para tu proyecto en menos de 24 horas.
+              ¿Tienes dudas o deseas información sobre un servicio? Te responderemos en menos de 24 horas para casos urgentes.
             </p>
           </div>
-
           <div class="bg-white rounded-2xl shadow-lg p-8">
-            <form id="quote-request-form" class="space-y-6">
-              <!-- Basic Info -->
+            <form
+              action="https://formspree.io/f/{FORM_ID}"
+              class="space-y-6"
+              target="_top"
+              method="POST"
+            >
               <div class="grid md:grid-cols-2 gap-6">
                 <div>
                   <label
-                    for="client-name"
+                    for="name"
                     class="block text-sm font-medium text-gray-700 mb-2"
                   >
                     Nombre Completo *
                   </label>
                   <input
-                    type="text"
-                    id="client-name"
-                    name="client-name"
-                    required
                     class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Tu nombre completo"
+                    id="name"
+                    name="name"
+                    required
                   />
                 </div>
                 <div>
                   <label
-                    for="client-contact"
+                    for="email"
                     class="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Contacto (Email o Teléfono) *
+                    Gmail *
                   </label>
                   <input
-                    type="text"
-                    id="client-contact"
-                    name="client-contact"
-                    required
+                    type="email"
                     class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="email@ejemplo.com o +507 0000-0000"
+                    id="email"
+                    name="email"
+                    required
                   />
                 </div>
               </div>
-
-              <!-- Client Type -->
-              <div>
-                <label
-                  for="client-type"
-                  class="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Tipo de Cliente *
-                </label>
-                <select
-                  id="client-type"
-                  name="client-type"
-                  required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="">Selecciona una opción</option>
-                  <option value="microempresa">Microempresa (1-10 empleados)</option>
-                  <option value="pequena-empresa">Pequeña Empresa (11-50 empleados)</option>
-                  <option value="mediana-empresa">Mediana Empresa (51-250 empleados)</option>
-                  <option value="evento-corporativo">Evento Corporativo</option>
-                  <option value="evento-familiar">Evento Familiar</option>
-                  <option value="gran-evento">Gran Evento</option>
-                </select>
-              </div>
-
-              <!-- Urgency Level -->
-              <div>
-                <label
-                  for="urgency-level"
-                  class="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Nivel de Urgencia *
-                </label>
-                <select
-                  id="urgency-level"
-                  name="urgency-level"
-                  required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="">Selecciona una opción</option>
-                  <option value="urgente">Urgente (Respuesta en 24 horas)</option>
-                  <option value="normal">Normal (Respuesta en 72 horas)</option>
-                  <option value="planificacion">Planificación (Respuesta en 1 semana)</option>
-                </select>
-              </div>
-
-              <!-- Service Category -->
-              <div>
-                <label
-                  for="service-category"
-                  class="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Categoría General del Servicio *
-                </label>
-                <select
-                  id="service-category"
-                  name="service-category"
-                  required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="">Selecciona una categoría</option>
-                  <option value="redes-sociales">Redes Sociales</option>
-                  <option value="branding">Branding</option>
-                  <option value="produccion">Producción Audiovisual</option>
-                  <option value="eventos">Eventos</option>
-                  <option value="desarrollo-web">Desarrollo Web</option>
-                  <option value="streaming">Streaming</option>
-                  <option value="marketing-digital">Marketing Digital</option>
-                  <option value="consultoria">Consultoría</option>
-                </select>
-              </div>
-
-              <!-- Services Requested -->
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-4">
-                  Servicios Solicitados *
-                </label>
-                <div class="grid md:grid-cols-2 gap-4">
-                  <label class="flex items-center space-x-3">
-                    <input
-                      type="checkbox"
-                      name="services"
-                      value="consultoria"
-                      class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                    />
-                    <span class="text-gray-700">Consultoría Digital</span>
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    for="phone"
+                    class="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Teléfono
                   </label>
-                  <label class="flex items-center space-x-3">
-                    <input
-                      type="checkbox"
-                      name="services"
-                      value="transmision-vivo"
-                      class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                    />
-                    <span class="text-gray-700">Transmisión en Vivo</span>
+                  <input
+                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    id="phone"
+                    name="phone"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="services"
+                    class="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Servicio(s) de Interés
                   </label>
-                  <label class="flex items-center space-x-3">
-                    <input
-                      type="checkbox"
-                      name="services"
-                      value="gestion-evento"
-                      class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                    />
-                    <span class="text-gray-700">Gestión de Evento</span>
-                  </label>
-                  <label class="flex items-center space-x-3">
-                    <input
-                      type="checkbox"
-                      name="services"
-                      value="desarrollo-web"
-                      class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                    />
-                    <span class="text-gray-700">Desarrollo Web</span>
-                  </label>
-                  <label class="flex items-center space-x-3">
-                    <input
-                      type="checkbox"
-                      name="services"
-                      value="branding"
-                      class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                    />
-                    <span class="text-gray-700">Branding</span>
-                  </label>
-                  <label class="flex items-center space-x-3">
-                    <input
-                      type="checkbox"
-                      name="services"
-                      value="marketing-digital"
-                      class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                    />
-                    <span class="text-gray-700">Marketing Digital</span>
-                  </label>
+                  <select
+                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    id="services"
+                    name="services"
+                    multiple
+                  >
+                    <option value="Desarrollo Web">Desarrollo Web</option>
+                    <option value="Producción Audiovisual">Producción Audiovisual</option>
+                    <option value="Creatividad y Diseño">Creatividad y Diseño</option>
+                    <option value="Medios/Publicidad">Medios y Publicidad</option>
+                    <option value="Social Media">Social Media</option>
+                    <option value="Eventos">Eventos</option>
+                    <option value="Consultoría">Consultoría</option>
+                  </select>
+                  <small class="text-xs text-gray-500">Puedes seleccionar varios manteniendo Ctrl/Cmd</small>
                 </div>
               </div>
-
-              <!-- Additional Details -->
               <div>
                 <label
-                  for="additional-details"
+                  for="message"
                   class="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Detalles Adicionales del Requerimiento
+                  Mensaje *
                 </label>
                 <textarea
-                  id="additional-details"
-                  name="additional-details"
-                  rows="5"
                   class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Describe tu proyecto, objetivos, presupuesto estimado, fechas importantes, etc."
+                  id="message"
+                  name="message"
+                  rows="4"
+                  required
                 ></textarea>
               </div>
-
+              <div>
+                <label
+                  for="urgency"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Urgencia *
+                </label>
+                <select
+                  class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  id="urgency"
+                  name="urgency"
+                  required
+                >
+                  <option value="urgente">Urgente (&lt;24h, respuesta máxima en 24 horas)</option>
+                  <option value="regular">Regular (respuesta 24-36 horas)</option>
+                  <option value="planificacion">Planificación (respuesta 24-48 horas)</option>
+                </select>
+                <small class="text-xs text-gray-500">
+                  Si la urgencia es alta, responderemos en menos de 24 horas. 
+                  Si es regular, de 24 a 36 horas. Para planificación, en 24 a 48 horas.
+                </small>
+              </div>
               <div class="text-center">
                 <button
+                  class="custom-bg-primary text-white px-8 py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all shadow-lg"
                   type="submit"
-                  class="custom-bg-green text-white px-8 py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all shadow-lg"
                 >
-                  <i class="fas fa-paper-plane mr-2"></i>
-                  Solicitar Cotización
+                  Enviar Mensaje
                 </button>
               </div>
             </form>
           </div>
-
-          <!-- Quote Confirmation -->
-          <div id="quote-confirmation" class="hidden mt-8">
-            <div class="bg-green-50 border border-green-200 rounded-2xl p-8">
-              <div class="text-center mb-6">
-                <div
-                  class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4"
-                >
-                  <i class="fas fa-check text-white text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-green-800 mb-2">
-                  ¡Cotización Enviada!
-                </h3>
-                <p class="text-green-700">
-                  Tu solicitud ha sido procesada exitosamente
-                </p>
-              </div>
-
-              <div id="quote-details" class="bg-white rounded-xl p-6 mb-6">
-                <!-- Details will be populated by JavaScript -->
-              </div>
-
-              <div class="text-center space-y-4">
-                <p class="text-green-700 font-medium">
-                  Para casos urgentes, contáctanos directamente:
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a
-                    href="https://wa.me/50766043511"
-                    target="_blank"
-                    class="bg-green-500 text-white px-6 py-3 rounded-xl font-medium hover:bg-green-600 transition-all inline-flex items-center justify-center"
-                  >
-                    <i class="fab fa-whatsapp mr-2"></i>
-                    WhatsApp
-                  </a>
-                  <a
-                    href="mailto:info@expresscreativa.com"
-                    class="bg-blue-500 text-white px-6 py-3 rounded-xl font-medium hover:bg-blue-600 transition-all inline-flex items-center justify-center"
-                  >
-                    <i class="fas fa-envelope mr-2"></i>
-                    Email
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
+    </main>
 
       <!-- Contact Info -->
       <section id="contact-info" class="bg-white py-20">
