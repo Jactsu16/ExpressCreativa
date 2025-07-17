@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Secreto Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hidden { display: none !important; }
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            max-width: 300px;
+        }
+        .toast.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Login Screen -->
+    <div id="login-screen" class="min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+            <h1 class="text-2xl font-bold text-center mb-6 text-gray-800">🔐 Sistema Secreto Admin</h1>
+            <form id="login-form">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Contraseña de Administrador</label>
+                    <input type="password" id="admin-password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-200">Acceder</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="admin-panel" class="hidden">
+        <div class="bg-white shadow-sm border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center py-4">
+                    <h1 class="text-2xl font-bold text-gray-800">📊 Panel de Administración</h1>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm text-gray-600">Tickets: <span id="ticket-count">0</span></span>
+                        <button id="export-data" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-200">
+                            📥 Exportar YAML
+                        </button>
+                        <button id="clear-data" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-200">
+                            🗑️ Limpiar Todo
+                        </button>
+                        <button id="logout-btn" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-200">
+                            🚪 Cerrar Sesión
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Filters -->
+            <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                <h2 class="text-lg font-semibold mb-4">🔍 Filtros</h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <select id="filter-urgency" class="px-3 py-2 border border-gray-300 rounded-md">
+                        <option value="">Todas las urgencias</option>
+                        <option value="urgente">Urgente</option>
+                        <option value="normal">Normal</option>
+                        <option value="planificacion">Planificación</option>
+                    </select>
+                    <select id="filter-category" class="px-3 py-2 border border-gray-300 rounded-md">
+                        <option value="">Todas las categorías</option>
+                        <option value="redes-sociales">Redes Sociales</option>
+                        <option value="branding">Branding</option>
+                        <option value="produccion">Producción</option>
+                        <option value="eventos">Eventos</option>
+                        <option value="desarrollo-web">Desarrollo Web</option>
+                        <option value="streaming">Streaming</option>
+                        <option value="marketing-digital">Marketing Digital</option>
+                        <option value="consultoria">Consultoría</option>
+                    </select>
+                    <select id="filter-client-type" class="px-3 py-2 border border-gray-300 rounded-md">
+                        <option value="">Todos los tipos</option>
+                        <option value="microempresa">Microempresa</option>
+                        <option value="pequena-empresa">Pequeña Empresa</option>
+                        <option value="mediana-empresa">Mediana Empresa</option>
+                        <option value="evento-corporativo">Evento Corporativo</option>
+                        <option value="evento-familiar">Evento Familiar</option>
+                        <option value="gran-evento">Gran Evento</option>
+                    </select>
+                    <input type="date" id="filter-date" class="px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+            </div>
+
+            <!-- Tickets List -->
+            <div class="bg-white rounded-lg shadow-sm">
+                <div class="px-6 py-4 border-b">
+                    <h2 class="text-lg font-semibold">📋 Tickets de Cotización</h2>
+                </div>
+                <div id="tickets-container" class="divide-y divide-gray-200">
+                    <div class="p-6 text-center text-gray-500">
+                        No hay tickets disponibles
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const ADMIN_PASSWORD = "@16JGa";
+        const STORAGE_KEY = "express_creativa_tickets";
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAdmin();
+        });
+
+        function initializeAdmin() {
+            const loginForm = document.getElementById('login-form');
+            const logoutBtn = document.getElementById('logout-btn');
+            const exportBtn = document.getElementById('export-data');
+            const clearBtn = document.getElementById('clear-data');
+
+            // Login handler
+            loginForm.addEventListener('submit', handleLogin);
+            logoutBtn.addEventListener('click', handleLogout);
+            exportBtn.addEventListener('click', exportToYAML);
+            clearBtn.addEventListener('click', clearAllData);
+
+            // Filter handlers
+            document.getElementById('filter-urgency').addEventListener('change', filterTickets);
+            document.getElementById('filter-category').addEventListener('change', filterTickets);
+            document.getElementById('filter-client-type').addEventListener('change', filterTickets);
+            document.getElementById('filter-date').addEventListener('change', filterTickets);
+
+            // Check if already logged in
+            if (sessionStorage.getItem('admin_logged_in') === 'true') {
+                showAdminPanel();
+            }
+
+            // Listen for new tickets from other tabs
+            window.addEventListener('storage', function(e) {
+                if (e.key === STORAGE_KEY) {
+                    loadTickets();
+                }
+            });
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const password = document.getElementById('admin-password').value;
+            
+            if (password === ADMIN_PASSWORD) {
+                sessionStorage.setItem('admin_logged_in', 'true');
+                showAdminPanel();
+                showToast('Acceso autorizado', 'success');
+            } else {
+                showToast('Contraseña incorrecta', 'error');
+            }
+        }
+
+        function handleLogout() {
+            sessionStorage.removeItem('admin_logged_in');
+            document.getElementById('login-screen').classList.remove('hidden');
+            document.getElementById('admin-panel').classList.add('hidden');
+            document.getElementById('admin-password').value = '';
+        }
+
+        function showAdminPanel() {
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('admin-panel').classList.remove('hidden');
+            loadTickets();
+        }
+
+        function loadTickets() {
+            const tickets = getStoredTickets();
+            displayTickets(tickets);
+            updateTicketCount(tickets.length);
+        }
+
+        function getStoredTickets() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        function displayTickets(tickets) {
+            const container = document.getElementById('tickets-container');
+            
+            if (tickets.length === 0) {
+                container.innerHTML = '<div class="p-6 text-center text-gray-500">No hay tickets disponibles</div>';
+                return;
+            }
+
+            container.innerHTML = tickets.map(ticket => `
+                <div class="p-6 ticket-item" data-urgency="${ticket.urgency}" data-category="${ticket.category}" data-client-type="${ticket.clientType}" data-date="${ticket.date}">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">${ticket.number}</h3>
+                            <p class="text-sm text-gray-600">${ticket.timestamp}</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="px-2 py-1 text-xs font-medium rounded-full ${getUrgencyColor(ticket.urgency)}">
+                                ${formatUrgency(ticket.urgency)}
+                            </span>
+                            <button onclick="deleteTicket('${ticket.number}')" class="text-red-500 hover:text-red-700">
+                                🗑️
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <p class="text-sm"><strong>Cliente:</strong> ${ticket.clientName}</p>
+                            <p class="text-sm"><strong>Contacto:</strong> ${ticket.clientContact}</p>
+                            <p class="text-sm"><strong>Tipo:</strong> ${formatClientType(ticket.clientType)}</p>
+                        </div>
+                        <div>
+                            <p class="text-sm"><strong>Categoría:</strong> ${formatServiceCategory(ticket.category)}</p>
+                            <p class="text-sm"><strong>Respuesta:</strong> ${ticket.responseTime}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="text-sm font-medium text-gray-700 mb-2">Servicios:</p>
+                        <div class="flex flex-wrap gap-2">
+                            ${ticket.services.map(service => `
+                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">${service}</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    ${ticket.additionalDetails ? `
+                        <div class="mb-4">
+                            <p class="text-sm font-medium text-gray-700 mb-2">Detalles adicionales:</p>
+                            <p class="text-sm text-gray-600 bg-gray-50 p-3 rounded">${ticket.additionalDetails}</p>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="flex space-x-2">
+                        <a href="mailto:${ticket.clientContact}" class="text-blue-500 hover:text-blue-700 text-sm">📧 Email</a>
+                        <a href="https://wa.me/50766043511?text=${encodeURIComponent(`Hola ${ticket.clientName}, te contacto sobre tu ticket ${ticket.number}`)}" target="_blank" class="text-green-500 hover:text-green-700 text-sm">📱 WhatsApp</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterTickets() {
+            const urgencyFilter = document.getElementById('filter-urgency').value;
+            const categoryFilter = document.getElementById('filter-category').value;
+            const clientTypeFilter = document.getElementById('filter-client-type').value;
+            const dateFilter = document.getElementById('filter-date').value;
+
+            let tickets = getStoredTickets();
+
+            if (urgencyFilter) {
+                tickets = tickets.filter(t => t.urgency === urgencyFilter);
+            }
+            if (categoryFilter) {
+                tickets = tickets.filter(t => t.category === categoryFilter);
+            }
+            if (clientTypeFilter) {
+                tickets = tickets.filter(t => t.clientType === clientTypeFilter);
+            }
+            if (dateFilter) {
+                tickets = tickets.filter(t => t.date.startsWith(dateFilter));
+            }
+
+            displayTickets(tickets);
+        }
+
+        function deleteTicket(ticketNumber) {
+            if (confirm('¿Estás seguro de que deseas eliminar este ticket?')) {
+                const tickets = getStoredTickets();
+                const filteredTickets = tickets.filter(t => t.number !== ticketNumber);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(filteredTickets));
+                loadTickets();
+                showToast('Ticket eliminado', 'success');
+            }
+        }
+
+        function clearAllData() {
+            if (confirm('¿Estás seguro de que deseas eliminar TODOS los tickets? Esta acción no se puede deshacer.')) {
+                localStorage.removeItem(STORAGE_KEY);
+                loadTickets();
+                showToast('Todos los tickets eliminados', 'success');
+            }
+        }
+
+        function exportToYAML() {
+            const tickets = getStoredTickets();
+            if (tickets.length === 0) {
+                showToast('No hay tickets para exportar', 'warning');
+                return;
+            }
+
+            const yamlContent = generateYAMLContent(tickets);
+            downloadFile(yamlContent, 'tickets-export.yaml', 'text/yaml');
+            showToast('Archivo YAML exportado', 'success');
+        }
+
+        function generateYAMLContent(tickets) {
+            let yaml = `# ExpressCreativa - Tickets Export
+# Generated: ${new Date().toISOString()}
+# Total tickets: ${tickets.length}
+
+tickets:
+`;
+
+            tickets.forEach(ticket => {
+                yaml += `  - number: "${ticket.number}"
+    timestamp: "${ticket.timestamp}"
+    date: "${ticket.date}"
+    client:
+      name: "${ticket.clientName}"
+      contact: "${ticket.clientContact}"
+      type: "${ticket.clientType}"
+    service:
+      category: "${ticket.category}"
+      items:
+${ticket.services.map(service => `        - "${service}"`).join('\n')}
+    urgency: "${ticket.urgency}"
+    response_time: "${ticket.responseTime}"
+    response_date: "${ticket.responseDate}"
+    additional_details: "${ticket.additionalDetails || ''}"
+    status: "pending"
+    
+`;
+            });
+
+            return yaml;
+        }
+
+        function downloadFile(content, filename, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function updateTicketCount(count) {
+            document.getElementById('ticket-count').textContent = count;
+        }
+
+        function getUrgencyColor(urgency) {
+            switch(urgency) {
+                case 'urgente': return 'bg-red-100 text-red-800';
+                case 'normal': return 'bg-yellow-100 text-yellow-800';
+                case 'planificacion': return 'bg-green-100 text-green-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        function formatUrgency(urgency) {
+            const urgencies = {
+                'urgente': 'Urgente (24h)',
+                'normal': 'Normal (72h)',
+                'planificacion': 'Planificación (1 semana)'
+            };
+            return urgencies[urgency] || urgency;
+        }
+
+        function formatClientType(type) {
+            const types = {
+                'microempresa': 'Microempresa',
+                'pequena-empresa': 'Pequeña Empresa',
+                'mediana-empresa': 'Mediana Empresa',
+                'evento-corporativo': 'Evento Corporativo',
+                'evento-familiar': 'Evento Familiar',
+                'gran-evento': 'Gran Evento'
+            };
+            return types[type] || type;
+        }
+
+        function formatServiceCategory(category) {
+            const categories = {
+                'redes-sociales': 'Redes Sociales',
+                'branding': 'Branding',
+                'produccion': 'Producción Audiovisual',
+                'eventos': 'Eventos',
+                'desarrollo-web': 'Desarrollo Web',
+                'streaming': 'Streaming',
+                'marketing-digital': 'Marketing Digital',
+                'consultoria': 'Consultoría'
+            };
+            return categories[category] || category;
+        }
+
+        function showToast(message, type = 'info') {
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : type === 'warning' ? '#f59e0b' : '#3b82f6'};
+                color: white;
+                padding: 12px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 1000;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+            `;
+            
+            toast.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span>${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: white; cursor: pointer; font-size: 16px; padding: 0; margin-left: 8px;">×</button>
+                </div>
+            `;
+
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.transform = 'translateX(0)';
+            }, 100);
+
+            setTimeout(() => {
+                if (toast.parentElement) {
+                    toast.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        if (toast.parentElement) {
+                            toast.remove();
+                        }
+                    }, 300);
+                }
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
