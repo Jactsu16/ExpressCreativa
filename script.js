@@ -582,7 +582,10 @@ function addToCart(service) {
   }
 
   updateCartCount();
-  showToast(`${service.name} agregado al carrito`, "success");
+  updateCartDisplay();
+  const requestModal = document.getElementById("cart-modal");
+  if (requestModal) requestModal.classList.remove("hidden");
+  showToast(`${service.name} agregado a la solicitud`, "success");
 }
 
 function removeFromCart(serviceId) {
@@ -632,7 +635,7 @@ function updateCartDisplay() {
   if (!cartItems || !cartFooter || !cartTotal) return;
   if (cart.length === 0) {
     cartItems.innerHTML =
-      '<p class="text-gray-500 text-center py-8">Tu carrito está vacío</p>';
+      '<p class="text-gray-500 text-center py-8">Aún no agregaste servicios a la solicitud</p>';
     cartFooter.classList.add("hidden");
     return;
   }
@@ -732,7 +735,7 @@ checkBrowserSupport();
 // Preoperative service-request flow
 function proceedToCheckout() {
   if (cart.length === 0) {
-    showToast("Tu carrito está vacío", "error");
+    showToast("La solicitud está vacía", "error");
     return;
   }
 
