@@ -3,12 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <script src="site-security.js" defer></script>
     <title>
       Cotización - ExpressCreativa | Agencia Digital Profesional Panamá
     </title>
     <meta
       name="description"
-      content="Solicita una cotización personalizada con ExpressCreativa para tu proyecto digital. Consultoría gratuita y soporte profesional desde Panamá para Latinoamérica."
+      content="Prepara una solicitud de cotización para proyectos de comunicación, diseño, producción, tecnología, medios o impresión coordinada."
     />
     <meta
       name="keywords"
@@ -19,24 +21,29 @@
     <!-- Open Graph Meta Tags -->
     <meta
       property="og:title"
-      content="Contacto - ExpressCreativa"
+      content="Cotización - ExpressCreativa"
     />
     <meta
       property="og:description"
-      content="Contacta con ExpressCreativa para tu proyecto digital. Consultoría gratuita y cotizaciones personalizadas."
+      content="Prepara una solicitud de cotización para tu proyecto con ExpressCreativa. La web no procesa pagos ni confirma pedidos."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://expresscreativa.com/cotizacion" />
+    <meta property="og:image" content="https://expresscreativa.com/img/social/cotizacion-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Cuéntanos tu proyecto a Express Creativa" />
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://expresscreativa.com/img/social/cotizacion-og.png" />
     <meta
       name="twitter:title"
       content="Cotización - ExpressCreativa"
     />
     <meta
       name="twitter:description"
-      content="Contacta con ExpressCreativa para tu proyecto digital. Consultoría gratuita y cotizaciones personalizadas."
+      content="Prepara una solicitud de cotización para tu proyecto. No se procesan pagos ni se confirman pedidos en línea."
     />
 
     <!-- Favicon -->
@@ -77,18 +84,20 @@
     </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+      defer
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
 
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="brand-rail.css" />
 
     <!-- Structured Data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "ContactPage",
+        "@type": "WebPage",
         "name": "Cotización - ExpressCreativa",
         "description": "Página de cotización de ExpressCreativa para consultas y cotizaciones",
         "url": "https://expresscreativa.com/cotizacion",
@@ -109,20 +118,21 @@
     >
       <div class="max-w-7xl mx-auto px-6 py-5">
         <div class="flex justify-between items-center">
-          <div class="flex items-center space-x-4">
+          <a href="index.html" class="flex items-center space-x-4" aria-label="Express Creativa, ir al inicio">
             <div class="w-10 h-10 custom-bg-primary rounded-lg">
               <img src="favicon.ico" alt="ExpressCreativa Logo" class="w-full h-full object-cover rounded-lg" />
             </div>
             <div>
-              <a href="index.html" class="text-2xl font-bold custom-primary"
-                >ExpressCreativa</a>
+              <span class="text-2xl font-bold custom-primary">Express Creativa</span>
               <div class="text-xs text-gray-500 font-medium">
-                Digital Agency
+                Creative Communications Agency
               </div>
             </div>
-          </div>
+          </a>
 
           <nav class="hidden lg:flex items-center space-x-10">
+            <a href="print.html" class="custom-primary font-semibold transition-colors">Print</a>
+            <a href="portafolio.html" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Portafolio</a>
             <a
               href="servicios.html"
               class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
@@ -145,7 +155,7 @@
             >
           </nav>
 
-          <button id="mobile-menu-btn" class="lg:hidden custom-primary">
+          <button id="mobile-menu-btn" type="button" class="lg:hidden custom-primary" aria-label="Abrir menú de navegación" aria-controls="mobile-menu" aria-expanded="false">
             <i class="fas fa-bars text-xl"></i>
           </button>
         </div>
@@ -153,6 +163,8 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="lg:hidden hidden mt-4 pb-4">
           <div class="flex flex-col space-y-4">
+            <a href="print.html" class="custom-primary font-semibold transition-colors">Print</a>
+            <a href="portafolio.html" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Portafolio</a>
             <a
               href="servicios.html"
               class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
@@ -177,6 +189,7 @@
         </div>
       </div>
     </header>
+    <nav class="brand-rail" aria-label="Divisiones de Express Creativa"><div class="brand-rail-inner"><a href="index.html">Inicio</a><a href="digital.html">Digital</a><a href="branding.html">Branding</a><a href="studio.html">Studio</a><a href="print.html">Print</a><a href="media.html">Media</a><a href="events.html">Events</a></div></nav>
 
     <main>
       <section id="contact-hero" class="gradient-bg py-20">
@@ -220,6 +233,8 @@
                     type="text"
                     id="client-name"
                     name="client-name"
+                    maxlength="120"
+                    autocomplete="name"
                     required
                     class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Tu nombre completo"
@@ -236,6 +251,8 @@
                     type="text"
                     id="client-contact"
                     name="client-contact"
+                    maxlength="254"
+                    autocomplete="email"
                     required
                     class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="email@ejemplo.com o +507 0000-0000"
@@ -264,6 +281,8 @@
                   <option value="evento-corporativo">Evento Corporativo</option>
                   <option value="evento-familiar">Evento Familiar</option>
                   <option value="gran-evento">Gran Evento</option>
+                  <option value="independiente">Profesional / Independiente</option>
+                  <option value="otro">Otro</option>
                 </select>
               </div>
 
@@ -282,9 +301,9 @@
                   class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   <option value="">Selecciona una opción</option>
-                  <option value="urgente">Urgente (Respuesta en 24 horas)</option>
-                  <option value="normal">Normal (Respuesta en 72 horas)</option>
-                  <option value="planificacion">Planificación (Respuesta en 1 semana)</option>
+                  <option value="urgente">Prioritaria (plazo por confirmar)</option>
+                  <option value="normal">Normal (plazo por confirmar)</option>
+                  <option value="planificacion">Planificación (sin urgencia)</option>
                 </select>
               </div>
 
@@ -389,6 +408,7 @@
                   id="additional-details"
                   name="additional-details"
                   rows="5"
+                  maxlength="2000"
                   class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Describe tu proyecto, objetivos, presupuesto estimado, fechas importantes, etc."
                 ></textarea>
@@ -416,10 +436,10 @@
                   <i class="fas fa-check text-white text-2xl"></i>
                 </div>
                 <h3 class="text-2xl font-bold text-green-800 mb-2">
-                  ¡Cotización Enviada!
+                  ¡Solicitud Preparada!
                 </h3>
                 <p class="text-green-700">
-                  Tu solicitud ha sido procesada exitosamente
+                  Revisa el resumen y envíalo por WhatsApp o correo
                 </p>
               </div>
 
@@ -485,7 +505,7 @@
                 Ubicación
               </h3>
               <p class="text-gray-600 mb-4">
-                Panamá, Latinoamérica
+                Ciudad de Panamá, Panamá
                 </p>
             </div>
             <div class="text-center p-8 bg-green-50 rounded-2xl hover-lift">
@@ -548,9 +568,9 @@
                 ¿Cuánto tiempo toma recibir una cotización?
               </h3>
               <p class="text-gray-600">
-                Dependiendo de la urgencia: 24 horas para casos urgentes, 72
-                horas para casos normales, y 1 semana para proyectos en
-                planificación.
+                El plazo depende de la complejidad y disponibilidad. Al recibir
+                la solicitud confirmaremos cuándo podemos responderla; marcarla
+                como prioritaria no garantiza entrega del proyecto en 24 horas.
               </p>
             </div>
 
@@ -559,8 +579,8 @@
                 ¿Trabajan con clientes fuera de Panamá?
               </h3>
               <p class="text-gray-600">
-                Sí, atendemos clientes en toda Latinoamérica. Trabajamos de
-                forma remota y nos adaptamos a diferentes zonas horarias.
+                Podemos evaluar proyectos remotos para distintos mercados de la
+                región. La disponibilidad y el alcance se confirman en cada caso.
               </p>
             </div>
 
@@ -569,8 +589,8 @@
                 ¿Ofrecen consultoría gratuita?
               </h3>
               <p class="text-gray-600">
-                Sí, ofrecemos una consultoría inicial gratuita de 30 minutos
-                para entender tu proyecto y necesidades.
+                Podemos coordinar una conversación inicial sin costo, sujeta a
+                disponibilidad, para entender el proyecto y orientar el siguiente paso.
               </p>
             </div>
 
@@ -579,9 +599,8 @@
                 ¿Qué métodos de pago aceptan?
               </h3>
               <p class="text-gray-600">
-                Aceptamos transferencias bancarias, PayPal, y pagos en
-                criptomonedas. Ofrecemos planes de pago flexibles según el
-                proyecto.
+                Actualmente la web no acepta pagos, anticipos ni facturación.
+                Los métodos y condiciones se definirán antes de iniciar operaciones.
               </p>
             </div>
           </div>
@@ -600,37 +619,14 @@
                 <img src="favicon.ico" alt="ExpressCreativa Logo" class="w-full h-full object-cover rounded-xl" />
                              </div>
               <div>
-                <span class="text-2xl font-bold">ExpressCreativa</span>
-                <div class="text-sm text-gray-400">Digital Agency</div>
+                <span class="text-2xl font-bold">Express Creativa</span>
+                <div class="text-sm text-gray-400">Creatividad desde Panamá</div>
               </div>
             </div>
             <p class="text-gray-400 mb-8 leading-relaxed">
-              Agencia digital profesional desde Panamá para toda Latinoamérica.
-              Creatividad sin límites.
+              Agencia integral de comunicación desde Panamá con atención
+              regional. Creatividad sin límites.
             </p>
-            <div class="flex space-x-6">
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-                aria-label="Instagram"
-              >
-                <i class="fab fa-instagram text-2xl"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-                aria-label="LinkedIn"
-              >
-                <i class="fab fa-linkedin text-2xl"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-                aria-label="YouTube"
-              >
-                <i class="fab fa-youtube text-2xl"></i>
-              </a>
-            </div>
           </div>
 
           <div>
@@ -692,8 +688,6 @@
                 >
               </li>
               <li>
-              </li>
-              <li>
                 <a
                   href="contacto.html"
                   class="hover:text-white transition-colors"
@@ -708,7 +702,7 @@
             <ul class="space-y-4 text-gray-400">
               <li class="flex items-center space-x-3">
                 <i class="fas fa-location-dot"></i>
-                <span>Panamá, Latinoamérica</span>
+                <span>Ciudad de Panamá, Panamá</span>
               </li>
               <li class="flex items-center space-x-3">
                 <i class="fas fa-envelope"></i>
@@ -733,16 +727,16 @@
         <div class="border-t border-gray-800 pt-8">
           <div class="flex flex-col md:flex-row justify-between items-center">
             <p class="text-gray-400 mb-4 md:mb-0">
-              &copy; 2024 ExpressCreativa. Todos los derechos reservados.
+              &copy; <span data-current-year>2026</span> ExpressCreativa. Proyecto en etapa preoperativa.
             </p>
             <div class="flex space-x-8 text-gray-400">
-              <a href="#" class="hover:text-white transition-colors"
+              <a href="terminos.html" class="hover:text-white transition-colors"
                 >Términos</a
               >
-              <a href="#" class="hover:text-white transition-colors"
+              <a href="privacidad.html" class="hover:text-white transition-colors"
                 >Privacidad</a
               >
-              <a href="#" class="hover:text-white transition-colors">Cookies</a>
+              <a href="cookies.html" class="hover:text-white transition-colors">Cookies</a>
             </div>
           </div>
         </div>
@@ -751,7 +745,6 @@
 
     <!-- JavaScript -->
     <script src="script.js"></script>
-    <script src="ticket-manager.js"></script>
     <script src="quote-system.js"></script>
     
     <!-- Terms and Conditions Modal -->
@@ -770,8 +763,7 @@
               
               <div>
                 <h4 class="text-lg font-bold custom-primary mb-3">1. Alcance de los Servicios</h4>
-                <p class="mb-2">Los servicios contratados se ejecutarán según las especificaciones acordadas en la cotización. Cualquier modificación o trabajo adicional será facturado por separado.</p>
-                <p><strong>Importante:</strong> El cliente debe contratar el servicio que corresponde al tamaño real de su proyecto. Intentar contratar un servicio de menor categoría para un proyecto más grande resultará en la cancelación del contrato.</p>
+                <p>Esta página permite preparar una solicitud informativa. El alcance, los entregables, las revisiones y cualquier condición comercial se confirmarán posteriormente por escrito.</p>
               </div>
 
               <div>
@@ -786,61 +778,49 @@
 
               <div>
                 <h4 class="text-lg font-bold custom-primary mb-3">3. Política de Precios</h4>
-                <p class="mb-2">Los precios mostrados son fijos para la categoría especificada. No se aceptarán solicitudes de descuentos basadas en contratar un servicio de menor categoría.</p>
-                <p>ExpressCreativa se reserva el derecho de reclasificar un proyecto si se determina que no corresponde a la categoría contratada.</p>
+                <p>Los precios visibles son referencias iniciales y no constituyen una oferta vinculante. El importe final dependerá del alcance y deberá confirmarse en una cotización expresa.</p>
               </div>
 
               <div>
-                <h4 class="text-lg font-bold custom-primary mb-3">4. Formas de Pago</h4>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>50% de anticipo para iniciar el proyecto</li>
-                  <li>50% restante al finalizar y entregar el trabajo</li>
-                  <li>Métodos aceptados: Transferencia bancaria, PayPal, criptomonedas</li>
-                  <li>Servicios mensuales se facturan por adelantado</li>
-                </ul>
+                <h4 class="text-lg font-bold custom-primary mb-3">4. Pagos no habilitados</h4>
+                <p>ExpressCreativa se encuentra en etapa preoperativa. La web no procesa cobros, anticipos ni facturación y no confirma pedidos.</p>
               </div>
 
               <div>
                 <h4 class="text-lg font-bold custom-primary mb-3">5. Tiempos de Entrega</h4>
+                <p>Los tiempos de entrega, la disponibilidad y cualquier recargo por prioridad se confirmarán por escrito en cada cotización antes de aceptar un proyecto.</p>
+              </div>
+
               <div>
                 <h4 class="text-lg font-bold custom-primary mb-3">6. Revisiones y Modificaciones</h4>
-                <p class="mb-2">Cada servicio incluye hasta 2 rondas de revisiones menores. Cambios mayores o adicionales se facturarán por separado.</p>
-                <p>Las modificaciones solicitadas después de la entrega final tendrán un costo adicional del 25% del valor original del servicio.</p>
+                <p>La cantidad de revisiones, los entregables y el tratamiento de cambios adicionales se definirán en la cotización correspondiente.</p>
               </div>
-                <ul class="list-disc list-inside space-y-1">
+
               <div>
                 <h4 class="text-lg font-bold custom-primary mb-3">7. Derechos de Autor</h4>
-                <p class="mb-2">El cliente obtiene los derechos de uso comercial del trabajo final una vez completado el pago total.</p>
-                <p>ExpressCreativa se reserva el derecho de usar el trabajo en su portfolio y materiales promocionales.</p>
+                <p>Las licencias, derechos de uso y autorización para publicar trabajos en el portafolio se acordarán expresamente por escrito.</p>
               </div>
-                  <li><strong>Urgente:</strong> 24-48 horas (recargo del 50%)</li>
+
               <div>
                 <h4 class="text-lg font-bold custom-primary mb-3">8. Cancelaciones</h4>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>Cancelaciones antes de iniciar: reembolso del 90%</li>
-                  <li>Cancelaciones con trabajo iniciado: no hay reembolso del anticipo</li>
-                  <li>ExpressCreativa puede cancelar si el cliente no cumple con los términos</li>
-                </ul>
+                <p>La web no recibe pagos ni confirma pedidos. Las condiciones de cancelación se establecerán antes de iniciar operaciones comerciales.</p>
               </div>
-                  <li><strong>Normal:</strong> 3-7 días hábiles</li>
+
               <div>
                 <h4 class="text-lg font-bold custom-primary mb-3">9. Responsabilidades del Cliente</h4>
                 <ul class="list-disc list-inside space-y-1">
                   <li>Proporcionar información veraz sobre el tamaño y alcance del proyecto</li>
                   <li>Entregar contenido y materiales necesarios en tiempo y forma</li>
-                  <li>Realizar pagos según lo acordado</li>
                   <li>Comunicar cambios o dudas de manera oportuna</li>
                 </ul>
               </div>
-                  <li><strong>Planificación:</strong> 1-2 semanas</li>
+
               <div>
                 <h4 class="text-lg font-bold custom-primary mb-3">10. Limitación de Responsabilidad</h4>
-                <p>ExpressCreativa no será responsable por daños indirectos, pérdida de ganancias o interrupciones del negocio. La responsabilidad máxima se limita al valor del servicio contratado.</p>
+                <p>Las condiciones definitivas deberán revisarse con asesoría legal y constarán en el acuerdo aplicable antes de aceptar un proyecto.</p>
               </div>
-                </ul>
               <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                <p class="text-sm"><strong>Nota Importante:</strong> Al contratar nuestros servicios, el cliente acepta estos términos y condiciones en su totalidad. Estos términos pueden ser actualizados sin previo aviso.</p>
-              </div>
+                <p class="text-sm"><strong>Nota:</strong> Preparar o enviar una solicitud no constituye una compra, un contrato ni la aceptación de condiciones comerciales.</p>
               </div>
             </div>
           </div>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <script src="site-security.js" defer></script>
+    <title>Portafolio de fotografía, print y audiovisual | ExpressCreativa Panamá</title>
+    <meta name="description" content="Conoce trabajos de fotografía de producto, personalización textil, diseño gráfico y producción audiovisual realizados por ExpressCreativa en Panamá." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://expresscreativa.com/portafolio" />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="brand-rail.css" />
+    <style>
+      .portfolio-image { width:100%; height:100%; object-fit:cover; transition:transform .55s ease; }
+      .portfolio-tile { position:relative; overflow:hidden; border-radius:1.5rem; background:#eaf0f7; }
+      .portfolio-tile:hover .portfolio-image { transform:scale(1.035); }
+      .portfolio-label { position:absolute; left:1rem; bottom:1rem; max-width:calc(100% - 2rem); padding:.7rem .9rem; border-radius:.9rem; background:rgba(7,17,31,.84); color:#fff; backdrop-filter:blur(9px); }
+      .portfolio-label span { display:block; color:#bfdbfe; font-size:.65rem; font-weight:900; letter-spacing:.08em; }
+      .product-gallery { display:grid; grid-template-columns:1.08fr .92fr; grid-template-rows:repeat(2,290px); gap:1rem; }
+      .product-gallery .portfolio-tile:first-child { grid-row:1 / 3; }
+      .print-gallery { display:grid; grid-template-columns:1.1fr .9fr; gap:1rem; }
+      .print-gallery .portfolio-tile { min-height:430px; }
+      .audiovisual-gallery { display:grid; grid-template-columns:1.25fr .75fr .75fr; grid-template-rows:280px 280px; gap:1rem; }
+      .audiovisual-gallery .portfolio-tile:first-child { grid-row:1 / 3; }
+      .audiovisual-gallery .portfolio-tile:nth-child(4) { grid-column:2 / 4; }
+      @media (max-width:800px) {
+        .product-gallery,.print-gallery,.audiovisual-gallery { display:grid; grid-template-columns:1fr; grid-template-rows:auto; }
+        .product-gallery .portfolio-tile:first-child,.audiovisual-gallery .portfolio-tile:first-child,.audiovisual-gallery .portfolio-tile:nth-child(4) { grid-row:auto; grid-column:auto; }
+        .portfolio-tile,.print-gallery .portfolio-tile { min-height:360px; }
+      }
+    </style>
+  </head>
+  <body class="bg-white text-slate-900">
+    <header class="bg-white/95 backdrop-blur border-b border-slate-100 sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="favicon.ico" alt="" class="w-11 h-11 rounded-xl object-cover" />
+          <div><div class="font-black text-xl custom-primary">Express Creativa</div><div class="text-xs text-slate-500">Portafolio integral</div></div>
+        </a>
+        <nav class="hidden md:flex items-center gap-7 text-sm font-bold">
+          <a href="digital.html">Digital</a>
+          <a href="branding.html">Branding</a>
+          <a href="studio.html">Studio</a>
+          <a href="print.html">Print</a>
+          <a href="servicios.html">Servicios</a>
+          <a href="contacto.html" class="custom-bg-primary text-white px-5 py-3 rounded-xl">Contacto</a>
+        </nav>
+      </div>
+    </header>
+    <nav class="brand-rail" aria-label="Divisiones de Express Creativa"><div class="brand-rail-inner"><a href="index.html">Inicio</a><a href="digital.html">Digital</a><a href="branding.html">Branding</a><a href="studio.html">Studio</a><a href="print.html">Print</a><a href="media.html">Media</a><a href="events.html">Events</a></div></nav>
+
+    <main>
+      <section class="gradient-bg py-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+          <p class="font-bold text-blue-700 mb-4">PORTAFOLIO EXPRESSCREATIVA</p>
+          <h1 class="text-5xl lg:text-7xl font-black tracking-tight leading-[.98] max-w-5xl mb-7">Ideas que pasan de la pantalla a <span class="custom-primary">algo real.</span></h1>
+          <p class="text-xl text-slate-600 max-w-3xl leading-relaxed">Una selección de fotografía de producto, diseño para impresión y experiencia detrás de cámaras.</p>
+          <div class="flex flex-wrap gap-3 mt-9">
+            <a href="#fotografia" class="bg-slate-950 text-white px-5 py-3 rounded-xl font-bold">Ver fotografía</a>
+            <a href="#print" class="bg-white border border-slate-200 px-5 py-3 rounded-xl font-bold">Ver proyectos print</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="fotografia" class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="flex flex-col md:flex-row justify-between gap-6 mb-10">
+            <div><p class="font-bold text-blue-700 mb-2">FOTOGRAFÍA DE PRODUCTO</p><h2 class="text-4xl font-black">Color, textura y detalle</h2><p class="text-slate-600 mt-3 max-w-2xl">Serie de producto creada para mostrar el trabajo artesanal de MisTembleques.pa.</p></div>
+            <a href="fotografia.html#producto" class="font-bold custom-primary self-start">Solicitar sesión →</a>
+          </div>
+          <div class="product-gallery">
+            <figure class="portfolio-tile"><img class="portfolio-image" src="img/portfolio/product-jewelry-1.webp" alt="Fotografía de producto de accesorios artesanales azules y verdes" width="1080" height="1440" loading="eager" /><figcaption class="portfolio-label"><span>FOTOGRAFÍA DE PRODUCTO</span>Composición principal</figcaption></figure>
+            <figure class="portfolio-tile"><img class="portfolio-image" src="img/portfolio/product-jewelry-2.webp" alt="Pieza promocional de accesorios artesanales de MisTembleques.pa" width="1080" height="1440" loading="lazy" /><figcaption class="portfolio-label"><span>CONTENIDO PARA REDES</span>Pieza de campaña</figcaption></figure>
+            <figure class="portfolio-tile"><img class="portfolio-image" src="img/portfolio/product-jewelry-3.webp" alt="Acercamiento fotográfico de accesorios con cuentas azules y verdes" width="1080" height="1440" loading="lazy" /><figcaption class="portfolio-label"><span>MACRO Y DETALLE</span>Texturas del producto</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="print" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="flex flex-col md:flex-row justify-between gap-6 mb-10">
+            <div><p class="font-bold text-blue-700 mb-2">PRINT & DISEÑO</p><h2 class="text-4xl font-black">Arte pensado para convertirse en objeto</h2><p class="text-slate-600 mt-3 max-w-2xl">Muestras de aplicación textil y arte gráfico preparado para personalización.</p></div>
+            <a href="print.html" class="font-bold custom-primary self-start">Abrir Print Lab →</a>
+          </div>
+          <div class="print-gallery">
+            <figure class="portfolio-tile bg-white"><img class="portfolio-image object-contain p-5" src="img/portfolio/deorum-shirt-back.png" alt="Mockup posterior de camiseta blanca con diseño Deorum en negro" width="800" height="800" loading="lazy" /><figcaption class="portfolio-label"><span>PERSONALIZACIÓN TEXTIL</span>Aplicación posterior · Deorum</figcaption></figure>
+            <figure class="portfolio-tile bg-white"><img class="portfolio-image object-contain p-7" src="img/portfolio/puente-americas-art.png" alt="Diseño gráfico del Puente de las Américas con nombre personalizado" width="842" height="596" loading="lazy" /><figcaption class="portfolio-label"><span>ARTE PERSONALIZADO</span>Puente de las Américas</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="audiovisual" class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="mb-10"><p class="font-bold text-blue-700 mb-2">PRODUCCIÓN AUDIOVISUAL</p><h2 class="text-4xl font-black">Detrás de cámaras</h2><p class="text-slate-600 mt-3 max-w-2xl">Experiencia operando cámaras y cubriendo producciones en locación.</p></div>
+          <div class="audiovisual-gallery">
+            <figure class="portfolio-tile"><img class="portfolio-image" src="img/portfolio/camera-operator.webp" alt="Operadora de cámara de ExpressCreativa trabajando en una producción" width="1000" height="1500" loading="lazy" /><figcaption class="portfolio-label"><span>OPERACIÓN DE CÁMARA</span>Producción en locación</figcaption></figure>
+            <figure class="portfolio-tile"><img class="portfolio-image" src="img/portfolio/parlatino-camera-1.webp" alt="Operadora y cámara profesional en cobertura institucional" width="657" height="1024" loading="lazy" /><figcaption class="portfolio-label"><span>COBERTURA</span>Producción institucional</figcaption></figure>
+            <figure class="portfolio-tile"><img class="portfolio-image" src="img/portfolio/parlatino-camera-2.webp" alt="Operadora de cámara durante una cobertura institucional" width="476" height="640" loading="lazy" /><figcaption class="portfolio-label"><span>EN LOCACIÓN</span>Trabajo técnico</figcaption></figure>
+            <figure class="portfolio-tile"><img class="portfolio-image" src="img/portfolio/behind-scenes-night-1.webp" alt="Pantalla de cámara durante una grabación nocturna" width="3000" height="4000" loading="lazy" /><figcaption class="portfolio-label"><span>BACKSTAGE</span>Grabación nocturna</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 bg-blue-700 text-white">
+        <div class="max-w-5xl mx-auto px-6 text-center"><h2 class="text-4xl lg:text-5xl font-black mb-5">¿Tienes una idea para crear?</h2><p class="text-blue-100 text-lg mb-8">Cuéntanos qué necesitas y te orientamos hacia la división correcta.</p><a href="contacto.html" class="inline-block bg-white text-blue-700 px-7 py-4 rounded-xl font-black">Hablar con Express Creativa</a></div>
+      </section>
+    </main>
+
+    <footer class="bg-slate-950 text-white py-12">
+      <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-8"><div><div class="font-black text-xl">Express Creativa</div><p class="text-slate-400 mt-2">Creative Communications Agency · Panamá.</p></div><div class="flex flex-wrap gap-6 text-sm text-slate-300"><a href="digital.html">Digital</a><a href="branding.html">Branding</a><a href="studio.html">Studio</a><a href="print.html">Print</a><a href="media.html">Media</a><a href="events.html">Events</a></div></div>
+    </footer>
+  </body>
+</html>

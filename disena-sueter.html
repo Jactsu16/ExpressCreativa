@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <script src="site-security.js" defer></script>
+    <title>Diseña tu suéter | Express Creativa Print</title>
+    <meta name="description" content="Sube, arrastra y dimensiona tu logo sobre un suéter. Prepara cantidades por talla y genera tu solicitud." />
+    <link rel="canonical" href="https://expresscreativa.com/print/disena-sueter" />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="print-lab.css" />
+    <style>
+      :root { --shirt-color: #f8fafc; }
+      .sweater-layout { display:grid; grid-template-columns: 370px 1fr; gap:24px; align-items:start; }
+      .shirt-stage { min-height:600px; display:grid; place-items:center; border-radius:26px; background:radial-gradient(circle at 50% 30%,rgba(6,86,199,.12),transparent 31%),linear-gradient(145deg,#f9fbff,#eaf0f7); }
+      .shirt { position:relative; width:min(410px,82vw); aspect-ratio:.84; filter:drop-shadow(0 28px 25px rgba(16,35,63,.16)); }
+      .shirt-body { position:absolute; inset:14% 19% 0; border-radius:28px 28px 54px 54px; background:var(--shirt-color); border:1px solid rgba(16,35,63,.13); }
+      .shirt-body::before,.shirt-body::after { content:""; position:absolute; top:0; width:42%; height:28%; background:var(--shirt-color); border:1px solid rgba(16,35,63,.13); z-index:-1; }
+      .shirt-body::before { right:82%; transform:rotate(32deg); border-radius:24px 8px 18px 18px; }
+      .shirt-body::after { left:82%; transform:rotate(-32deg); border-radius:8px 24px 18px 18px; }
+      .shirt-neck { position:absolute; left:50%; top:11%; width:29%; height:15%; transform:translateX(-50%); border-radius:0 0 50% 50%; background:#dbe3ec; border:1px solid rgba(16,35,63,.1); z-index:2; }
+      .shirt-zone { position:absolute; left:29%; top:29%; width:42%; height:54%; overflow:hidden; border:1px dashed rgba(6,86,199,.45); border-radius:12px; z-index:3; touch-action:none; }
+      .shirt-art { position:absolute; left:50%; top:42%; width:46%; max-height:78%; object-fit:contain; transform:translate(-50%,-50%); cursor:grab; touch-action:none; user-select:none; }
+      .shirt-label { position:absolute; bottom:2%; left:50%; transform:translateX(-50%); color:#64748b; font-size:.69rem; font-weight:900; letter-spacing:.12em; }
+      .size-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+      .size-grid label { display:block; text-align:center; font-size:.72rem; font-weight:850; }
+      .size-grid input { width:100%; margin-top:6px; padding:10px 5px; border:1px solid #cdd7e4; border-radius:10px; text-align:center; }
+      .price-box { margin-top:20px; padding:18px; border-radius:16px; background:#07111f; color:white; }
+      .price-box div { display:flex; justify-content:space-between; gap:15px; }
+      #sweater-result[hidden] { display:none; }
+      @media (max-width:920px) { .sweater-layout { grid-template-columns:1fr; } .shirt-stage { min-height:520px; } }
+    </style>
+  </head>
+  <body>
+    <div class="lab-status">Suéter básico S–XL · B/.14 por unidad · mínimo 2</div>
+    <header class="lab-header"><nav class="lab-nav"><a class="lab-brand" href="print.html"><img src="img/brand/express-creativa-print.webp" alt="" /><span><strong>Express Creativa | Print</strong><small>Herramienta · Suéter</small></span></a><div class="lab-links"><a href="quitar-fondo.html">Quitar fondo</a><a href="disena-taza.html">Taza</a><a href="carta-dtf.html">Carta DTF</a><a class="lab-back" href="print.html">Todas las herramientas</a></div></nav></header>
+    <main>
+      <section class="tool-page-hero"><div class="lab-container"><span class="lab-kicker">Herramienta 02</span><h1>Diseña tu suéter</h1><p>Sube tu logo, arrástralo dentro del área imprimible y prepara cantidades por talla. La ampliación se bloquea si la resolución deja de ser adecuada.</p></div></section>
+      <section class="tool-section">
+        <div class="lab-container sweater-layout">
+          <aside class="lab-panel">
+            <label class="drop-zone"><input id="sweater-upload" type="file" accept="image/png,image/jpeg,image/webp" /><strong>Subir logo o diseño</strong><br /><small>PNG transparente recomendado</small></label>
+            <div class="control"><div class="control-head"><label for="sweater-scale">Ancho del estampado</label><output id="sweater-scale-value">15.6 cm</output></div><input id="sweater-scale" type="range" min="12" max="82" value="46" /></div>
+            <div id="sweater-quality" class="quality-message">Carga un archivo para validar la resolución.</div>
+            <div class="control"><label for="sweater-color">Color del suéter</label><input id="sweater-color" type="color" value="#f8fafc" style="width:100%;height:46px;border:1px solid #cdd7e4;border-radius:12px" /></div>
+            <div class="control"><label for="sweater-side">Ubicación</label><select id="sweater-side"><option>Frente</option><option>Espalda</option></select></div>
+            <div class="control"><span style="display:block;font-size:.84rem;font-weight:800;margin-bottom:10px">Cantidad por talla</span><div class="size-grid"><label>S<input class="size-quantity" data-size="S" type="number" min="0" value="0" /></label><label>M<input class="size-quantity" data-size="M" type="number" min="0" value="0" /></label><label>L<input class="size-quantity" data-size="L" type="number" min="0" value="0" /></label><label>XL<input class="size-quantity" data-size="XL" type="number" min="0" value="0" /></label></div></div>
+            <div class="price-box"><div><span>Total</span><strong id="sweater-total-units">0 unidades</strong></div><div style="margin-top:8px;color:#b9c8d9"><span>Estimado base</span><strong id="sweater-total-price">B/.0.00</strong></div></div>
+            <button id="sweater-build" class="lab-button" style="width:100%;margin-top:14px">Preparar solicitud</button>
+          </aside>
+          <div>
+            <div id="sweater-preview" class="shirt-stage">
+              <div class="shirt"><div class="shirt-neck"></div><div class="shirt-body"></div><div id="sweater-zone" class="shirt-zone"><img id="sweater-art" class="shirt-art" alt="Arte sobre suéter" draggable="false" hidden /></div><span id="sweater-side-label" class="shirt-label">FRENTE</span></div>
+            </div>
+            <div class="lab-note" style="margin-top:18px">El preview es referencial. La posición, medidas, colores y arte final deberán aprobarse antes de producir. El precio base queda sujeto a disponibilidad y alcance de impresión confirmado.</div>
+            <div id="sweater-result" class="lab-panel" style="margin-top:18px" hidden><label for="sweater-summary" style="font-weight:850">Resumen</label><textarea id="sweater-summary" rows="10" readonly style="width:100%;margin-top:10px;padding:14px;border:1px solid #cdd7e4;border-radius:13px;font:inherit"></textarea><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button id="sweater-copy" class="lab-button secondary">Copiar</button><a id="sweater-whatsapp" class="lab-button" target="_blank" rel="noopener">Abrir WhatsApp</a></div></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="lab-footer"><div class="lab-footer-inner"><span>© <span data-current-year>2026</span> Express Creativa | Print</span><a href="print.html">Volver a Print</a></div></footer>
+    <script src="sweater-designer.js"></script>
+  </body>
+</html>

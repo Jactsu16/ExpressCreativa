@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /ssa.html
+Disallow: /docs/
+
+Sitemap: https://expresscreativa.com/sitemap.xml

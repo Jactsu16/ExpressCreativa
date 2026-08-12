@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <script src="site-security.js" defer></script>
+    <title>Quitar fondo blanco | Express Creativa Print</title>
+    <meta name="description" content="Elimina fondos blancos y halos grises de una imagen para preparar un PNG transparente antes de imprimir." />
+    <link rel="canonical" href="https://expresscreativa.com/print/quitar-fondo" />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="print-lab.css" />
+    <style>
+      .clean-layout { display: grid; grid-template-columns: 350px 1fr; gap: 24px; align-items: start; }
+      .canvas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+      .canvas-box { height: 430px; overflow: hidden; border: 1px solid #dce4ee; border-radius: 18px; }
+      .canvas-box canvas { width: 100%; height: 100%; object-fit: contain; }
+      .canvas-label { margin: 0 0 9px; color: #64748b; font-size: .73rem; font-weight: 900; letter-spacing: .08em; }
+      .button-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
+      #clean-workspace[hidden], #clean-empty[hidden] { display: none; }
+      @media (max-width: 900px) { .clean-layout, .canvas-grid { grid-template-columns: 1fr; } .canvas-box { height: 330px; } }
+    </style>
+  </head>
+  <body>
+    <div class="lab-status">El archivo se procesa solamente en tu dispositivo</div>
+    <header class="lab-header">
+      <nav class="lab-nav">
+        <a class="lab-brand" href="print.html"><img src="img/brand/express-creativa-print.webp" alt="" /><span><strong>Express Creativa | Print</strong><small>Herramienta · Quitar fondo</small></span></a>
+        <div class="lab-links"><a href="disena-sueter.html">Suéter</a><a href="disena-taza.html">Taza</a><a href="carta-dtf.html">Carta DTF</a><a class="lab-back" href="print.html">Todas las herramientas</a></div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="tool-page-hero">
+        <div class="lab-container"><span class="lab-kicker">Herramienta 01</span><h1>Quitar blancos y halos</h1><p>Elimina fondos claros y descontamina los bordes grises que suelen aparecer alrededor de un arte al imprimir.</p></div>
+      </section>
+      <section class="tool-section">
+        <div class="lab-container clean-layout">
+          <aside class="lab-panel">
+            <label id="clean-drop" class="drop-zone">
+              <input id="clean-upload" type="file" accept="image/png,image/jpeg,image/webp" />
+              <strong>Sube o arrastra tu imagen</strong><br />
+              <small>PNG, JPG o WebP · máximo 20 MB</small>
+            </label>
+            <div class="control"><div class="control-head"><label for="clean-threshold">Blanco a eliminar</label><output id="clean-threshold-value">8%</output></div><input id="clean-threshold" type="range" min="0" max="45" value="8" /></div>
+            <div class="control"><div class="control-head"><label for="clean-softness">Suavidad del borde</label><output id="clean-softness-value">10%</output></div><input id="clean-softness" type="range" min="1" max="40" value="10" /></div>
+            <div class="button-row"><button id="clean-reset" class="lab-button secondary" disabled>Limpiar</button><button id="clean-download" class="lab-button" disabled>Descargar PNG</button></div>
+            <div id="clean-status" class="quality-message">Carga un archivo para comenzar.</div>
+          </aside>
+          <div class="lab-panel">
+            <div id="clean-empty" style="min-height:450px;display:grid;place-items:center;text-align:center;color:#64748b"><div><strong style="display:block;font-size:1.25rem;color:#10233f;margin-bottom:8px">La comparación aparecerá aquí</strong>No almacenamos tu diseño.</div></div>
+            <div id="clean-workspace" hidden>
+              <div class="canvas-grid">
+                <figure><figcaption class="canvas-label">ORIGINAL</figcaption><div class="canvas-box checkerboard"><canvas id="clean-source" width="1" height="1"></canvas></div></figure>
+                <figure><figcaption class="canvas-label">RESULTADO</figcaption><div class="canvas-box checkerboard"><canvas id="clean-result" width="1" height="1"></canvas></div></figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="lab-footer"><div class="lab-footer-inner"><span>© <span data-current-year>2026</span> Express Creativa | Print</span><a href="print.html">Volver a Print</a></div></footer>
+    <script src="background-remover.js"></script>
+  </body>
+</html>

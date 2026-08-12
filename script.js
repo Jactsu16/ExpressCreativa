@@ -3,14 +3,57 @@
 // Shopping cart
 let cart = [];
 
+const SERVICE_UNITS = {
+  SVP001: "transmisión", SVP002: "transmisión", SVP003: "transmisión", SVP004: "proyecto",
+  SVW001: "sitio", SVW002: "landing page", SVW003: "sitio", SVW004: "sitio", SVW005: "sitio", SVW006: "sitio",
+  SVM001: "gestión", SVM002: "campaña", SVM003: "campaña",
+  SVC001: "paquete", SVC002: "paquete", SVC003: "documento", SVC004: "proyecto", SVC005: "proyecto",
+  SVS001: "mes", SVS002: "proyecto", SVS003: "visita",
+};
+
+function escapeHtmlText(value) {
+  return String(value ?? "").replace(/[&<>'"]/g, (character) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "'": "&#39;",
+    '"': "&quot;",
+  })[character]);
+}
+
 // Mobile menu functionality
 document.addEventListener("DOMContentLoaded", function () {
   const mobileMenuBtn = document.getElementById("mobile-menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");
 
-  if (mobileMenuBtn && mobileMenu) {
+  if (mobileMenuBtn && mobileMenu && mobileMenuBtn.dataset.menuBound !== "true") {
+    mobileMenuBtn.dataset.menuBound = "true";
     mobileMenuBtn.addEventListener("click", function () {
       mobileMenu.classList.toggle("hidden");
+      const isOpen = !mobileMenu.classList.contains("hidden");
+      mobileMenuBtn.setAttribute("aria-expanded", String(isOpen));
+      mobileMenuBtn.setAttribute(
+        "aria-label",
+        isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación",
+      );
+      const icon = mobileMenuBtn.querySelector("i");
+      if (icon) {
+        icon.classList.toggle("fa-bars", !isOpen);
+        icon.classList.toggle("fa-xmark", isOpen);
+      }
+    });
+
+    mobileMenu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        mobileMenu.classList.add("hidden");
+        mobileMenuBtn.setAttribute("aria-expanded", "false");
+        mobileMenuBtn.setAttribute("aria-label", "Abrir menú de navegación");
+        const icon = mobileMenuBtn.querySelector("i");
+        if (icon) {
+          icon.classList.add("fa-bars");
+          icon.classList.remove("fa-xmark");
+        }
+      });
     });
   }
 
@@ -279,7 +322,7 @@ function initializeContactForm() {
 
       // Simulate form submission
       showToast(
-        "¡Gracias por tu interés! Nos pondremos en contacto contigo en las próximas 24 horas para programar tu consulta gratuita.",
+        "¡Gracias por tu interés! Revisaremos tu solicitud y confirmaremos el plazo de respuesta por el medio indicado.",
         "success",
       );
 
@@ -359,15 +402,20 @@ function showToast(message, type = "info") {
   // Create toast element
   const toast = document.createElement("div");
   toast.className = `toast ${type}`;
-  toast.innerHTML = `
-    <div class="flex items-center space-x-2">
-      <i class="fas fa-${getToastIcon(type)}"></i>
-      <span>${message}</span>
-      <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-gray-500 hover:text-gray-700">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-  `;
+  const content = document.createElement("div");
+  content.className = "flex items-center space-x-2";
+  const icon = document.createElement("i");
+  icon.className = `fas fa-${getToastIcon(type)}`;
+  const text = document.createElement("span");
+  text.textContent = String(message);
+  const close = document.createElement("button");
+  close.type = "button";
+  close.className = "ml-4 text-gray-500 hover:text-gray-700";
+  close.setAttribute("aria-label", "Cerrar aviso");
+  close.textContent = "×";
+  close.addEventListener("click", () => toast.remove());
+  content.append(icon, text, close);
+  toast.appendChild(content);
 
   // Add to page
   document.body.appendChild(toast);
@@ -456,6 +504,7 @@ function initializeShoppingCart() {
   const cartBtnMobile = document.getElementById("cart-btn-mobile");
   const cartModal = document.getElementById("cart-modal");
   const closeCartBtn = document.getElementById("close-cart");
+  const cartCheckoutBtn = document.getElementById("cart-checkout-btn");
 
   // Open cart modal
   if (cartBtn) {
@@ -479,6 +528,10 @@ function initializeShoppingCart() {
     });
   }
 
+  if (cartCheckoutBtn) {
+    cartCheckoutBtn.addEventListener("click", proceedToCheckout);
+  }
+
   // Close cart when clicking outside
   if (cartModal) {
     cartModal.addEventListener("click", function (e) {
@@ -491,9 +544,22 @@ function initializeShoppingCart() {
   // Add to cart buttons
   const addToCartButtons = document.querySelectorAll(".add-to-cart");
   addToCartButtons.forEach((button) => {
+    const sku = button.dataset.sku || button.dataset.id;
+    const unit = button.dataset.unit || SERVICE_UNITS[sku] || "servicio";
+    const price = Number(button.dataset.price) || 0;
+    button.dataset.sku = sku;
+    button.dataset.unit = unit;
+    button.textContent = `Cotiza con nosotros · B/.${price.toFixed(2)} / ${unit}`;
+    const skuLabel = document.createElement("p");
+    skuLabel.className = "mb-2 text-xs font-bold tracking-widest text-slate-500";
+    skuLabel.textContent = `SKU: ${sku}`;
+    button.parentNode.insertBefore(skuLabel, button);
+
     button.addEventListener("click", function () {
       const service = {
         id: this.dataset.id,
+        sku: this.dataset.sku || this.dataset.id,
+        unit: this.dataset.unit || "servicio",
         name: this.dataset.name,
         price: parseFloat(this.dataset.price),
         description: this.dataset.description,
@@ -578,9 +644,10 @@ function updateCartDisplay() {
       (item) => `
     <div class="flex justify-between items-start bg-gray-50 p-4 rounded-xl mb-3">
       <div class="flex-1">
-        <h4 class="font-medium text-sm mb-1">${item.name}</h4>
-        <p class="text-xs text-gray-600 mb-2">${item.description}</p>
-        <p class="text-xs font-medium text-gray-800">$${item.price.toFixed(2)} x ${item.quantity}</p>
+        <h4 class="font-medium text-sm mb-1">${escapeHtmlText(item.name)}</h4>
+        <p class="text-[11px] font-bold text-blue-700 mb-1">SKU: ${escapeHtmlText(item.sku || item.id)}</p>
+        <p class="text-xs text-gray-600 mb-2">${escapeHtmlText(item.description)}</p>
+        <p class="text-xs font-medium text-gray-800">B/.${item.price.toFixed(2)} por ${escapeHtmlText(item.unit || "servicio")} × ${item.quantity}</p>
       </div>
       <div class="flex flex-col items-end space-y-2 ml-4">
         <div class="flex items-center space-x-2">
@@ -597,7 +664,7 @@ function updateCartDisplay() {
     )
     .join("");
 
-  cartTotal.textContent = `$${total.toFixed(2)}`;
+  cartTotal.textContent = `B/.${total.toFixed(2)}`;
   cartFooter.classList.remove("hidden");
 }
 
@@ -609,8 +676,18 @@ document.addEventListener("keydown", function (e) {
   // Close mobile menu on Escape
   if (e.key === "Escape") {
     const mobileMenu = document.getElementById("mobile-menu");
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
     if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
       mobileMenu.classList.add("hidden");
+      if (mobileMenuBtn) {
+        mobileMenuBtn.setAttribute("aria-expanded", "false");
+        mobileMenuBtn.setAttribute("aria-label", "Abrir menú de navegación");
+        const icon = mobileMenuBtn.querySelector("i");
+        if (icon) {
+          icon.classList.add("fa-bars");
+          icon.classList.remove("fa-xmark");
+        }
+      }
     }
   }
 
@@ -626,11 +703,6 @@ document.addEventListener("keydown", function (e) {
 // Print support
 function preparePrint() {
   window.print();
-}
-
-// Export results (future feature)
-function exportResults() {
-  showToast("Función de exportación próximamente disponible", "info");
 }
 
 // Browser compatibility checks
@@ -657,7 +729,7 @@ function checkBrowserSupport() {
 // Initialize browser checks
 checkBrowserSupport();
 
-// Checkout functionality
+// Preoperative service-request flow
 function proceedToCheckout() {
   if (cart.length === 0) {
     showToast("Tu carrito está vacío", "error");
@@ -700,9 +772,16 @@ function showTermsForCheckout() {
 }
 
 function processCheckout() {
-  // Generate checkout summary
+  // Generate an informational request summary
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const itemsList = cart.map(item => `${item.name} (x${item.quantity}) - B/.${(item.price * item.quantity).toFixed(2)}`).join('\n');
+  const itemsList = cart.map(item => [
+    `- SKU: ${item.sku || item.id}`,
+    `  Producto/servicio: ${item.name}`,
+    `  Unidad de venta: ${item.unit || "servicio"}`,
+    `  Cantidad: ${item.quantity}`,
+    `  Precio unitario referencial: B/.${item.price.toFixed(2)}`,
+    `  Subtotal referencial: B/.${(item.price * item.quantity).toFixed(2)}`,
+  ].join('\n')).join('\n\n');
   
   const checkoutMessage = `
 🛒 *Solicitud de Servicios - ExpressCreativa*
@@ -710,17 +789,18 @@ function processCheckout() {
 📋 *Servicios Solicitados:*
 ${itemsList}
 
-💰 *Total: B/.${total.toFixed(2)}*
+💰 *Referencia estimada: B/.${total.toFixed(2)}*
 
 ✅ *He aceptado los términos y condiciones de ExpressCreativa*
-Me interesa contratar estos servicios. ¿Podrían enviarme más información sobre el proceso de contratación y formas de pago?
+Me interesan estos servicios. Entiendo que esta solicitud no es una compra ni procesa un pago. ¿Podrían enviarme más información y confirmar una cotización?
 
 ¡Gracias!
   `.trim();
 
   // Open WhatsApp with pre-filled message
   const whatsappUrl = `https://wa.me/50766043511?text=${encodeURIComponent(checkoutMessage)}`;
-  window.open(whatsappUrl, '_blank');
+  const whatsappWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  if (whatsappWindow) whatsappWindow.opener = null;
   
   showToast("Redirigiendo a WhatsApp para completar tu solicitud", "success");
 }

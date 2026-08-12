@@ -3,41 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <script src="site-security.js" defer></script>
     <title>
-      ExpressCreativa - Agencia Digital Profesional desde Panamá para
-      Latinoamérica
+      Express Creativa | Creative Communications Agency
     </title>
     <meta
       name="description"
-      content="Hub profesional de servicios digitales especializados en streaming, desarrollo web y soluciones creativas integrales. Desde Panamá para toda Latinoamérica."
+      content="Agencia integral de comunicación con divisiones Digital, Branding, Studio, Print, Media y Events desde Panamá."
     />
     <meta
       name="keywords"
-      content="agencia digital, streaming profesional, desarrollo web, Panamá, Latinoamérica, marketing digital, creatividad"
+      content="impresión textil Panamá, print lab, DTF Panamá, preparar arte para impresión, quitar fondo blanco, producción textil, diseño"
     />
     <meta name="author" content="ExpressCreativa" />
 
     <!-- Open Graph Meta Tags -->
     <meta
       property="og:title"
-      content="ExpressCreativa - Agencia Digital Profesional"
+      content="Express Creativa - Creative Communications Agency"
     />
     <meta
       property="og:description"
-      content="Hub profesional de servicios digitales especializados en streaming, desarrollo web y soluciones creativas integrales."
+      content="Herramientas de preimpresión, producción textil coordinada y soluciones creativas desde Panamá."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://expresscreativa.com" />
+    <meta property="og:image" content="https://expresscreativa.com/img/social/express-creativa-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Express Creativa, Creative Communications Agency" />
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://expresscreativa.com/img/social/express-creativa-og.png" />
     <meta
       name="twitter:title"
-      content="ExpressCreativa - Agencia Digital Profesional"
+      content="Express Creativa - Creative Communications Agency"
     />
     <meta
       name="twitter:description"
-      content="Hub profesional de servicios digitales especializados en streaming, desarrollo web y soluciones creativas integrales."
+      content="Estrategia, identidad, tecnología, producción, publicidad e impresión coordinadas desde Panamá."
     />
 
     <!-- Favicon -->
@@ -78,12 +84,14 @@
     </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+      defer
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
 
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="brand-rail.css" />
   </head>
   <body class="bg-white overflow-x-hidden">
     <header
@@ -92,35 +100,36 @@
     >
       <div class="max-w-7xl mx-auto px-6 py-5">
         <div class="flex justify-between items-center">
-          <div class="flex items-center space-x-4">
+          <a href="index.html" class="flex items-center space-x-4" aria-label="Express Creativa, ir al inicio">
             <div class="w-10 h-10 custom-bg-primary rounded-lg">
-              <img src="favicon.ico" alt="ExpressCreativa Logo" class="w-full h-full object-cover rounded-lg" />
+              <img src="favicon.ico" alt="Logo de Express Creativa" class="w-full h-full object-cover rounded-lg" />
             </div>
             <div>
               <span class="text-2xl font-bold custom-primary"
-                >ExpressCreativa</span
+                >Express Creativa</span
               >
               <div class="text-xs text-gray-500 font-medium">
-                Digital Agency
+                Creative Communications Agency
               </div>
             </div>
-          </div>
+          </a>
 
           <nav class="hidden lg:flex items-center space-x-10">
+            <a href="#services" class="custom-primary font-semibold transition-colors">Divisiones</a>
             <a
               href="servicios.html"
               class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
               >Servicios</a
             >
             <a
+              href="portafolio.html"
+              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >Portafolio</a
+            >
+            <a
               href="#tools"
               class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
               >Herramientas</a
-            >
-            <a
-              href="calculadora.html"
-              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >Calculadoras</a
             >
             <a
               href="contacto.html"
@@ -129,7 +138,7 @@
             >
           </nav>
 
-          <button id="mobile-menu-btn" class="lg:hidden custom-primary">
+          <button id="mobile-menu-btn" type="button" class="lg:hidden custom-primary" aria-label="Abrir menú de navegación" aria-controls="mobile-menu" aria-expanded="false">
             <i class="fas fa-bars text-xl"></i>
           </button>
         </div>
@@ -137,20 +146,21 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="lg:hidden hidden mt-4 pb-4">
           <div class="flex flex-col space-y-4">
+            <a href="#services" class="custom-primary font-semibold transition-colors">Divisiones</a>
             <a
               href="servicios.html"
               class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
               >Servicios</a
             >
             <a
+              href="portafolio.html"
+              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >Portafolio</a
+            >
+            <a
               href="#tools"
               class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
               >Herramientas</a
-            >
-            <a
-              href="calculadora.html"
-              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >Calculadoras</a
             >
             <a
               href="contacto.html"
@@ -161,6 +171,7 @@
         </div>
       </div>
     </header>
+    <nav class="brand-rail" aria-label="Divisiones de Express Creativa"><div class="brand-rail-inner"><a href="index.html" aria-current="page">Inicio</a><a href="digital.html">Digital</a><a href="branding.html">Branding</a><a href="studio.html">Studio</a><a href="print.html">Print</a><a href="media.html">Media</a><a href="events.html">Events</a></div></nav>
 
     <main>
       <section id="hero" class="gradient-bg py-24 animate-fade-in">
@@ -170,35 +181,35 @@
               <div
                 class="inline-flex items-center space-x-2 custom-bg-primary/10 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-8"
               >
-                <i class="fas fa-rocket"></i>
-                <span>Desde Panamá para Latinoamérica</span>
+                <i class="fas fa-wand-magic-sparkles"></i>
+                <span>Creative Communications Agency · Panamá</span>
               </div>
 
               <h1
                 class="text-6xl lg:text-7xl font-bold custom-primary mb-8 leading-tight"
               >
-                Creatividad
-                <br /><span class="custom-accent-gold">Digital</span> <br />Sin
+                Comunicación
+                <br /><span class="custom-accent-gold">Creativa</span> <br />Sin
                 Límites
               </h1>
 
               <p class="text-xl text-gray-600 mb-10 leading-relaxed max-w-lg">
-                Hub profesional de servicios digitales especializados en
-                streaming, desarrollo web y soluciones creativas integrales.
+                Estrategia, identidad, tecnología, producción, publicidad y
+                experiencias conectadas bajo una sola marca.
               </p>
 
               <div class="flex flex-col sm:flex-row gap-5">
                 <a
-                  href="servicios.html"
+                  href="#services"
                   class="custom-bg-primary text-white px-10 py-4 rounded-xl font-semibold hover:bg-opacity-90 transition-all text-center shadow-lg"
                 >
-                  Explorar Servicios
+                  Conocer las divisiones
                 </a>
                 <a
                   href="contacto.html"
                   class="border-2 border-gray-300 text-gray-700 px-10 py-4 rounded-xl font-semibold hover:border-gray-400 transition-all text-center"
                 >
-                  Hablar con Expertos
+                  Cuéntanos tu proyecto
                 </a>
               </div>
             </div>
@@ -211,8 +222,12 @@
                 <img
                   class="w-full h-80 object-cover rounded-2xl"
                   src="img/trasmision-parlatino-up.jpeg"
-                  alt="Espacio de trabajo digital moderno con equipo de streaming profesional, múltiples monitores, configuración de iluminación profesional, diseño minimalista"
-                  loading="lazy"
+                  alt="Equipo de producción audiovisual durante una transmisión institucional"
+                  width="1600"
+                  height="1034"
+                  loading="eager"
+                  fetchpriority="high"
+                  decoding="async"
                 />
 
                 <div
@@ -237,88 +252,23 @@
         <div class="max-w-7xl mx-auto px-6">
           <div class="text-center mb-20">
             <h2 class="text-5xl font-bold custom-primary mb-6">
-              Nuestras Especialidades
+              Las divisiones de Express Creativa
             </h2>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Soluciones digitales profesionales diseñadas para impulsar tu
-              presencia online en toda Latinoamérica
+              Seis especialidades activas bajo una misma agencia integral de
+              comunicación.
             </p>
           </div>
 
-          <div class="grid lg:grid-cols-3 gap-10">
-            <article
-              class="group bg-white p-10 rounded-3xl shadow-lg hover-lift border border-gray-100"
-            >
-              <div
-                class="w-20 h-20 custom-bg-orange rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
-              >
-                <i class="fas fa-video text-white text-3xl"></i>
-              </div>
-              <h3 class="text-2xl font-bold custom-primary mb-4">
-                Streaming Profesional
-              </h3>
-              <p class="text-gray-600 mb-8 leading-relaxed">
-                Transmisiones en vivo de alta calidad para todas las
-                plataformas. Configuración técnica, producción y gestión
-                completa.
-              </p>
-              <a
-                href="contacto.html"
-                class="custom-primary font-semibold hover:underline inline-flex items-center space-x-2"
-              >
-                <span>Solicitar consulta</span>
-                <i class="fas fa-arrow-right"></i>
-              </a>
-            </article>
-
-            <article
-              class="group bg-white p-10 rounded-3xl shadow-lg hover-lift border border-gray-100"
-            >
-              <div
-                class="w-20 h-20 custom-bg-primary rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
-              >
-                <i class="fas fa-code text-white text-3xl"></i>
-              </div>
-              <h3 class="text-2xl font-bold custom-primary mb-4">
-                Desarrollo Web
-              </h3>
-              <p class="text-gray-600 mb-8 leading-relaxed">
-                Sitios web corporativos modernos, responsivos y optimizados.
-                Funcionalidad avanzada y experiencia de usuario excepcional.
-              </p>
-              <a
-                href="   "
-                class="custom-primary font-semibold hover:underline inline-flex items-center space-x-2"
-              >
-                <span>Ver portfolio</span>
-                <i class="fas fa-arrow-right"></i>
-              </a>
-            </article>
-
-            <article
-              class="group bg-white p-10 rounded-3xl shadow-lg hover-lift border border-gray-100"
-            >
-              <div
-                class="w-20 h-20 custom-bg-gold rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
-              >
-                <i class="fas fa-palette text-white text-3xl"></i>
-              </div>
-              <h3 class="text-2xl font-bold custom-primary mb-4">
-                Servicios Creativos
-              </h3>
-              <p class="text-gray-600 mb-8 leading-relaxed">
-                Branding integral, producción audiovisual, redacción profesional
-                y estrategias BTL. Creatividad sin límites.
-              </p>
-              <a
-                href="contacto.html"
-                class="custom-primary font-semibold hover:underline inline-flex items-center space-x-2"
-              >
-                <span>Solicitar consulta</span>
-                <i class="fas fa-arrow-right"></i>
-              </a>
-            </article>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+            <a href="digital.html" class="division-family-card" style="--card-accent:#0656c7"><div class="division-family-icon"><i class="fas fa-code"></i></div><p class="division-label">DESARROLLO Y TECNOLOGÍA</p><h3>Express Creativa | Digital</h3><p>Web, e-commerce, SEO, automatizaciones, analítica y herramientas digitales.</p><span class="division-link">Entrar a Digital →</span></a>
+            <a href="branding.html" class="division-family-card" style="--card-accent:#c4a451"><div class="division-family-icon"><i class="fas fa-pen-nib"></i></div><p class="division-label">IDENTIDAD Y ESTRATEGIA</p><h3>Express Creativa | Branding</h3><p>Naming, logotipos, manuales, estrategia de marca y packaging.</p><span class="division-link">Entrar a Branding →</span></a>
+            <a href="studio.html" class="division-family-card" style="--card-accent:#ff6a3d"><div class="division-family-icon"><i class="fas fa-video"></i></div><p class="division-label">PRODUCCIÓN AUDIOVISUAL</p><h3>Express Creativa | Studio</h3><p>Video, fotografía, edición, motion graphics, streaming y cobertura.</p><span class="division-link">Entrar a Studio →</span></a>
+            <a href="print.html" class="division-family-card" style="--card-accent:#0656c7"><div class="division-family-icon"><img src="img/brand/express-creativa-print.webp" alt="Símbolo oficial de Express Creativa Print" /></div><p class="division-label">IMPRESIÓN Y PRODUCCIÓN GRÁFICA</p><h3>Express Creativa | Print</h3><p>Impresión, gran formato, POP, señalización y material publicitario.</p><span class="division-link">Entrar a Print →</span></a>
+            <a href="media.html" class="division-family-card" style="--card-accent:#008060"><div class="division-family-icon"><i class="fas fa-bullhorn"></i></div><p class="division-label">PUBLICIDAD Y CONTENIDO</p><h3>Express Creativa | Media</h3><p>Community management, pauta, planificación de medios y email marketing.</p><span class="division-link">Entrar a Media →</span></a>
+            <a href="events.html" class="division-family-card" style="--card-accent:#ff6a3d"><div class="division-family-icon"><i class="fas fa-people-group"></i></div><p class="division-label">BTL Y EXPERIENCIAS</p><h3>Express Creativa | Events</h3><p>Activaciones, ferias, eventos corporativos, producción y logística.</p><span class="division-link">Entrar a Events →</span></a>
           </div>
+          <div class="mt-10 rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-7 text-center"><p class="font-black text-slate-500 text-xs tracking-widest mb-2">DIVISIONES FUTURAS</p><p class="text-slate-700 font-bold">Express Creativa | Academy · Express Creativa | Lab · Express Creativa | Research</p><p class="text-slate-500 text-sm mt-2">Aún no se presentan como servicios activos.</p></div>
         </div>
       </section>
 
@@ -386,15 +336,15 @@
                 <i class="fas fa-paintbrush text-white text-2xl"></i>
               </div>
               <h3 class="font-bold custom-primary mb-3 text-lg">
-                Recursos Diseño
+                Preparar Arte para Print
               </h3>
               <p class="text-gray-600 text-sm mb-6">
-                Templates, assets y bibliotecas
+                Quita blancos, limpia halos y revisa los DPI
               </p>
               <a
-                href="   "
+                href="print.html"
                 class="custom-bg-gold text-white px-6 py-3 rounded-xl text-sm font-medium hover:bg-opacity-90 transition-all"
-                >Descargar</a
+                >Abrir Print Lab</a
               >
             </article>
 
@@ -407,15 +357,15 @@
                 <i class="fas fa-chart-line text-white text-2xl"></i>
               </div>
               <h3 class="font-bold custom-primary mb-3 text-lg">
-                Cotizaciones
+                Planificador Textil
               </h3>
               <p class="text-gray-600 text-sm mb-6">
-                Calculadora de presupuestos para servicios
+                Organiza producto, técnica, cantidad y fecha
               </p>
               <a
-                href="contacto.html"
+                href="print.html#quote"
                 class="custom-bg-green text-white px-6 py-3 rounded-xl text-sm font-medium hover:bg-opacity-90 transition-all"
-                >Cotizar</a
+                >Crear brief</a
               >
             </article>
           </div>
@@ -428,9 +378,12 @@
             <div class="relative">
               <img
                 class="w-full h-96 object-cover rounded-3xl shadow-2xl"
-                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/b3a92113cd-4f9ab49207af25c23128.png"
-                alt="Equipo profesional latinoamericano colaborando en proyectos digitales, ambiente de oficina moderno, diversos profesionales trabajando"
+                src="img/trasmision-parlatino-up.jpeg"
+                alt="Operadora de cámara de Express Creativa durante una producción institucional en Panamá"
+                width="1600"
+                height="1034"
                 loading="lazy"
+                decoding="async"
               />
 
               <div
@@ -444,7 +397,7 @@
                   </div>
                   <div>
                     <div class="font-bold custom-primary">Latinoamérica</div>
-                    <div class="text-sm text-gray-600">Cobertura total</div>
+                    <div class="text-sm text-gray-600">Atención regional</div>
                   </div>
                 </div>
               </div>
@@ -452,7 +405,7 @@
 
             <div>
               <h2 class="text-5xl font-bold custom-primary mb-8">
-                ¿Por qué ExpressCreativa?
+                ¿Por qué Express Creativa?
               </h2>
 
               <div class="space-y-8">
@@ -468,7 +421,7 @@
                     </h3>
                     <p class="text-gray-600 leading-relaxed">
                       Profundo conocimiento del mercado regional, cultura
-                      digital y particularidades de cada país.
+                      digital y adaptación a distintos mercados de la región.
                     </p>
                   </div>
                 </div>
@@ -526,13 +479,13 @@
 
           <div class="flex flex-col sm:flex-row gap-6 justify-center">
             <a
-              href="contacto.html"
+              href="print.html"
               class="custom-bg-green text-white px-10 py-5 rounded-xl font-semibold hover:bg-opacity-90 transition-all shadow-lg text-lg"
             >
-              Iniciar Proyecto
+              Preparar mi Arte
             </a>
             <a
-              href="   "
+              href="portafolio.html"
               class="border-2 border-gray-300 text-gray-700 px-10 py-5 rounded-xl font-semibold hover:border-gray-400 transition-all text-lg"
             >
               Ver Portfolio
@@ -553,67 +506,45 @@
                 <img src="favicon.ico" alt="ExpressCreativa Logo" class="w-full h-full object-cover rounded-xl" />
                              </div>
               <div>
-                <span class="text-2xl font-bold">ExpressCreativa</span>
-                <div class="text-sm text-gray-400">Digital Agency</div>
+                <span class="text-2xl font-bold">Express Creativa</span>
+                <div class="text-sm text-gray-400">Creatividad desde Panamá</div>
               </div>
             </div>
             <p class="text-gray-400 mb-8 leading-relaxed">
-              Agencia digital profesional desde Panamá para toda Latinoamérica.
-              Creatividad sin límites.
+              Agencia integral de comunicación desde Panamá con atención
+              regional. Creatividad sin límites.
             </p>
-            <div class="flex space-x-6">
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-                aria-label="Instagram"
-              >
-                <i class="fab fa-instagram text-2xl"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-                aria-label="LinkedIn"
-              >
-                <i class="fab fa-linkedin text-2xl"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-                aria-label="YouTube"
-              >
-                <i class="fab fa-youtube text-2xl"></i>
-              </a>
-            </div>
           </div>
 
           <div>
-            <h3 class="font-bold mb-6 text-lg">Servicios</h3>
+            <h3 class="font-bold mb-6 text-lg">Áreas</h3>
             <ul class="space-y-4 text-gray-400">
               <li>
-                <a href="#services" class="hover:text-white transition-colors"
-                  >Streaming Profesional</a
+                <a href="digital.html" class="hover:text-white transition-colors"
+                  >Express Creativa | Digital</a
                 >
               </li>
               <li>
-                <a href="#services" class="hover:text-white transition-colors"
-                  >Desarrollo Web</a
+                <a href="branding.html" class="hover:text-white transition-colors"
+                  >Express Creativa | Branding</a
                 >
               </li>
               <li>
-                <a href="#services" class="hover:text-white transition-colors"
-                  >Branding Integral</a
+                <a href="studio.html" class="hover:text-white transition-colors"
+                  >Express Creativa | Studio</a
                 >
               </li>
               <li>
-                <a href="#services" class="hover:text-white transition-colors"
-                  >Producción Audiovisual</a
+                <a href="print.html" class="hover:text-white transition-colors"
+                  >Express Creativa | Print</a
                 >
               </li>
               <li>
-                <a href="#services" class="hover:text-white transition-colors"
-                  >Pauta Digital</a
+                <a href="media.html" class="hover:text-white transition-colors"
+                  >Express Creativa | Media</a
                 >
               </li>
+              <li><a href="events.html" class="hover:text-white transition-colors">Express Creativa | Events</a></li>
             </ul>
           </div>
 
@@ -633,15 +564,13 @@
                 >
               </li>
               <li>
-              </li>
-              <li>
-                <a href="#contact" class="hover:text-white transition-colors"
-                  >Blog</a
+                <a href="portafolio.html" class="hover:text-white transition-colors"
+                  >Portafolio</a
                 >
               </li>
               <li>
-                <a href="#contact" class="hover:text-white transition-colors"
-                  >Guías</a
+                <a href="fotografia.html" class="hover:text-white transition-colors"
+                  >Fotografía</a
                 >
               </li>
             </ul>
@@ -652,7 +581,7 @@
             <ul class="space-y-4 text-gray-400">
               <li class="flex items-center space-x-3">
                 <i class="fas fa-location-dot"></i>
-                <span>Panamá, Latinoamérica</span>
+                <span>Ciudad de Panamá, Panamá</span>
               </li>
               <li class="flex items-center space-x-3">
                 <i class="fas fa-envelope"></i>
@@ -677,16 +606,16 @@
         <div class="border-t border-gray-800 pt-8">
           <div class="flex flex-col md:flex-row justify-between items-center">
             <p class="text-gray-400 mb-4 md:mb-0">
-              &copy; 2024 ExpressCreativa. Todos los derechos reservados.
+              &copy; <span data-current-year>2026</span> Express Creativa. Proyecto en etapa preoperativa.
             </p>
             <div class="flex space-x-8 text-gray-400">
-              <a href="#" class="hover:text-white transition-colors"
+              <a href="terminos.html" class="hover:text-white transition-colors"
                 >Términos</a
               >
-              <a href="#" class="hover:text-white transition-colors"
+              <a href="privacidad.html" class="hover:text-white transition-colors"
                 >Privacidad</a
               >
-              <a href="#" class="hover:text-white transition-colors">Cookies</a>
+              <a href="cookies.html" class="hover:text-white transition-colors">Cookies</a>
             </div>
           </div>
         </div>

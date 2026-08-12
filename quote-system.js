@@ -3,6 +3,46 @@ document.addEventListener("DOMContentLoaded", function () {
   initializeQuoteSystem();
 });
 
+const SERVICE_REFERENCES = {
+  consultoria: { sku: "EC-AG-CNS-001", label: "Consultoría Digital" },
+  "transmision-vivo": { sku: "EC-STU-STR-001", label: "Transmisión en Vivo" },
+  "gestion-evento": { sku: "EC-EVT-GES-001", label: "Gestión de Evento" },
+  "desarrollo-web": { sku: "EC-DIG-WEB-001", label: "Desarrollo Web" },
+  branding: { sku: "EC-BRA-IDN-001", label: "Branding" },
+  "marketing-digital": { sku: "EC-MED-MKT-001", label: "Marketing Digital" },
+};
+
+const QUOTE_FIELD_LIMITS = Object.freeze({
+  "client-name": 120,
+  "client-contact": 254,
+  "additional-details": 2000,
+});
+
+function cleanQuoteValue(key, value) {
+  const normalized = String(value ?? "").replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "").trim();
+  return normalized.slice(0, QUOTE_FIELD_LIMITS[key] || 160);
+}
+
+function escapeQuoteHtml(value) {
+  return String(value ?? "").replace(/[&<>'"]/g, (character) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "'": "&#39;",
+    '"': "&quot;",
+  })[character]);
+}
+
+function formatRequestedServices(services) {
+  if (!services || services.length === 0) return "No especificado";
+  return services.map((value) => {
+    const reference = SERVICE_REFERENCES[value];
+    return reference
+      ? `[SKU: ${reference.sku}] ${reference.label} · cantidad/unidad por definir`
+      : value;
+  }).join(", ");
+}
+
 function initializeQuoteSystem() {
   const quoteForm = document.getElementById("quote-request-form");
   if (quoteForm) {
@@ -57,9 +97,9 @@ function processQuoteSubmission(form) {
   for (let [key, value] of formData.entries()) {
     if (key === "services") {
       if (!data[key]) data[key] = [];
-      data[key].push(value);
+      if (SERVICE_REFERENCES[value] && !data[key].includes(value)) data[key].push(value);
     } else {
-      data[key] = value;
+      data[key] = cleanQuoteValue(key, value);
     }
   }
 
@@ -139,39 +179,11 @@ function generateTicket(data) {
 }
 
 function calculateResponseTime(urgency) {
-  const now = new Date();
-  let responseDate;
-  
-  switch (urgency) {
-    case 'urgente':
-      responseDate = new Date(now.getTime() + 24 * 60 * 60 * 1000); // 24 hours
-      return {
-        text: '24 horas',
-        date: responseDate.toLocaleString('es-ES'),
-        hours: 24
-      };
-    case 'normal':
-      responseDate = new Date(now.getTime() + 72 * 60 * 60 * 1000); // 72 hours
-      return {
-        text: '72 horas',
-        date: responseDate.toLocaleString('es-ES'),
-        hours: 72
-      };
-    case 'planificacion':
-      responseDate = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000); // 1 week
-      return {
-        text: '1 semana',
-        date: responseDate.toLocaleString('es-ES'),
-        hours: 168
-      };
-    default:
-      responseDate = new Date(now.getTime() + 72 * 60 * 60 * 1000);
-      return {
-        text: '72 horas',
-        date: responseDate.toLocaleString('es-ES'),
-        hours: 72
-      };
-  }
+  return {
+    text: urgency === 'urgente' ? 'Solicitud prioritaria' : 'Plazo por confirmar',
+    date: 'Se confirmará por contacto',
+    hours: null
+  };
 }
 
 function showQuoteConfirmation(ticket, data) {
@@ -185,37 +197,39 @@ function showQuoteConfirmation(ticket, data) {
   }
   
   // Build details HTML
-  const servicesText = data.services ? data.services.join(', ') : 'No especificado';
+  const servicesText = formatRequestedServices(data.services);
   
+  const safeServicesText = escapeQuoteHtml(servicesText);
+  const safeAdditionalDetails = escapeQuoteHtml(data['additional-details']);
   detailsDiv.innerHTML = `
     <div class="grid md:grid-cols-2 gap-6">
       <div>
         <h4 class="font-bold text-gray-800 mb-4">Información del Ticket</h4>
         <div class="space-y-2 text-sm">
-          <p><strong>Número de Ticket:</strong> ${ticket.number}</p>
-          <p><strong>Fecha de Solicitud:</strong> ${ticket.date}</p>
-          <p><strong>Tiempo de Respuesta:</strong> ${ticket.responseTime.text}</p>
-          <p><strong>Respuesta Estimada:</strong> ${ticket.responseTime.date}</p>
+          <p><strong>Número de Ticket:</strong> ${escapeQuoteHtml(ticket.number)}</p>
+          <p><strong>Fecha de Solicitud:</strong> ${escapeQuoteHtml(ticket.date)}</p>
+          <p><strong>Tiempo de Respuesta:</strong> ${escapeQuoteHtml(ticket.responseTime.text)}</p>
+          <p><strong>Respuesta Estimada:</strong> ${escapeQuoteHtml(ticket.responseTime.date)}</p>
         </div>
       </div>
       <div>
         <h4 class="font-bold text-gray-800 mb-4">Resumen de Solicitud</h4>
         <div class="space-y-2 text-sm">
-          <p><strong>Cliente:</strong> ${data['client-name']}</p>
-          <p><strong>Contacto:</strong> ${data['client-contact']}</p>
-          <p><strong>Tipo:</strong> ${formatClientType(data['client-type'])}</p>
-          <p><strong>Categoría:</strong> ${formatServiceCategory(data['service-category'])}</p>
+          <p><strong>Cliente:</strong> ${escapeQuoteHtml(data['client-name'])}</p>
+          <p><strong>Contacto:</strong> ${escapeQuoteHtml(data['client-contact'])}</p>
+          <p><strong>Tipo:</strong> ${escapeQuoteHtml(formatClientType(data['client-type']))}</p>
+          <p><strong>Categoría:</strong> ${escapeQuoteHtml(formatServiceCategory(data['service-category']))}</p>
         </div>
       </div>
     </div>
     <div class="mt-6">
       <h4 class="font-bold text-gray-800 mb-2">Servicios Solicitados</h4>
-      <p class="text-sm text-gray-600">${servicesText}</p>
+      <p class="text-sm text-gray-600">${safeServicesText}</p>
     </div>
     ${data['additional-details'] ? `
     <div class="mt-4">
       <h4 class="font-bold text-gray-800 mb-2">Detalles Adicionales</h4>
-      <p class="text-sm text-gray-600">${data['additional-details']}</p>
+      <p class="text-sm text-gray-600">${safeAdditionalDetails}</p>
     </div>
     ` : ''}
   `;
@@ -225,7 +239,7 @@ function showQuoteConfirmation(ticket, data) {
   confirmationDiv.scrollIntoView({ behavior: 'smooth' });
   
   // Show success toast
-  showToast('¡Cotización enviada exitosamente!', 'success');
+  showToast('Solicitud preparada. Debes enviarla por WhatsApp o correo.', 'success');
 }
 
 function sendQuoteData(ticket, data) {
@@ -238,7 +252,8 @@ function sendQuoteData(ticket, data) {
   if (data['urgency-level'] === 'urgente') {
     setTimeout(() => {
       if (confirm('¿Deseas enviar esta cotización por WhatsApp para una respuesta más rápida?')) {
-        window.open(`https://wa.me/50766043511?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+        const whatsappWindow = window.open(`https://wa.me/50766043511?text=${encodeURIComponent(whatsappMessage)}`, '_blank', 'noopener,noreferrer');
+        if (whatsappWindow) whatsappWindow.opener = null;
       }
     }, 2000);
   }
@@ -250,12 +265,10 @@ function sendQuoteData(ticket, data) {
   window.lastQuoteEmailLink = emailLink;
   window.lastQuoteWhatsAppLink = `https://wa.me/50766043511?text=${encodeURIComponent(whatsappMessage)}`;
   
-  // Log for development (remove in production)
-  console.log('Quote data prepared:', { ticket, data, emailLink });
 }
 
 function buildEmailBody(ticket, data) {
-  const servicesText = data.services ? data.services.join(', ') : 'No especificado';
+  const servicesText = formatRequestedServices(data.services);
   
   return `
 Estimado equipo de ExpressCreativa,
@@ -288,7 +301,7 @@ ${data['client-name']}
 }
 
 function buildWhatsAppMessage(ticket, data) {
-  const servicesText = data.services ? data.services.join(', ') : 'No especificado';
+  const servicesText = formatRequestedServices(data.services);
   
   return `
 🎯 *Nueva Cotización - ${ticket.number}*
@@ -317,7 +330,9 @@ function formatClientType(type) {
     'mediana-empresa': 'Mediana Empresa (51-250 empleados)',
     'evento-corporativo': 'Evento Corporativo',
     'evento-familiar': 'Evento Familiar',
-    'gran-evento': 'Gran Evento'
+    'gran-evento': 'Gran Evento',
+    'independiente': 'Profesional / Independiente',
+    'otro': 'Otro'
   };
   return types[type] || type;
 }
@@ -338,9 +353,9 @@ function formatServiceCategory(category) {
 
 function formatUrgency(urgency) {
   const urgencies = {
-    'urgente': 'Urgente (24h)',
-    'normal': 'Normal (72h)',
-    'planificacion': 'Planificación (1 semana)'
+    'urgente': 'Prioritaria (plazo por confirmar)',
+    'normal': 'Normal (plazo por confirmar)',
+    'planificacion': 'Planificación (sin urgencia)'
   };
   return urgencies[urgency] || urgency;
 }
@@ -349,7 +364,8 @@ function formatUrgency(urgency) {
 document.addEventListener('click', function(e) {
   if (e.target.closest('a[href*="wa.me"]') && window.lastQuoteWhatsAppLink) {
     e.preventDefault();
-    window.open(window.lastQuoteWhatsAppLink, '_blank');
+    const whatsappWindow = window.open(window.lastQuoteWhatsAppLink, '_blank', 'noopener,noreferrer');
+    if (whatsappWindow) whatsappWindow.opener = null;
   }
   
   if (e.target.closest('a[href*="mailto"]') && window.lastQuoteEmailLink) {
@@ -395,12 +411,18 @@ if (typeof showToast === 'undefined') {
       max-width: 300px;
     `;
     
-    toast.innerHTML = `
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <span>${message}</span>
-        <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: white; cursor: pointer; font-size: 16px; padding: 0; margin-left: 8px;">×</button>
-      </div>
-    `;
+    const content = document.createElement('div');
+    content.style.cssText = 'display:flex;align-items:center;gap:8px';
+    const text = document.createElement('span');
+    text.textContent = String(message);
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.textContent = '×';
+    close.setAttribute('aria-label', 'Cerrar aviso');
+    close.style.cssText = 'background:none;border:none;color:white;cursor:pointer;font-size:16px;padding:0;margin-left:8px';
+    close.addEventListener('click', () => toast.remove());
+    content.append(text, close);
+    toast.appendChild(content);
 
     // Add to page
     document.body.appendChild(toast);

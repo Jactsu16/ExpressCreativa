@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <script src="site-security.js" defer></script>
+    <title>Diseña tu carta DTF | Express Creativa Print</title>
+    <meta name="description" content="Elige DTF textil o UV DTF, configura el tamaño de la carta y calcula visualmente cuántas copias de tu diseño caben." />
+    <link rel="canonical" href="https://expresscreativa.com/print/carta-dtf" />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="print-lab.css" />
+    <style>
+      .dtf-choice-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:26px; }
+      .dtf-choice { position:relative; display:grid; grid-template-columns:120px 1fr; align-items:center; gap:22px; width:100%; padding:22px; border:2px solid #dce4ee; border-radius:24px; background:white; color:#10233f; text-align:left; cursor:pointer; transition:.2s ease; }
+      .dtf-choice:hover,.dtf-choice[aria-pressed="true"] { border-color:#0656c7; box-shadow:0 14px 36px rgba(6,86,199,.12); transform:translateY(-3px); }
+      .dtf-choice[aria-pressed="true"]::after { content:"✓ ELEGIDO"; position:absolute; top:14px; right:14px; color:#0656c7; font-size:.68rem; font-weight:900; letter-spacing:.08em; }
+      .choice-title { display:block; margin:0 0 7px; font-size:1.45rem; font-weight:800; }
+      .choice-description { display:block; color:#607086; line-height:1.5; font-size:.88rem; }
+      .choice-graphic { position:relative; height:105px; display:grid; place-items:center; border-radius:20px; background:#eff6ff; }
+      .choice-graphic.shirt::before { content:""; width:64px; height:70px; background:#0656c7; clip-path:polygon(25% 0,39% 9%,61% 9%,75% 0,100% 22%,82% 43%,76% 34%,76% 100%,24% 100%,24% 34%,18% 43%,0 22%); }
+      .choice-graphic.shirt::after { content:"CALOR"; position:absolute; bottom:8px; color:#fff; font-size:.6rem; font-weight:900; }
+      .choice-graphic.cup { background:#fff4ee; }
+      .choice-graphic.cup::before { content:""; width:58px; height:70px; border-radius:5px 5px 20px 20px; background:#ff6a3d; }
+      .choice-graphic.cup::after { content:"SIN CALOR"; position:absolute; bottom:8px; color:#fff; font-size:.56rem; font-weight:900; }
+      .dtf-layout { display:grid; grid-template-columns:360px 1fr; gap:24px; margin-top:26px; align-items:start; }
+      .dimension-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+      .sheet-wrap { min-height:640px; display:grid; place-items:center; padding:28px; border-radius:26px; background:linear-gradient(145deg,#eaf0f8,#f8fafc); }
+      .dtf-sheet { position:relative; display:grid; gap:4px; width:min(420px,82vw); height:560px; padding:10px; overflow:hidden; border:2px solid #10233f; background:white; box-shadow:0 25px 45px rgba(16,35,63,.16); }
+      .dtf-copy { display:grid; place-items:center; min-width:0; min-height:0; overflow:hidden; border:1px dashed #9eacc0; background:#f4f7fb; }
+      .dtf-copy img { width:88%; height:88%; object-fit:contain; }
+      .sheet-empty { position:absolute; inset:0; display:grid; place-items:center; padding:30px; color:#607086; text-align:center; line-height:1.6; }
+      .dtf-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:16px; }
+      .dtf-stat { padding:15px; border-radius:14px; background:#07111f; color:white; }
+      .dtf-stat span { display:block; color:#b9c8d9; font-size:.68rem; font-weight:850; text-transform:uppercase; }
+      .dtf-stat strong { display:block; margin-top:6px; font-size:1.15rem; }
+      #dtf-result[hidden] { display:none; }
+      @media (max-width:920px) { .dtf-layout,.dtf-choice-grid { grid-template-columns:1fr; } .dtf-choice { grid-template-columns:95px 1fr; } .sheet-wrap { min-height:530px; } }
+    </style>
+  </head>
+  <body>
+    <div class="lab-status">Planificador visual · medidas sujetas a confirmación del impresor · sin pago en línea</div>
+    <header class="lab-header">
+      <nav class="lab-nav"><a class="lab-brand" href="print.html"><img src="img/brand/express-creativa-print.webp" alt="" /><span><strong>Express Creativa | Print</strong><small>Herramienta · Carta DTF</small></span></a><div class="lab-links"><a href="quitar-fondo.html">Quitar fondo</a><a href="disena-sueter.html">Suéter</a><a href="disena-taza.html">Taza</a><a class="lab-back" href="print.html">Todas las herramientas</a></div></nav>
+    </header>
+    <main>
+      <section class="tool-page-hero">
+        <div class="lab-container">
+          <span class="lab-kicker">Herramienta 04</span>
+          <h1>Diseña tu carta DTF</h1>
+          <p>Primero elige el sistema correcto. Después organizamos tus diseños y calculamos cuántas copias caben en la carta.</p>
+          <div class="dtf-choice-grid" aria-label="Tipo de DTF">
+            <button class="dtf-choice" data-type="textil" aria-pressed="true"><span class="choice-graphic shirt" aria-hidden="true"></span><span><span class="choice-title">DTF Textil</span><span class="choice-description">Para suéteres y otras telas. El transfer se fija con plancha o prensa térmica.</span></span></button>
+            <button class="dtf-choice" data-type="uv" aria-pressed="false"><span class="choice-graphic cup" aria-hidden="true"></span><span><span class="choice-title">UV DTF</span><span class="choice-description">Para vasos y superficies rígidas lisas. Se adhiere en frío, sin plancha ni calor.</span></span></button>
+          </div>
+        </div>
+      </section>
+      <section class="tool-section">
+        <div class="lab-container dtf-layout">
+          <aside class="lab-panel">
+            <p id="dtf-mode-description" class="lab-note">DTF Textil seleccionado: requiere plancha o prensa térmica para fijarlo sobre la tela.</p>
+            <label class="drop-zone" style="margin-top:18px"><input id="dtf-upload" type="file" accept="image/png,image/jpeg,image/webp" /><strong>Subir diseño</strong><br /><small>PNG transparente recomendado · máximo 20 MB</small></label>
+            <div class="control"><span style="display:block;font-size:.84rem;font-weight:800;margin-bottom:9px">Medida de la carta</span><div class="dimension-grid"><label>Ancho (cm)<input id="sheet-width" type="number" min="10" max="120" step=".1" value="56" /></label><label>Alto (cm)<input id="sheet-height" type="number" min="10" max="500" step=".1" value="100" /></label></div></div>
+            <div class="control"><label for="copy-width">Ancho de cada diseño (cm)</label><input id="copy-width" type="number" min="1" max="100" step=".1" value="10" /></div>
+            <div class="control"><label for="copy-quantity">Copias necesarias</label><input id="copy-quantity" type="number" min="1" max="999" value="12" /></div>
+            <div id="dtf-quality" class="quality-message">Carga un archivo para validar su resolución.</div>
+            <button id="dtf-build" class="lab-button" style="width:100%;margin-top:16px">Organizar mi carta</button>
+          </aside>
+          <div>
+            <div class="sheet-wrap"><div id="dtf-sheet" class="dtf-sheet"><p id="sheet-empty" class="sheet-empty">Sube tu diseño y presiona “Organizar mi carta” para ver la distribución.</p></div></div>
+            <div class="dtf-stats"><div class="dtf-stat"><span>Capacidad por carta</span><strong id="dtf-capacity">—</strong></div><div class="dtf-stat"><span>Cartas necesarias</span><strong id="dtf-sheets">—</strong></div><div class="dtf-stat"><span>Aprovechamiento</span><strong id="dtf-use">—</strong></div></div>
+            <div class="lab-note" style="margin-top:18px">La distribución es una estimación rectangular e incluye separación. El impresor debe confirmar ancho del rollo, márgenes, perfil de color, tinta blanca, corte y condiciones de aplicación. UV DTF se recomienda solo para superficies rígidas, lisas y limpias; evita bordes o zonas en contacto directo con alimentos y bebidas.</div>
+            <div id="dtf-result" class="lab-panel" style="margin-top:18px" hidden>
+              <label for="dtf-summary" style="font-weight:850">Resumen</label>
+              <textarea id="dtf-summary" rows="9" readonly style="width:100%;margin-top:10px;padding:14px;border:1px solid #cdd7e4;border-radius:13px;font:inherit"></textarea>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button id="dtf-copy-summary" class="lab-button secondary">Copiar</button><a id="dtf-whatsapp" class="lab-button" target="_blank" rel="noopener">Abrir WhatsApp</a></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="lab-footer"><div class="lab-footer-inner"><span>© <span data-current-year>2026</span> Express Creativa | Print</span><a href="print.html">Volver a Print</a></div></footer>
+    <script src="dtf-sheet.js"></script>
+  </body>
+</html>

@@ -3,12 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <script src="site-security.js" defer></script>
     <title>
-      Servicios Digitales - ExpressCreativa | Streaming, Web, Branding Panamá
+      Divisiones y servicios | Express Creativa
     </title>
     <meta
       name="description"
-      content="Servicios digitales profesionales: streaming, desarrollo web, branding, marketing digital y producción audiovisual. Desde Panamá para Latinoamérica."
+      content="Servicios de Express Creativa Digital, Branding, Studio, Print, Media y Events desde Panamá."
     />
     <meta
       name="keywords"
@@ -19,24 +21,29 @@
     <!-- Open Graph Meta Tags -->
     <meta
       property="og:title"
-      content="Servicios Digitales - ExpressCreativa"
+      content="Divisiones de Express Creativa"
     />
     <meta
       property="og:description"
-      content="Servicios digitales profesionales desde Panamá para Latinoamérica."
+      content="Conoce las divisiones Digital, Branding, Studio, Print, Media y Events de Express Creativa."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://expresscreativa.com/servicios" />
+    <meta property="og:image" content="https://expresscreativa.com/img/social/servicios-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Servicios creativos integrales de Express Creativa" />
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://expresscreativa.com/img/social/servicios-og.png" />
     <meta
       name="twitter:title"
-      content="Servicios Digitales - ExpressCreativa"
+      content="Divisiones de Express Creativa"
     />
     <meta
       name="twitter:description"
-      content="Servicios digitales profesionales desde Panamá para Latinoamérica."
+      content="Conoce las divisiones Digital, Branding, Studio, Print, Media y Events de Express Creativa."
     />
 
     <!-- Favicon -->
@@ -77,12 +84,14 @@
     </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+      defer
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
 
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="brand-rail.css" />
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -101,46 +110,39 @@
     </script>
   </head>
   <body class="bg-white overflow-x-hidden">
+    <div class="bg-slate-950 text-white text-center px-4 py-2 text-sm">
+      Catálogo informativo en etapa preoperativa · solicitudes por contacto · pagos en línea no habilitados
+    </div>
     <header
       id="header"
       class="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50"
     >
       <div class="max-w-7xl mx-auto px-6 py-5">
         <div class="flex justify-between items-center">
-          <div class="flex items-center space-x-4">
+          <a href="index.html" class="flex items-center space-x-4" aria-label="Express Creativa, ir al inicio">
             <div class="w-10 h-10 custom-bg-primary rounded-lg">
               <img
                 src="favicon.ico"
-                alt="ExpressCreativa Logo"
+                alt="Logo de Express Creativa"
                 class="w-full h-full object-cover rounded-lg"
               />
             </div>
             <div>
-              <a href="index.html" class="text-2xl font-bold custom-primary"
-                >ExpressCreativa</a
-              >
+              <span class="text-2xl font-bold custom-primary">Express Creativa</span>
               <div class="text-xs text-gray-500 font-medium">
-                Digital Agency
+                Agencia Integral de Comunicación
               </div>
             </div>
-          </div>
+          </a>
 
           <nav class="hidden lg:flex items-center space-x-10">
+            <a href="#divisiones" class="custom-primary font-semibold transition-colors">Divisiones</a>
+            <a href="portafolio.html" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Portafolio</a>
             <a
               href="servicios.html"
               class="custom-primary font-medium"
               aria-current="page"
               >Servicios</a
-            >
-            <a
-              href="index.html#tools"
-              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >Herramientas</a
-            >
-            <a
-              href="calculadora.html"
-              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >Calculadoras</a
             >
             <button
               id="cart-btn"
@@ -161,7 +163,7 @@
             >
           </nav>
 
-          <button id="mobile-menu-btn" class="lg:hidden custom-primary">
+          <button id="mobile-menu-btn" type="button" class="lg:hidden custom-primary" aria-label="Abrir menú de navegación" aria-controls="mobile-menu" aria-expanded="false">
             <i class="fas fa-bars text-xl"></i>
           </button>
         </div>
@@ -169,21 +171,13 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="lg:hidden hidden mt-4 pb-4">
           <div class="flex flex-col space-y-4">
+            <a href="#divisiones" class="custom-primary font-semibold transition-colors">Divisiones</a>
+            <a href="portafolio.html" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Portafolio</a>
             <a
               href="servicios.html"
               class="custom-primary font-medium"
               aria-current="page"
               >Servicios</a
-            >
-            <a
-              href="index.html#tools"
-              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >Herramientas</a
-            >
-            <a
-              href="calculadora.html"
-              class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >Calculadoras</a
             >
             <button
               id="cart-btn-mobile"
@@ -201,6 +195,7 @@
         </div>
       </div>
     </header>
+    <nav class="brand-rail" aria-label="Divisiones de Express Creativa"><div class="brand-rail-inner"><a href="index.html">Inicio</a><a href="digital.html">Digital</a><a href="branding.html">Branding</a><a href="studio.html">Studio</a><a href="print.html">Print</a><a href="media.html">Media</a><a href="events.html">Events</a></div></nav>
 
     <main>
       <section id="services-hero" class="gradient-bg py-20">
@@ -219,9 +214,27 @@
           <p
             class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
           >
-            Soluciones digitales profesionales diseñadas para impulsar tu
-            presencia online y hacer crecer tu negocio en toda Latinoamérica.
+            Producción gráfica, fotografía y soluciones digitales conectadas
+            en un solo lugar para hacer crecer tu proyecto.
           </p>
+        </div>
+      </section>
+
+      <section id="divisiones" class="bg-white py-20 border-b border-gray-100" aria-labelledby="service-entry-title">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto mb-12">
+            <p class="font-bold text-blue-700 mb-3">ELIGE POR DÓNDE COMENZAR</p>
+            <h2 id="service-entry-title" class="text-4xl lg:text-5xl font-black custom-primary">Seis divisiones, una sola Express Creativa</h2>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+            <a href="digital.html" class="division-family-card" style="--card-accent:#0656c7"><div class="division-family-icon"><i class="fas fa-code"></i></div><p class="division-label">TECNOLOGÍA</p><h3>Express Creativa | Digital</h3><p>Web, e-commerce, SEO, automatización y analítica.</p><span class="division-link">Conocer Digital →</span></a>
+            <a href="branding.html" class="division-family-card" style="--card-accent:#c4a451"><div class="division-family-icon"><i class="fas fa-pen-nib"></i></div><p class="division-label">IDENTIDAD</p><h3>Express Creativa | Branding</h3><p>Naming, logotipos, estrategia, manuales y packaging.</p><span class="division-link">Conocer Branding →</span></a>
+            <a href="studio.html" class="division-family-card" style="--card-accent:#ff6a3d"><div class="division-family-icon"><i class="fas fa-video"></i></div><p class="division-label">AUDIOVISUAL</p><h3>Express Creativa | Studio</h3><p>Video, fotografía, edición, streaming y cobertura.</p><span class="division-link">Conocer Studio →</span></a>
+            <a href="print.html" class="division-family-card" style="--card-accent:#0656c7"><div class="division-family-icon"><img src="img/brand/express-creativa-print.webp" alt="Símbolo oficial de Express Creativa Print" /></div><p class="division-label">IMPRESIÓN</p><h3>Express Creativa | Print</h3><p>Impresión, gran formato, POP y material publicitario.</p><span class="division-link">Abrir Print →</span></a>
+            <a href="media.html" class="division-family-card" style="--card-accent:#008060"><div class="division-family-icon"><i class="fas fa-bullhorn"></i></div><p class="division-label">PUBLICIDAD</p><h3>Express Creativa | Media</h3><p>Redes, pauta, medios, email y estrategia de contenido.</p><span class="division-link">Conocer Media →</span></a>
+            <a href="events.html" class="division-family-card" style="--card-accent:#ff6a3d"><div class="division-family-icon"><i class="fas fa-people-group"></i></div><p class="division-label">EXPERIENCIAS</p><h3>Express Creativa | Events</h3><p>BTL, activaciones, ferias, producción y logística.</p><span class="division-link">Conocer Events →</span></a>
+          </div>
+          <div class="mt-9 text-center text-sm text-slate-500"><strong>Futuro:</strong> Express Creativa | Academy · Lab · Research.</div>
         </div>
       </section>
 
@@ -230,8 +243,9 @@
         <div class="max-w-7xl mx-auto px-6">
           
           <!-- Producción Audiovisual -->
-          <div class="mb-16">
-            <h2 class="text-3xl font-bold custom-primary mb-8 text-center">Producción Audiovisual</h2>
+          <div id="audiovisual" class="mb-16">
+            <h2 class="text-3xl font-bold custom-primary mb-3 text-center">Express Creativa | Studio</h2>
+            <p class="text-gray-600 text-center mb-8">Producción audiovisual, fotografía, cámara y transmisiones.</p>
             <div class="grid lg:grid-cols-3 gap-8">
               
               <!-- Transmisión en Vivo Instagram -->
@@ -249,7 +263,7 @@
                     data-price="150"
                     data-description="Producción profesional en vivo para Instagram Live"
                   >
-                    Contratar - B/.150.00
+                    Cotiza con nosotros - B/.150.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -272,7 +286,7 @@
                     data-price="150"
                     data-description="Streaming en calidad HD para canales de YouTube"
                   >
-                    Contratar - B/.150.00
+                    Cotiza con nosotros - B/.150.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -295,7 +309,7 @@
                     data-price="150"
                     data-description="Configuración y dirección técnica de eventos en vivo para Facebook"
                   >
-                    Contratar - B/.150.00
+                    Cotiza con nosotros - B/.150.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -318,7 +332,7 @@
                     data-price="180"
                     data-description="Videos corporativos, promocionales o eventos"
                   >
-                    Contratar - B/.180.00
+                    Cotiza con nosotros - B/.180.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -331,20 +345,11 @@
                 <div class="w-16 h-16 custom-bg-orange rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <i class="fas fa-camera text-white text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-bold custom-primary mb-3">Fotografía Comercial / Institucional</h3>
-                <p class="text-gray-600 mb-4 text-sm">Fotografía de productos, locales o marcas.</p>
+                <h3 class="text-xl font-bold custom-primary mb-3">Fotografía de Producto</h3>
+                <p class="text-gray-600 mb-4 text-sm">Productos y catálogos digitales. Entrega estimada: 15 días.</p>
                 <div class="space-y-3">
-                  <button
-                    class="add-to-cart w-full custom-bg-orange text-white py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all"
-                    data-id="SVP005"
-                    data-name="Fotografía Comercial / Institucional"
-                    data-price="90"
-                    data-description="Fotografía de productos, locales o marcas"
-                  >
-                    Contratar - B/.90.00
-                  </button>
-                  <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
-                    Cotización Personalizada
+                  <a href="fotografia.html#producto" class="block w-full text-center custom-bg-orange text-white py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all">
+                    Ver condiciones
                   </a>
                 </div>
               </article>
@@ -354,20 +359,11 @@
                 <div class="w-16 h-16 custom-bg-orange rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <i class="fas fa-heart text-white text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-bold custom-primary mb-3">Fotografía Personal (eventos)</h3>
-                <p class="text-gray-600 mb-4 text-sm">Bautizos, bodas, graduaciones y celebraciones familiares.</p>
+                <h3 class="text-xl font-bold custom-primary mb-3">Fotografía en Exteriores</h3>
+                <p class="text-gray-600 mb-4 text-sm">Sesiones personales desde B/.35 con archivos finales en alta resolución.</p>
                 <div class="space-y-3">
-                  <button
-                    class="add-to-cart w-full custom-bg-orange text-white py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all"
-                    data-id="SVP006"
-                    data-name="Fotografía Personal (eventos)"
-                    data-price="95"
-                    data-description="Bautizos, bodas, graduaciones y celebraciones familiares"
-                  >
-                    Contratar - B/.95.00
-                  </button>
-                  <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
-                    Cotización Personalizada
+                  <a href="fotografia.html#exteriores" class="block w-full text-center custom-bg-orange text-white py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all">
+                    Ver paquetes
                   </a>
                 </div>
               </article>
@@ -377,7 +373,7 @@
 
           <!-- Desarrollo Web -->
           <div class="mb-16">
-            <h2 class="text-3xl font-bold custom-primary mb-8 text-center">Desarrollo Web</h2>
+            <h2 class="text-3xl font-bold custom-primary mb-8 text-center">Express Creativa | Digital</h2>
             <div class="grid lg:grid-cols-3 gap-8">
               
               <!-- Desarrollo Web Corporativo -->
@@ -395,7 +391,7 @@
                     data-price="400"
                     data-description="Sitio institucional completo, funcional y responsive"
                   >
-                    Contratar - B/.400.00
+                    Cotiza con nosotros - B/.400.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -409,16 +405,16 @@
                   <i class="fas fa-rocket text-white text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold custom-primary mb-3">Landing Page</h3>
-                <p class="text-gray-600 mb-4 text-sm">Página de aterrizaje de una sola sección para promociones o lanzamientos.</p>
+                <p class="text-gray-600 mb-4 text-sm">Página de aterrizaje enfocada en conversiones para campañas, promociones o lanzamientos.</p>
                 <div class="space-y-3">
                   <button
                     class="add-to-cart w-full custom-bg-primary text-white py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all"
                     data-id="SVW002"
                     data-name="Landing Page"
                     data-price="150"
-                    data-description="Página de aterrizaje de una sola sección para promociones o lanzamientos"
+                    data-description="Página de aterrizaje enfocada en conversiones para campañas, promociones o lanzamientos"
                   >
-                    Contratar - B/.150.00
+                    Cotiza con nosotros - B/.150.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -441,7 +437,7 @@
                     data-price="200"
                     data-description="Página visual para artistas, fotógrafos o freelancers"
                   >
-                    Contratar - B/.200.00
+                    Cotiza con nosotros - B/.200.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -464,7 +460,7 @@
                     data-price="250"
                     data-description="Página informativa para congresos, ferias o lanzamientos"
                   >
-                    Contratar - B/.250.00
+                    Cotiza con nosotros - B/.250.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -487,7 +483,7 @@
                     data-price="350"
                     data-description="Estructura base para ecommerce con productos y contacto"
                   >
-                    Contratar - B/.350.00
+                    Cotiza con nosotros - B/.350.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -510,7 +506,7 @@
                     data-price="300"
                     data-description="Página para consultores, médicos, coaches, abogados, etc"
                   >
-                    Contratar - B/.300.00
+                    Cotiza con nosotros - B/.300.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -523,7 +519,7 @@
 
           <!-- Medios y Publicidad -->
           <div class="mb-16">
-            <h2 class="text-3xl font-bold custom-primary mb-8 text-center">Medios y Publicidad</h2>
+            <h2 class="text-3xl font-bold custom-primary mb-8 text-center">Express Creativa | Media — Publicidad</h2>
             <div class="grid lg:grid-cols-3 gap-8">
               
               <!-- Pauta en Medios Tradicionales -->
@@ -541,7 +537,7 @@
                     data-price="250"
                     data-description="Compra y gestión de espacios en radio, TV o prensa"
                   >
-                    Contratar - B/.250.00
+                    Cotiza con nosotros - B/.250.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -564,7 +560,7 @@
                     data-price="100"
                     data-description="Campañas segmentadas con informes de resultados"
                   >
-                    Contratar - B/.100.00
+                    Cotiza con nosotros - B/.100.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -587,7 +583,7 @@
                     data-price="180"
                     data-description="Combinación de pauta digital + contenido en redes y Google"
                   >
-                    Contratar - B/.180.00
+                    Cotiza con nosotros - B/.180.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -600,7 +596,7 @@
 
           <!-- Creatividad y Diseño -->
           <div class="mb-16">
-            <h2 class="text-3xl font-bold custom-primary mb-8 text-center">Creatividad y Diseño</h2>
+            <h2 class="text-3xl font-bold custom-primary mb-8 text-center">Express Creativa | Branding</h2>
             <div class="grid lg:grid-cols-3 gap-8">
               
               <!-- Diseño Gráfico Publicitario -->
@@ -618,7 +614,7 @@
                     data-price="80"
                     data-description="Flyers, banners, posters, etc., en formatos digitales o impresos"
                   >
-                    Contratar - B/.80.00
+                    Cotiza con nosotros - B/.80.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -641,7 +637,7 @@
                     data-price="70"
                     data-description="Plantillas, carruseles, reels covers, historias destacadas"
                   >
-                    Contratar - B/.70.00
+                    Cotiza con nosotros - B/.70.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -664,7 +660,7 @@
                     data-price="70"
                     data-description="Documento estratégico con voz de marca, misión y valores"
                   >
-                    Contratar - B/.70.00
+                    Cotiza con nosotros - B/.70.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -687,7 +683,7 @@
                     data-price="60"
                     data-description="Desarrollo de nombres para productos o marcas"
                   >
-                    Contratar - B/.60.00
+                    Cotiza con nosotros - B/.60.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -710,7 +706,7 @@
                     data-price="60"
                     data-description="Textos para blogs, institucionales, creativos o técnicos"
                   >
-                    Contratar - B/.60.00
+                    Cotiza con nosotros - B/.60.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -723,7 +719,7 @@
 
           <!-- Social Media -->
           <div class="mb-16">
-            <h2 class="text-3xl font-bold custom-primary mb-8 text-center">Social Media</h2>
+            <h2 class="text-3xl font-bold custom-primary mb-8 text-center">Express Creativa | Media — Social Media</h2>
             <div class="grid lg:grid-cols-3 gap-8">
               
               <!-- Gestión Mensual de Redes -->
@@ -749,7 +745,7 @@
                     data-price="120"
                     data-description="Administración, contenido y métricas para Instagram o Facebook (5 posts, 2 carruseles, 3 stories)"
                   >
-                    Contratar - B/.120.00/mes
+                    Cotiza con nosotros - B/.120.00/mes
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -772,7 +768,7 @@
                     data-price="90"
                     data-description="Manejo puntual para campañas específicas"
                   >
-                    Contratar - B/.90.00
+                    Cotiza con nosotros - B/.90.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -795,7 +791,7 @@
                     data-price="50"
                     data-description="Revisión, asesoría y mejora de perfiles sociales en una sola visita"
                   >
-                    Contratar - B/.50.00
+                    Cotiza con nosotros - B/.50.00
                   </button>
                   <a href="cotizacion.html" class="block w-full text-center custom-primary font-semibold py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all">
                     Cotización Personalizada
@@ -823,13 +819,13 @@
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="contacto.html"
+              href="cotizacion.html"
               class="custom-bg-green text-white px-8 py-4 rounded-xl font-semibold hover:bg-opacity-90 transition-all shadow-lg"
             >
               Solicitar Cotización Personalizada
             </a>
             <a
-              href="   "
+              href="portafolio.html"
               class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-gray-400 transition-all"
             >
               Ver Nuestro Portfolio
@@ -861,10 +857,11 @@
             </div>
             <div class="space-y-3">
               <button
-                onclick="proceedToCheckout()"
+                id="cart-checkout-btn"
+                type="button"
                 class="w-full custom-bg-green text-white py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all"
               >
-                Proceder al Checkout
+                Enviar solicitud por WhatsApp
               </button>
               <a
                 href="cotizacion.html"
@@ -894,8 +891,7 @@
               
               <div>
                 <h4 class="text-lg font-bold custom-primary mb-3">1. Alcance de los Servicios</h4>
-                <p class="mb-2">Los servicios contratados se ejecutarán según las especificaciones acordadas en la cotización. Cualquier modificación o trabajo adicional será facturado por separado.</p>
-                <p><strong>Importante:</strong> El cliente debe contratar el servicio que corresponde al tamaño real de su proyecto. Intentar contratar un servicio de menor categoría para un proyecto más grande resultará en la cancelación del contrato.</p>
+                <p>El catálogo permite preparar una solicitud informativa. El alcance, los entregables, las revisiones y cualquier condición comercial se confirmarán posteriormente por escrito.</p>
               </div>
 
               <div>
@@ -910,48 +906,32 @@
 
               <div>
                 <h4 class="text-lg font-bold custom-primary mb-3">3. Política de Precios</h4>
-                <p class="mb-2">Los precios mostrados son fijos para la categoría especificada. No se aceptarán solicitudes de descuentos basadas en contratar un servicio de menor categoría.</p>
-                <p>ExpressCreativa se reserva el derecho de reclasificar un proyecto si se determina que no corresponde a la categoría contratada.</p>
+                <p>Los precios visibles son referencias iniciales y no constituyen una oferta vinculante. El importe final dependerá del alcance y deberá confirmarse en una cotización expresa.</p>
               </div>
 
               <div>
-                <h4 class="text-lg font-bold custom-primary mb-3">4. Formas de Pago</h4>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>50% de anticipo para iniciar el proyecto</li>
-                  <li>50% restante al finalizar y entregar el trabajo</li>
-                  <li>Métodos aceptados: Transferencia bancaria, PayPal, criptomonedas</li>
-                  <li>Servicios mensuales se facturan por adelantado</li>
-                </ul>
+                <h4 class="text-lg font-bold custom-primary mb-3">4. Pagos no habilitados</h4>
+                <p>ExpressCreativa se encuentra en etapa preoperativa. La web permite preparar solicitudes y cotizaciones, pero todavía no procesa cobros, anticipos ni facturación. Las condiciones de pago se publicarán antes de iniciar operaciones comerciales.</p>
               </div>
 
               <div>
                 <h4 class="text-lg font-bold custom-primary mb-3">5. Tiempos de Entrega</h4>
-                <ul class="list-disc list-inside space-y-1">
-                  <li><strong>Urgente:</strong> 24-48 horas (recargo del 50%)</li>
-                  <li><strong>Normal:</strong> 3-7 días hábiles</li>
-                  <li><strong>Planificación:</strong> 1-2 semanas</li>
-                </ul>
+                <p>Los plazos, la disponibilidad y cualquier recargo por prioridad se confirmarán en cada cotización antes de aceptar un proyecto.</p>
               </div>
 
               <div>
                 <h4 class="text-lg font-bold custom-primary mb-3">6. Revisiones y Modificaciones</h4>
-                <p class="mb-2">Cada servicio incluye hasta 2 rondas de revisiones menores. Cambios mayores o adicionales se facturarán por separado.</p>
-                <p>Las modificaciones solicitadas después de la entrega final tendrán un costo adicional del 25% del valor original del servicio.</p>
+                <p>La cantidad de revisiones, los entregables y el tratamiento de cambios adicionales se definirán en la cotización correspondiente.</p>
               </div>
 
               <div>
                 <h4 class="text-lg font-bold custom-primary mb-3">7. Derechos de Autor</h4>
-                <p class="mb-2">El cliente obtiene los derechos de uso comercial del trabajo final una vez completado el pago total.</p>
-                <p>ExpressCreativa se reserva el derecho de usar el trabajo en su portfolio y materiales promocionales.</p>
+                <p>Las licencias, derechos de uso y autorización para publicar trabajos en el portafolio se acordarán expresamente por escrito.</p>
               </div>
 
               <div>
                 <h4 class="text-lg font-bold custom-primary mb-3">8. Cancelaciones</h4>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>Cancelaciones antes de iniciar: reembolso del 90%</li>
-                  <li>Cancelaciones con trabajo iniciado: no hay reembolso del anticipo</li>
-                  <li>ExpressCreativa puede cancelar si el cliente no cumple con los términos</li>
-                </ul>
+                <p>La web no recibe pagos ni confirma pedidos. Las condiciones de cancelación se establecerán antes de iniciar operaciones comerciales.</p>
               </div>
 
               <div>
@@ -959,18 +939,17 @@
                 <ul class="list-disc list-inside space-y-1">
                   <li>Proporcionar información veraz sobre el tamaño y alcance del proyecto</li>
                   <li>Entregar contenido y materiales necesarios en tiempo y forma</li>
-                  <li>Realizar pagos según lo acordado</li>
                   <li>Comunicar cambios o dudas de manera oportuna</li>
                 </ul>
               </div>
 
               <div>
                 <h4 class="text-lg font-bold custom-primary mb-3">10. Limitación de Responsabilidad</h4>
-                <p>ExpressCreativa no será responsable por daños indirectos, pérdida de ganancias o interrupciones del negocio. La responsabilidad máxima se limita al valor del servicio contratado.</p>
+                <p>Las condiciones definitivas deberán revisarse con asesoría legal y constarán en el acuerdo aplicable antes de aceptar un proyecto.</p>
               </div>
 
               <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                <p class="text-sm"><strong>Nota Importante:</strong> Al contratar nuestros servicios, el cliente acepta estos términos y condiciones en su totalidad. Estos términos pueden ser actualizados sin previo aviso.</p>
+                <p class="text-sm"><strong>Nota:</strong> Preparar o enviar una solicitud no constituye una compra, un contrato ni la aceptación de condiciones comerciales.</p>
               </div>
 
             </div>
@@ -1000,77 +979,55 @@
               >
                              </div>
               <div>
-                <span class="text-2xl font-bold">ExpressCreativa</span>
-                <div class="text-sm text-gray-400">Digital Agency</div>
+                <span class="text-2xl font-bold">Express Creativa</span>
+                <div class="text-sm text-gray-400">Creatividad desde Panamá</div>
               </div>
             </div>
             <p class="text-gray-400 mb-8 leading-relaxed">
-              Agencia digital profesional desde Panamá para toda Latinoamérica.
-              Creatividad sin límites.
+              Agencia integral de comunicación desde Panamá con atención
+              regional. Creatividad sin límites.
             </p>
-            <div class="flex space-x-6">
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-                aria-label="Instagram"
-              >
-                <i class="fab fa-instagram text-2xl"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-                aria-label="LinkedIn"
-              >
-                <i class="fab fa-linkedin text-2xl"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-                aria-label="YouTube"
-              >
-                <i class="fab fa-youtube text-2xl"></i>
-              </a>
-            </div>
           </div>
 
           <div>
-            <h3 class="font-bold mb-6 text-lg">Servicios</h3>
+            <h3 class="font-bold mb-6 text-lg">Áreas</h3>
             <ul class="space-y-4 text-gray-400">
               <li>
                 <a
-                  href="servicios.html"
+                  href="digital.html"
                   class="hover:text-white transition-colors"
-                  >Streaming Profesional</a
+                  >Express Creativa | Digital</a
                 >
               </li>
               <li>
                 <a
-                  href="servicios.html"
+                  href="branding.html"
                   class="hover:text-white transition-colors"
-                  >Desarrollo Web</a
+                  >Express Creativa | Branding</a
                 >
               </li>
               <li>
                 <a
-                  href="servicios.html"
+                  href="studio.html"
                   class="hover:text-white transition-colors"
-                  >Branding Integral</a
+                  >Express Creativa | Studio</a
                 >
               </li>
               <li>
                 <a
-                  href="servicios.html"
+                  href="print.html"
                   class="hover:text-white transition-colors"
-                  >Marketing Digital</a
+                  >Express Creativa | Print</a
                 >
               </li>
               <li>
                 <a
-                  href="servicios.html"
+                  href="media.html"
                   class="hover:text-white transition-colors"
-                  >Consultoría</a
+                  >Express Creativa | Media</a
                 >
               </li>
+              <li><a href="events.html" class="hover:text-white transition-colors">Express Creativa | Events</a></li>
             </ul>
           </div>
 
@@ -1092,8 +1049,6 @@
                 >
               </li>
               <li>
-              </li>
-              <li>
                 <a
                   href="contacto.html"
                   class="hover:text-white transition-colors"
@@ -1108,7 +1063,7 @@
             <ul class="space-y-4 text-gray-400">
               <li class="flex items-center space-x-3">
                 <i class="fas fa-location-dot"></i>
-                <span>Panamá, Latinoamérica</span>
+                <span>Ciudad de Panamá, Panamá</span>
               </li>
               <li class="flex items-center space-x-3">
                 <i class="fas fa-envelope"></i>
@@ -1133,16 +1088,16 @@
         <div class="border-t border-gray-800 pt-8">
           <div class="flex flex-col md:flex-row justify-between items-center">
             <p class="text-gray-400 mb-4 md:mb-0">
-              &copy; 2024 ExpressCreativa. Todos los derechos reservados.
+              &copy; <span data-current-year>2026</span> Express Creativa. Proyecto en etapa preoperativa.
             </p>
             <div class="flex space-x-8 text-gray-400">
-              <a href="#" class="hover:text-white transition-colors"
+              <a href="terminos.html" class="hover:text-white transition-colors"
                 >Términos</a
               >
-              <a href="#" class="hover:text-white transition-colors"
+              <a href="privacidad.html" class="hover:text-white transition-colors"
                 >Privacidad</a
               >
-              <a href="#" class="hover:text-white transition-colors">Cookies</a>
+              <a href="cookies.html" class="hover:text-white transition-colors">Cookies</a>
             </div>
           </div>
         </div>

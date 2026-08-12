@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <script src="site-security.js" defer></script>
+    <title>Diseña tu taza | Express Creativa Print</title>
+    <meta name="description" content="Acomoda tu arte en una plantilla envolvente y previsualiza una taza personalizada antes de solicitarla." />
+    <link rel="canonical" href="https://expresscreativa.com/print/disena-taza" />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="print-lab.css" />
+    <style>
+      .mug-layout { display:grid; grid-template-columns:370px 1fr; gap:24px; align-items:start; }
+      .wrap-stage { padding:22px; border-radius:22px; background:#f4f7fb; border:1px solid #dce4ee; }
+      .wrap-labels { display:flex; justify-content:space-between; margin-bottom:9px; color:#607086; font-size:.72rem; font-weight:850; }
+      .mug-wrap { position:relative; width:100%; aspect-ratio:21/9; overflow:hidden; border:2px dashed rgba(6,86,199,.45); border-radius:14px; touch-action:none; }
+      .mug-wrap::after { content:"FRENTE VISIBLE"; position:absolute; inset:0 25%; border-left:1px dashed rgba(16,35,63,.25); border-right:1px dashed rgba(16,35,63,.25); display:grid; place-items:end center; padding:8px; color:#64748b; font-size:.62rem; font-weight:900; pointer-events:none; }
+      .mug-art { position:absolute; left:50%; top:50%; width:48%; max-height:94%; object-fit:contain; transform:translate(-50%,-50%); cursor:grab; touch-action:none; user-select:none; z-index:2; }
+      .mug-preview-stage { min-height:470px; display:grid; place-items:center; border-radius:26px; background:radial-gradient(circle at 52% 44%,#fff 0 24%,transparent 25%),linear-gradient(145deg,#eaf3ff,#f9fbff); overflow:hidden; }
+      .mug { position:relative; width:min(420px,76vw); height:300px; }
+      .mug-body { position:absolute; left:8%; top:7%; width:74%; height:82%; overflow:hidden; border-radius:18px 20px 78px 65px; background:linear-gradient(90deg,#d8e0e9,#fff 17%,#fff 78%,#d8e0e9); box-shadow:0 28px 28px rgba(16,35,63,.18); }
+      .mug-body::before { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(16,35,63,.14),transparent 20% 78%,rgba(16,35,63,.15)); z-index:3; pointer-events:none; }
+      .mug-handle { position:absolute; right:0; top:19%; width:31%; height:56%; border:27px solid #eef2f6; border-left-width:16px; border-radius:0 50% 50% 0; box-shadow:10px 18px 18px rgba(16,35,63,.12); }
+      .mug-preview-art { position:absolute; left:50%; top:50%; width:62%; max-height:75%; object-fit:contain; transform:translate(-50%,-50%); }
+      .mug-caption { position:absolute; bottom:-20px; width:100%; text-align:center; color:#607086; font-size:.72rem; font-weight:850; letter-spacing:.08em; }
+      #mug-result[hidden] { display:none; }
+      @media (max-width:920px) { .mug-layout { grid-template-columns:1fr; } .mug-preview-stage { min-height:390px; } }
+    </style>
+  </head>
+  <body>
+    <div class="lab-status">Diseño de taza por sublimación · preview referencial · sin pago en línea</div>
+    <header class="lab-header">
+      <nav class="lab-nav">
+        <a class="lab-brand" href="print.html"><img src="img/brand/express-creativa-print.webp" alt="" /><span><strong>Express Creativa | Print</strong><small>Herramienta · Taza</small></span></a>
+        <div class="lab-links"><a href="quitar-fondo.html">Quitar fondo</a><a href="disena-sueter.html">Suéter</a><a href="carta-dtf.html">Carta DTF</a><a class="lab-back" href="print.html">Todas las herramientas</a></div>
+      </nav>
+    </header>
+    <main>
+      <section class="tool-page-hero"><div class="lab-container"><span class="lab-kicker">Herramienta 03</span><h1>Diseña tu taza</h1><p>Trabaja sobre una plantilla larga, mueve tu diseño y mira una simulación del frente de la taza al mismo tiempo.</p></div></section>
+      <section class="tool-section">
+        <div class="lab-container mug-layout">
+          <aside class="lab-panel">
+            <label class="drop-zone"><input id="mug-upload" type="file" accept="image/png,image/jpeg,image/webp" /><strong>Subir diseño</strong><br /><small>PNG transparente recomendado · máximo 20 MB</small></label>
+            <div class="control"><div class="control-head"><label for="mug-scale">Ancho del diseño</label><output id="mug-scale-value">10.1 cm</output></div><input id="mug-scale" type="range" min="10" max="94" value="48" /></div>
+            <div id="mug-quality" class="quality-message">Carga un archivo para validar su resolución.</div>
+            <div class="control"><label for="mug-quantity">Cantidad de tazas</label><input id="mug-quantity" type="number" min="1" value="1" /></div>
+            <button id="mug-build" class="lab-button" style="width:100%;margin-top:18px">Preparar solicitud</button>
+          </aside>
+          <div>
+            <div class="lab-panel">
+              <div class="wrap-labels"><span>LADO IZQUIERDO</span><span>PLANTILLA ENVOLVENTE 21 × 9 CM</span><span>LADO DERECHO</span></div>
+              <div id="mug-wrap" class="mug-wrap checkerboard"><img id="mug-art" class="mug-art" alt="Diseño sobre plantilla envolvente de taza" draggable="false" hidden /></div>
+            </div>
+            <div class="mug-preview-stage" style="margin-top:18px">
+              <div class="mug"><div class="mug-handle"></div><div class="mug-body"><img id="mug-preview-art" class="mug-preview-art" alt="Previsualización del frente de la taza" hidden /></div><span class="mug-caption">PREVISUALIZACIÓN DEL FRENTE</span></div>
+            </div>
+            <div class="lab-note" style="margin-top:18px">La plantilla de 21 × 9 cm es una referencia común. Antes de producir se confirmarán el modelo, el área imprimible exacta, los márgenes y el precio de la taza disponible.</div>
+            <div id="mug-result" class="lab-panel" style="margin-top:18px" hidden>
+              <label for="mug-summary" style="font-weight:850">Resumen</label>
+              <textarea id="mug-summary" rows="8" readonly style="width:100%;margin-top:10px;padding:14px;border:1px solid #cdd7e4;border-radius:13px;font:inherit"></textarea>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button id="mug-copy" class="lab-button secondary">Copiar</button><a id="mug-whatsapp" class="lab-button" target="_blank" rel="noopener">Abrir WhatsApp</a></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="lab-footer"><div class="lab-footer-inner"><span>© <span data-current-year>2026</span> Express Creativa | Print</span><a href="print.html">Volver a Print</a></div></footer>
+    <script src="mug-designer.js"></script>
+  </body>
+</html>

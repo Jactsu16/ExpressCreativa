@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <script src="site-security.js" defer></script>
     <title>
       Calculadora de Métricas Publicitarias - ExpressCreativa | Herramientas
       Profesionales
     </title>
     <meta
       name="description"
-      content="Calcula CPM, CPC, CTR, CPA, ROI y CR de tus campañas publicitarias. Herramienta profesional gratuita para optimizar tus métricas de marketing digital."
+      content="Calcula CPM, CPC, CTR, CPA, ROI y conversión de campañas publicitarias y medios digitales con esta herramienta gratuita."
     />
     <meta
       name="keywords"
@@ -28,9 +30,14 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://expresscreativa.com/calculadora" />
+    <meta property="og:image" content="https://expresscreativa.com/img/social/calculadora-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Calculadora de métricas publicitarias de Express Creativa" />
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://expresscreativa.com/img/social/calculadora-og.png" />
     <meta
       name="twitter:title"
       content="Calculadora de Métricas Publicitarias - ExpressCreativa"
@@ -78,12 +85,14 @@
     </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+      defer
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
 
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="brand-rail.css" />
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -109,21 +118,21 @@
     >
       <div class="max-w-7xl mx-auto px-6 py-5">
         <div class="flex justify-between items-center">
-          <div class="flex items-center space-x-4">
+          <a href="index.html" class="flex items-center space-x-4" aria-label="Express Creativa, ir al inicio">
             <div class="w-10 h-10 custom-bg-primary rounded-lg">
                             <img src="favicon.ico" alt="ExpressCreativa Logo" class="w-full h-full object-cover rounded-lg" />
             </div>
             <div>
-              <a href="index.html" class="text-2xl font-bold custom-primary"
-                >ExpressCreativa</a
-              >
+              <span class="text-2xl font-bold custom-primary">Express Creativa</span>
               <div class="text-xs text-gray-500 font-medium">
-                Digital Agency
+                Creative Communications Agency
               </div>
             </div>
-          </div>
+          </a>
 
           <nav class="hidden lg:flex items-center space-x-10">
+            <a href="print.html" class="custom-primary font-semibold transition-colors">Print</a>
+            <a href="portafolio.html" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Portafolio</a>
             <a
               href="servicios.html"
               class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
@@ -147,7 +156,7 @@
             >
           </nav>
 
-          <button id="mobile-menu-btn" class="lg:hidden custom-primary">
+          <button id="mobile-menu-btn" type="button" class="lg:hidden custom-primary" aria-label="Abrir menú de navegación" aria-controls="mobile-menu" aria-expanded="false">
             <i class="fas fa-bars text-xl"></i>
           </button>
         </div>
@@ -155,6 +164,8 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="lg:hidden hidden mt-4 pb-4">
           <div class="flex flex-col space-y-4">
+            <a href="print.html" class="custom-primary font-semibold transition-colors">Print</a>
+            <a href="portafolio.html" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Portafolio</a>
             <a
               href="servicios.html"
               class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
@@ -180,6 +191,7 @@
         </div>
       </div>
     </header>
+    <nav class="brand-rail" aria-label="Divisiones de Express Creativa"><div class="brand-rail-inner"><a href="index.html">Inicio</a><a href="digital.html">Digital</a><a href="branding.html">Branding</a><a href="studio.html">Studio</a><a href="print.html">Print</a><a href="media.html">Media</a><a href="events.html">Events</a></div></nav>
 
     <main>
       <section id="calculator-hero" class="gradient-bg py-20">
@@ -364,7 +376,7 @@
               Más Herramientas
             </h2>
             <p class="text-xl text-gray-600">
-              Explora otras calculadoras disponibles
+              Próximas herramientas de análisis
             </p>
           </div>
 
@@ -450,37 +462,14 @@
                 <img src="favicon.ico" alt="ExpressCreativa Logo" class="w-full h-full object-cover rounded-xl" />
               </div>
               <div>
-                <span class="text-2xl font-bold">ExpressCreativa</span>
-                <div class="text-sm text-gray-400">Digital Agency</div>
+                <span class="text-2xl font-bold">Express Creativa</span>
+                <div class="text-sm text-gray-400">Creatividad desde Panamá</div>
               </div>
             </div>
             <p class="text-gray-400 mb-8 leading-relaxed">
-              Agencia digital profesional desde Panamá para toda Latinoamérica.
-              Creatividad sin límites.
+              Agencia integral de comunicación desde Panamá con atención
+              regional. Creatividad sin límites.
             </p>
-            <div class="flex space-x-6">
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-                aria-label="Instagram"
-              >
-                <i class="fab fa-instagram text-2xl"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-                aria-label="LinkedIn"
-              >
-                <i class="fab fa-linkedin text-2xl"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-                aria-label="YouTube"
-              >
-                <i class="fab fa-youtube text-2xl"></i>
-              </a>
-            </div>
           </div>
 
           <div>
@@ -542,8 +531,6 @@
                 >
               </li>
               <li>
-              </li>
-              <li>
                 <a
                   href="contacto.html"
                   class="hover:text-white transition-colors"
@@ -565,7 +552,7 @@
             <ul class="space-y-4 text-gray-400">
               <li class="flex items-center space-x-3">
                 <i class="fas fa-location-dot"></i>
-                <span>Panamá, Latinoamérica</span>
+                <span>Ciudad de Panamá, Panamá</span>
               </li>
               <li class="flex items-center space-x-3">
                 <i class="fas fa-envelope"></i>
@@ -590,16 +577,16 @@
         <div class="border-t border-gray-800 pt-8">
           <div class="flex flex-col md:flex-row justify-between items-center">
             <p class="text-gray-400 mb-4 md:mb-0">
-              &copy; 2024 ExpressCreativa. Todos los derechos reservados.
+              &copy; <span data-current-year>2026</span> ExpressCreativa. Proyecto en etapa preoperativa.
             </p>
             <div class="flex space-x-8 text-gray-400">
-              <a href="#" class="hover:text-white transition-colors"
+              <a href="terminos.html" class="hover:text-white transition-colors"
                 >Términos</a
               >
-              <a href="#" class="hover:text-white transition-colors"
+              <a href="privacidad.html" class="hover:text-white transition-colors"
                 >Privacidad</a
               >
-              <a href="#" class="hover:text-white transition-colors">Cookies</a>
+              <a href="cookies.html" class="hover:text-white transition-colors">Cookies</a>
             </div>
           </div>
         </div>
