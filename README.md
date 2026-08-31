@@ -2,22 +2,21 @@
 
 Sitio web preoperativo de **Express Creativa**, una agencia integral de comunicación con sede en Ciudad de Panamá y atención regional.
 
-## Divisiones
+## Tres puertas públicas
 
-- Digital: desarrollo web, e-commerce, SEO, analítica y herramientas digitales.
-- Branding: identidad visual, naming, logotipos, estrategia y packaging.
-- Studio: fotografía, video, edición, streaming y producción audiovisual.
-- Print: preparación de artes, personalización textil, sublimación, DTF y UV DTF mediante proveedores especializados.
-- Media: contenido, community management y pauta digital.
-- Events: activaciones, ferias y producción de eventos.
+- **Print:** arte, DPI, POP y presencia física coordinada con aliados. Print Lab (removedor de fondo, suéter, taza, carta DTF) vive aquí.
+- **Digital:** web, SEO, e-commerce y herramientas (incluida la calculadora de métricas).
+- **Media:** comunidad y audiovisual (video, fotografía, campañas y cobertura).
+
+Studio, Branding, Events y Academy no se venden como puertas públicas. Studio redirige a Media. Express (About) redirige a Contacto.
 
 ## Funciones actuales
 
 - Print Lab con removedor de fondo, diseñador de suéter, diseñador de taza y planificador de carta DTF.
 - Control local de peso, dimensiones y resolución de imágenes.
 - Calculadora de CPM, CPC, CTR, CPA, ROI y conversión.
-- Formularios que preparan mensajes para correo o WhatsApp sin almacenar datos en servidores del sitio.
-- Portafolio de fotografía, diseño y producción audiovisual.
+- Formularios FormSubmit hacia expresscreativa.pa@gmail.com.
+- Portafolio en Proyectos (portafolio.html redirige ahí).
 
 ## Estado operativo
 
