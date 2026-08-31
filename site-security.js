@@ -18,7 +18,6 @@
     ["Media", "media.html", "media"],
     ["Proyectos", "proyectos.html", "work"],
     ["Calculadora", "calculadora.html", "calculator"],
-    ["Express", "express.html", "about"],
     ["Contacto", "contacto.html", "contact"],
   ];
 
@@ -32,7 +31,6 @@
     if (["media.html", "fotografia.html"].includes(file)) return "media";
     if (file === "calculadora.html") return "calculator";
     if (["proyectos.html", "portafolio.html"].includes(file)) return "work";
-    if (file === "express.html") return "about";
     if (["contacto.html", "cotizacion.html"].includes(file)) return "contact";
     return "";
   };
