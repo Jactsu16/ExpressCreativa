@@ -19,6 +19,30 @@
 /img/*
   Cache-Control: public, max-age=2592000
 
+/academy.html
+  X-Robots-Tag: noindex, follow
+
+/branding.html
+  X-Robots-Tag: noindex, follow
+
+/contacto.html
+  X-Robots-Tag: noindex, follow
+
+/cotizacion.html
+  X-Robots-Tag: noindex, follow
+
+/events.html
+  X-Robots-Tag: noindex, follow
+
+/fotografia.html
+  X-Robots-Tag: noindex, follow
+
+/studio.html
+  X-Robots-Tag: noindex, follow
+
+/portafolio.html
+  X-Robots-Tag: noindex, follow
+
 /ssa.html
   Cache-Control: no-store, private
   X-Robots-Tag: noindex, nofollow, noarchive

@@ -1,7 +1,42 @@
-// ExpressCreativa - JavaScript Functions
+// Express Creativa - JavaScript Functions
 
-// Shopping cart
-let cart = [];
+// Preoperative quote-request selection. No personal data is stored here.
+const REQUEST_STORAGE_KEY = "express-creativa-service-request";
+
+function loadSavedRequest() {
+  try {
+    const parsed = JSON.parse(sessionStorage.getItem(REQUEST_STORAGE_KEY) || "[]");
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter((item) =>
+      item &&
+      typeof item.id === "string" &&
+      typeof item.name === "string" &&
+      Number.isFinite(Number(item.price)) &&
+      Number.isInteger(Number(item.quantity)) &&
+      Number(item.quantity) > 0,
+    ).map((item) => ({
+      id: item.id.slice(0, 40),
+      sku: String(item.sku || item.id).slice(0, 40),
+      unit: String(item.unit || "servicio").slice(0, 40),
+      name: item.name.slice(0, 160),
+      price: Number(item.price),
+      description: String(item.description || "").slice(0, 500),
+      quantity: Math.min(Number(item.quantity), 99),
+    }));
+  } catch {
+    return [];
+  }
+}
+
+function persistRequest() {
+  try {
+    sessionStorage.setItem(REQUEST_STORAGE_KEY, JSON.stringify(cart));
+  } catch {
+    // The request still works in memory when storage is unavailable.
+  }
+}
+
+let cart = loadSavedRequest();
 
 const SERVICE_UNITS = {
   SVP001: "transmisión", SVP002: "transmisión", SVP003: "transmisión", SVP004: "proyecto",
@@ -112,14 +147,22 @@ function calculateAdMetrics() {
     showToast("Los ingresos no pueden ser negativos.", "error");
     return;
   }
+  if (clicks > impressions) {
+    showToast("Los clics no pueden superar las impresiones.", "error");
+    return;
+  }
+  if (conversions > clicks) {
+    showToast("Las conversiones no pueden superar los clics.", "error");
+    return;
+  }
 
   // Calculate metrics with standard formulas
   const cpm = cost / (impressions / 1000); // CPM = investment / (impressions / 1000)
-  const cpc = clicks > 0 ? cost / clicks : 0; // CPC = investment / clicks
+  const cpc = clicks > 0 ? cost / clicks : null; // CPC = investment / clicks
   const ctr = (clicks / impressions) * 100; // CTR = (clicks / impressions) × 100
-  const cpa = conversions > 0 ? cost / conversions : 0; // CPA = investment / number of actions
+  const cpa = conversions > 0 ? cost / conversions : null; // CPA = investment / number of actions
   const roi = ((revenue - cost) / cost) * 100; // ROI = ((profits − investment) / investment) × 100
-  const cr = clicks > 0 ? (conversions / clicks) * 100 : 0; // CR = (conversions / clicks) × 100
+  const cr = clicks > 0 ? (conversions / clicks) * 100 : null; // CR = (conversions / clicks) × 100
 
   // Determine quality, color and recommendations for each metric
   // Guideline thresholds; adjust according to your industry
@@ -142,7 +185,11 @@ function calculateAdMetrics() {
   }
 
   let cpcQuality, cpcColor, cpcRec;
-  if (cpc < 1) {
+  if (cpc === null) {
+    cpcQuality = "CPC no disponible";
+    cpcColor = "#64748b";
+    cpcRec = "No existen clics suficientes para calcular el costo por clic.";
+  } else if (cpc < 1) {
     cpcQuality = "CPC Excelente";
     cpcColor = "#0be881";
     cpcRec =
@@ -175,7 +222,11 @@ function calculateAdMetrics() {
   }
 
   let cpaQuality, cpaColor, cpaRec;
-  if (cpa < 10) {
+  if (cpa === null) {
+    cpaQuality = "CPA no disponible";
+    cpaColor = "#64748b";
+    cpaRec = "No existen conversiones suficientes para calcular CPA.";
+  } else if (cpa < 10) {
     cpaQuality = "CPA Excelente";
     cpaColor = "#0be881";
     cpaRec =
@@ -211,7 +262,11 @@ function calculateAdMetrics() {
   }
 
   let crQuality, crColor, crRec;
-  if (cr < 2) {
+  if (cr === null) {
+    crQuality = "CR no disponible";
+    crColor = "#64748b";
+    crRec = "No existen clics suficientes para calcular la tasa de conversión.";
+  } else if (cr < 2) {
     crQuality = "CR Bajo";
     crColor = "#ff6b6b";
     crRec =
@@ -240,14 +295,14 @@ function calculateAdMetrics() {
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         ${createCard("CPM", "📢", `${cpm.toFixed(2)}`, cpmColor, cpmQuality, cpmRec)}
-        ${createCard("CPC", "🖱️", `${cpc.toFixed(2)}`, cpcColor, cpcQuality, cpcRec)}
+        ${createCard("CPC", "🖱️", cpc === null ? "N/A" : `${cpc.toFixed(2)}`, cpcColor, cpcQuality, cpcRec)}
         ${createCard("CTR", "📊", `${ctr.toFixed(2)}%`, ctrColor, ctrQuality, ctrRec)}
-        ${createCard("CPA", "🎯", `${cpa.toFixed(2)}`, cpaColor, cpaQuality, cpaRec)}
+        ${createCard("CPA", "🎯", cpa === null ? "N/A" : `${cpa.toFixed(2)}`, cpaColor, cpaQuality, cpaRec)}
         ${createCard("ROI", "💰", `${roi.toFixed(2)}%`, roiColor, roiQuality, roiRec)}
-        ${createCard("CR", "🚀", `${cr.toFixed(2)}%`, crColor, crQuality, crRec)}
+        ${createCard("CR", "🚀", cr === null ? "N/A" : `${cr.toFixed(2)}%`, crColor, crQuality, crRec)}
     </div>
     <div class="mt-8 text-sm text-gray-500 text-center">
-        📌 Tip: Evalúa cada métrica a lo largo del tiempo para detectar tendencias y actuar a tiempo.
+        Referencia general: los resultados ideales varían según sector, objetivo, plataforma y mercado. Evalúa cada métrica a lo largo del tiempo.
     </div>
     `;
 
@@ -549,7 +604,7 @@ function initializeShoppingCart() {
     const price = Number(button.dataset.price) || 0;
     button.dataset.sku = sku;
     button.dataset.unit = unit;
-    button.textContent = `Cotiza con nosotros · B/.${price.toFixed(2)} / ${unit}`;
+    button.textContent = `Cotiza con nosotros · desde B/.${price.toFixed(2)} / ${unit}`;
     const skuLabel = document.createElement("p");
     skuLabel.className = "mb-2 text-xs font-bold tracking-widest text-slate-500";
     skuLabel.textContent = `SKU: ${sku}`;
@@ -581,6 +636,7 @@ function addToCart(service) {
     cart.push(service);
   }
 
+  persistRequest();
   updateCartCount();
   updateCartDisplay();
   const requestModal = document.getElementById("cart-modal");
@@ -590,6 +646,7 @@ function addToCart(service) {
 
 function removeFromCart(serviceId) {
   cart = cart.filter((item) => item.id !== serviceId);
+  persistRequest();
   updateCartCount();
   updateCartDisplay();
 }
@@ -603,6 +660,7 @@ function updateQuantity(serviceId, newQuantity) {
   const item = cart.find((item) => item.id === serviceId);
   if (item) {
     item.quantity = newQuantity;
+    persistRequest();
     updateCartCount();
     updateCartDisplay();
   }
@@ -787,14 +845,14 @@ function processCheckout() {
   ].join('\n')).join('\n\n');
   
   const checkoutMessage = `
-🛒 *Solicitud de Servicios - ExpressCreativa*
+🛒 *Solicitud de Servicios - Express Creativa*
 
 📋 *Servicios Solicitados:*
 ${itemsList}
 
 💰 *Referencia estimada: B/.${total.toFixed(2)}*
 
-✅ *He aceptado los términos y condiciones de ExpressCreativa*
+✅ *He aceptado los términos y condiciones de Express Creativa*
 Me interesan estos servicios. Entiendo que esta solicitud no es una compra ni procesa un pago. ¿Podrían enviarme más información y confirmar una cotización?
 
 ¡Gracias!

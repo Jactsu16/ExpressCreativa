@@ -456,7 +456,7 @@
       ? `B/.${(quantity * 14).toFixed(2)} (${quantity} × B/.14.00 por unidad)`
       : "Pendiente de confirmar tarifa de taza";
     const summary = [
-      "Hola, quiero preparar una cotización de ExpressCreativa.",
+      "Hola, quiero preparar una cotización de Express Creativa.",
       `SKU: ${sku}`,
       `Producto: ${product}`,
       `Unidad de venta: ${isSweater ? "suéter" : "taza"}`,

@@ -271,7 +271,7 @@ function buildEmailBody(ticket, data) {
   const servicesText = formatRequestedServices(data.services);
   
   return `
-Estimado equipo de ExpressCreativa,
+Estimado equipo de Express Creativa,
 
 Solicito una cotización con los siguientes detalles:
 

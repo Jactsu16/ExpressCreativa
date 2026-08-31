@@ -1,22 +1,81 @@
 (() => {
   "use strict";
 
-  const responsiveStyles = document.createElement("link");
-  responsiveStyles.rel = "stylesheet";
-  responsiveStyles.href = "responsive-menu.css";
-  document.head.append(responsiveStyles);
+  const ensureStylesheet = (href) => {
+    if (document.querySelector(`link[href="${href}"]`)) return;
+    const stylesheet = document.createElement("link");
+    stylesheet.rel = "stylesheet";
+    stylesheet.href = href;
+    document.head.append(stylesheet);
+  };
+
+  ensureStylesheet("responsive-menu.css");
 
   const primaryMenuLinks = [
-    ["Inicio", "index.html"],
-    ["Servicios", "servicios.html"],
-    ["Digital", "digital.html"],
-    ["Branding", "branding.html"],
-    ["Studio", "studio.html"],
-    ["Print", "print.html"],
-    ["Media", "media.html"],
-    ["Events", "events.html"],
-    ["Contacto", "contacto.html"],
+    ["Inicio", "index.html", "home"],
+    ["Servicios", "servicios.html", "services"],
+    ["Digital", "digital.html", "digital"],
+    ["Media", "media.html", "media"],
+    ["Proyectos", "proyectos.html", "work"],
+    ["Calculadora", "calculadora.html", "calculator"],
+    ["Express", "express.html", "about"],
   ];
+
+  const currentFile = () => (location.pathname.split("/").pop() || "index.html").toLowerCase();
+
+  const sectionForFile = (file) => {
+    if (file === "index.html") return "home";
+    if (file === "servicios.html") return "services";
+    if (file === "digital.html") return "digital";
+    if (file === "media.html") return "media";
+    if (file === "calculadora.html") return "calculator";
+    if (["proyectos.html", "portafolio.html"].includes(file)) return "work";
+    if (["express.html", "contacto.html", "cotizacion.html"].includes(file)) return "about";
+    return "";
+  };
+
+  const installSiteHeader = () => {
+    const previousHeader = document.querySelector("header");
+    if (!previousHeader) return;
+
+    const activeSection = sectionForFile(currentFile());
+    const header = document.createElement("header");
+    header.id = "header";
+    header.className = "ec-site-header";
+
+    const inner = document.createElement("div");
+    inner.className = "ec-site-header-inner";
+    inner.innerHTML = `
+      <a href="index.html" class="ec-site-brand" aria-label="Express Creativa, ir al inicio">
+        <span class="ec-site-brand-mark"><img src="favicon.ico" alt="Logo de Express Creativa" /></span>
+        <span class="ec-site-brand-copy">
+          <strong>Express Creativa</strong>
+          <small>Creative Communications Agency</small>
+        </span>
+      </a>
+      <nav class="ec-site-nav" aria-label="Navegación principal"></nav>
+      <button id="mobile-menu-btn" type="button" aria-label="Abrir menú de navegación" aria-controls="mobile-menu" aria-expanded="false"></button>
+    `;
+
+    const desktopNav = inner.querySelector(".ec-site-nav");
+    const mobilePanel = document.createElement("nav");
+    mobilePanel.id = "mobile-menu";
+    mobilePanel.setAttribute("aria-label", "Navegación móvil");
+
+    primaryMenuLinks.forEach(([label, href, section]) => {
+      [desktopNav, mobilePanel].forEach((navigation) => {
+        const link = document.createElement("a");
+        link.href = href;
+        link.textContent = label;
+        link.dataset.section = section;
+        if (section === activeSection) link.setAttribute("aria-current", "page");
+        navigation.append(link);
+      });
+    });
+
+    header.append(inner, mobilePanel);
+    previousHeader.replaceWith(header);
+  };
 
   const setMenuState = (button, panel, open) => {
     button.setAttribute("aria-expanded", String(open));
@@ -49,45 +108,6 @@
     });
   };
 
-  const createMenu = () => {
-    const existingButton = document.getElementById("mobile-menu-btn");
-    const existingPanel = document.getElementById("mobile-menu");
-    if (existingButton && existingPanel) {
-      bindMenu(existingButton, existingPanel);
-      return;
-    }
-
-    const header = document.querySelector("header");
-    if (!header) return;
-    const mount = header.querySelector(".family-nav, .lab-nav, .legal-nav")
-      || header.querySelector(":scope > div")
-      || header;
-    const source = header.querySelector(".family-links, .lab-links, nav.hidden, nav[class*='md:flex'], nav[class*='lg:flex']");
-    if (source) source.classList.add("ec-menu-source");
-
-    const button = document.createElement("button");
-    button.type = "button";
-    button.id = "ec-mobile-menu-btn";
-    button.setAttribute("aria-controls", "ec-mobile-menu");
-
-    const panel = document.createElement("nav");
-    panel.id = "ec-mobile-menu";
-    panel.setAttribute("aria-label", "Navegación móvil");
-
-    const currentFile = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-    primaryMenuLinks.forEach(([label, href]) => {
-      const link = document.createElement("a");
-      link.href = href;
-      link.textContent = label;
-      if (href.toLowerCase() === currentFile) link.setAttribute("aria-current", "page");
-      panel.append(link);
-    });
-
-    mount.append(button);
-    header.append(panel);
-    bindMenu(button, panel);
-  };
-
   const secureExternalLink = (link) => {
     if (!(link instanceof HTMLAnchorElement)) return;
     if (link.target === "_blank") {
@@ -99,17 +119,23 @@
   };
 
   const secureDocument = () => {
+    document.querySelectorAll(".brand-rail").forEach((rail) => rail.remove());
+    installSiteHeader();
     document.querySelectorAll('a[target="_blank"]').forEach(secureExternalLink);
-    document.querySelectorAll('input[type="file"]').forEach((input) => {
-      input.setAttribute("autocomplete", "off");
-    });
+    document.querySelectorAll('input[type="file"]').forEach((input) => input.setAttribute("autocomplete", "off"));
     document.querySelectorAll("[data-current-year]").forEach((element) => {
       element.textContent = String(new Date().getFullYear());
     });
-    createMenu();
+    const button = document.getElementById("mobile-menu-btn");
+    const panel = document.getElementById("mobile-menu");
+    if (button && panel) bindMenu(button, panel);
   };
 
-  document.addEventListener("DOMContentLoaded", secureDocument, { once: true });
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", secureDocument, { once: true });
+  } else {
+    secureDocument();
+  }
 
   document.addEventListener("click", (event) => {
     const link = event.target.closest?.('a[target="_blank"]');

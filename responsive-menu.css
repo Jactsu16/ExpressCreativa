@@ -4,6 +4,132 @@
   --ec-menu-line: #dbe4ef;
 }
 
+.ec-site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  border-bottom: 1px solid #f1f5f9;
+  background: rgba(255, 255, 255, .95);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.ec-site-header *,
+.ec-site-header *::before,
+.ec-site-header *::after {
+  box-sizing: border-box;
+}
+
+.ec-site-header a {
+  text-decoration: none;
+}
+
+.ec-site-header-inner {
+  width: min(100% - 48px, 1232px);
+  min-height: 82px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.ec-site-brand {
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  color: inherit;
+}
+
+.ec-site-brand-mark {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--ec-menu-blue);
+}
+
+.ec-site-brand-mark img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.ec-site-brand-copy {
+  min-width: 0;
+  display: block;
+}
+
+.ec-site-brand-copy strong {
+  display: block;
+  color: var(--ec-menu-blue);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -.025em;
+}
+
+.ec-site-brand-copy small {
+  display: block;
+  margin-top: 3px;
+  color: #6b7280;
+  font-size: .75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.ec-site-nav {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin-left: auto;
+}
+
+.ec-site-nav a {
+  position: relative;
+  padding: 10px 0;
+  color: #374151;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: color .2s ease;
+}
+
+.ec-site-nav a:hover,
+.ec-site-nav a:focus-visible,
+.ec-site-nav a[aria-current="page"] {
+  color: var(--ec-menu-blue);
+  outline: none;
+}
+
+.ec-site-nav a[data-section="calculator"] {
+  color: var(--ec-menu-blue);
+  font-weight: 700;
+}
+
+.ec-site-nav a[data-section="about"] {
+  padding: 12px 24px;
+  border-radius: 12px;
+  color: #fff;
+  background: #008060;
+  font-weight: 500;
+}
+
+.ec-site-nav a[data-section="about"]:hover,
+.ec-site-nav a[data-section="about"]:focus-visible,
+.ec-site-nav a[data-section="about"][aria-current="page"] {
+  color: #fff;
+  background: #006d51;
+}
+
 html,
 body {
   max-width: 100%;
@@ -20,22 +146,33 @@ canvas {
 .ec-menu-toggle {
   display: none;
   flex: 0 0 auto;
-  width: 46px;
-  height: 46px;
+  width: 40px;
+  height: 40px;
   padding: 0;
-  border: 1px solid var(--ec-menu-line);
-  border-radius: 13px;
+  border: 0;
+  border-radius: 8px;
   color: var(--ec-menu-blue);
-  background: #fff;
-  box-shadow: 0 7px 20px rgba(16, 35, 63, .08);
+  background: transparent;
+  box-shadow: none;
   cursor: pointer;
   place-items: center;
+}
+
+.ec-menu-toggle:hover,
+.ec-menu-toggle:focus-visible {
+  color: #06469f;
+  background: transparent;
+}
+
+.ec-menu-toggle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }
 
 .ec-menu-icon {
   position: relative;
   display: block;
-  width: 22px;
+  width: 20px;
   height: 16px;
 }
 
@@ -44,7 +181,7 @@ canvas {
 .ec-menu-icon span {
   position: absolute;
   left: 0;
-  width: 22px;
+  width: 20px;
   height: 2px;
   border-radius: 999px;
   background: currentColor;
@@ -70,22 +207,43 @@ canvas {
   display: none;
 }
 
+.ec-mobile-panel a[data-section="about"] {
+  color: #fff !important;
+  background: #008060;
+  text-align: center;
+}
+
+.ec-mobile-panel a[data-section="about"]:hover,
+.ec-mobile-panel a[data-section="about"]:focus-visible,
+.ec-mobile-panel a[data-section="about"][aria-current="page"] {
+  color: #fff !important;
+  background: #006d51;
+}
+
 @media (max-width: 1023px) {
+  .ec-site-nav {
+    display: none;
+  }
+
+  .ec-site-header-inner {
+    min-height: 78px;
+  }
+
   .ec-menu-toggle {
     display: grid !important;
     margin-left: auto;
   }
 
   .ec-mobile-panel {
-    width: min(100% - 28px, 1180px);
-    margin: 0 auto 14px;
-    padding: 10px;
-    border: 1px solid var(--ec-menu-line);
-    border-radius: 18px;
-    background: rgba(255, 255, 255, .99);
-    box-shadow: 0 18px 45px rgba(16, 35, 63, .14);
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 4px;
+    width: min(100% - 48px, 1232px);
+    margin: 16px auto 0;
+    padding: 0 0 16px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .ec-mobile-panel:not([hidden]):not(.hidden) {
@@ -99,19 +257,24 @@ canvas {
 
   .ec-mobile-panel a {
     min-width: 0;
-    padding: 13px 14px;
-    border-radius: 11px;
+    padding: 0;
+    border-radius: 0;
     color: var(--ec-menu-ink) !important;
     text-decoration: none;
-    font: 800 .86rem/1.2 Inter, ui-sans-serif, system-ui, sans-serif;
+    font: 500 1rem/1.2 Inter, ui-sans-serif, system-ui, sans-serif;
   }
 
   .ec-mobile-panel a:hover,
   .ec-mobile-panel a:focus-visible,
   .ec-mobile-panel a[aria-current="page"] {
     color: var(--ec-menu-blue) !important;
-    background: #edf4ff;
+    background: transparent;
     outline: none;
+  }
+
+  .ec-mobile-panel a[data-section="about"] {
+    padding: 12px 24px;
+    border-radius: 12px;
   }
 
   .family-nav,
@@ -150,14 +313,39 @@ canvas {
 }
 
 @media (max-width: 620px) {
+  .ec-site-header-inner {
+    width: calc(100% - 48px);
+    min-height: 82px;
+    gap: 12px;
+  }
+
+  .ec-site-brand {
+    gap: 16px;
+  }
+
+  .ec-site-brand-mark {
+    width: 40px;
+    height: 40px;
+  }
+
+  .ec-site-brand-copy strong {
+    font-size: 1.5rem;
+  }
+
+  .ec-site-brand-copy small {
+    max-width: none;
+    font-size: .75rem;
+  }
+
   .ec-mobile-panel {
+    width: calc(100% - 48px);
     grid-template-columns: 1fr;
   }
 
   .ec-menu-toggle {
-    width: 43px;
-    height: 43px;
-    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
   }
 
   .family-lockup img,
