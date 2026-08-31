@@ -14,11 +14,13 @@
   const primaryMenuLinks = [
     ["Inicio", "index.html", "home"],
     ["Servicios", "servicios.html", "services"],
+    ["Print", "print.html", "print"],
     ["Digital", "digital.html", "digital"],
     ["Media", "media.html", "media"],
     ["Proyectos", "proyectos.html", "work"],
     ["Calculadora", "calculadora.html", "calculator"],
     ["Express", "express.html", "about"],
+    ["Contacto", "contacto.html", "contact"],
   ];
 
   const currentFile = () => (location.pathname.split("/").pop() || "index.html").toLowerCase();
@@ -26,17 +28,22 @@
   const sectionForFile = (file) => {
     if (file === "index.html") return "home";
     if (file === "servicios.html") return "services";
+    if (file === "print.html" || file.startsWith("disena-") || file === "quitar-fondo.html" || file === "carta-dtf.html") return "print";
     if (file === "digital.html") return "digital";
-    if (file === "media.html") return "media";
+    if (["media.html", "fotografia.html"].includes(file)) return "media";
     if (file === "calculadora.html") return "calculator";
     if (["proyectos.html", "portafolio.html"].includes(file)) return "work";
-    if (["express.html", "contacto.html", "cotizacion.html"].includes(file)) return "about";
+    if (file === "express.html") return "about";
+    if (["contacto.html", "cotizacion.html"].includes(file)) return "contact";
     return "";
   };
 
   const installSiteHeader = () => {
     const previousHeader = document.querySelector("header");
     if (!previousHeader) return;
+    if (previousHeader.classList.contains("lab-header") || previousHeader.classList.contains("legal-header")) {
+      return;
+    }
 
     const activeSection = sectionForFile(currentFile());
     const header = document.createElement("header");

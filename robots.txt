@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /ssa.html
 Disallow: /docs/
 
-Sitemap: https://expresscreativa.com/sitemap.xml
+Sitemap: https://jactsu16.github.io/ExpressCreativa/sitemap.xml
