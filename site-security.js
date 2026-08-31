@@ -14,7 +14,6 @@
   const primaryMenuLinks = [
     ["Inicio", "index.html", "home"],
     ["Servicios", "servicios.html", "services"],
-    ["Print", "print.html", "print"],
     ["Digital", "digital.html", "digital"],
     ["Media", "media.html", "media"],
     ["Proyectos", "proyectos.html", "work"],
